@@ -109,7 +109,7 @@ function Resume() {
         <section className="resume-section" aria-labelledby="timeline-heading">
           <h3 id="timeline-heading" className="section-title">Journey</h3>
 
-          <div className="timeline" role="list">
+          <div className="timeline">
             <div className="timeline-rail" aria-hidden="true"></div>
 
             {/* 2015 — CSU San Bernardino */}
