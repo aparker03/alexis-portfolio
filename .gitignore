@@ -1,0 +1,22 @@
+# Node / web
+node_modules/
+dist/
+build/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+*.tmp
