@@ -3,6 +3,7 @@ node_modules/
 dist/
 build/
 *.log
+*.lock       # e.g., yarn.lock or package-lock.json if you don’t want to track it
 
 # Python
 __pycache__/
@@ -12,6 +13,11 @@ venv/
 .env
 .env.*
 
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_save
+*.ipynb_checkpoint
+
 # OS / editors
 .DS_Store
 Thumbs.db
@@ -20,3 +26,8 @@ Thumbs.db
 
 # Misc
 *.tmp
+*.bak
+*.swp
+
+# Notebook data
+notebooks/*/data/
