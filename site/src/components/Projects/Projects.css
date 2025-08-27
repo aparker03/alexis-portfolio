@@ -5,6 +5,12 @@
   --font-size-base: 1em;     /* base */
   --font-size-lg: 1.125em;   /* +12.5% */
   --font-size-xl: 1.25em;    /* +25% */
+
+  /* Accent + tokens aligned with Resume */
+  --projects-accent: #b28a2f;   /* muted gold */
+  --projects-ink: #1f2937;      /* slate-800 */
+  --projects-sub: #374151;      /* slate-700 */
+  --projects-border: #e5e7eb;
 }
 
 /* Font-size hooks (match your Certifications pattern) */
@@ -21,7 +27,7 @@
 
   /* Cohesive font + color across page */
   font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
-  color: #1f2937;
+  color: var(--projects-ink);
   line-height: 1.6;
 }
 
@@ -70,7 +76,7 @@
 .projects-intro {
   margin-bottom: 2rem;
   font-size: var(--font-size-base);
-  color: #374151;
+  color: var(--projects-sub);
   max-width: 800px;
 }
 
@@ -87,21 +93,25 @@
   height: auto;
 }
 
-/* Project Cards */
+/* ===== Project Cards ===== */
+
+/* Responsive grid that handles 4+ cards gracefully */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
   align-items: stretch;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 640px) {
   .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
 .project-card {
+  /* Base card */
   background: #E1DE9B;
   border-radius: 0.75rem;
   padding: 2rem;
@@ -110,6 +120,10 @@
   justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Unified gold accent rail for ALL main cards */
+  border-left: 6px solid var(--projects-accent);
+
   font-size: var(--font-size-base);
   line-height: 1.7;
 }
@@ -119,6 +133,24 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* (Former) color variants disabled — keeping for compatibility but all gold now */
+.card-blue,
+.card-red,
+.card-green,
+.card-gold { border-left-color: var(--projects-accent); }
+
+/* Project preview image */
+.project-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
 .project-title {
   font-size: var(--font-size-xl);
   font-weight: 700;
@@ -126,20 +158,48 @@
   color: #111827;
 }
 
+/* Paragraph description (still supported if you keep any) */
 .project-description {
   font-size: var(--font-size-lg);
-  font-weight: 500; /* match exploratory readability */
+  font-weight: 500;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--projects-ink);
+}
+
+/* Star bullet list (matches Resume style) */
+.project-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: grid;
+  gap: 8px;
+}
+.project-points .star {
+  position: relative;
+  padding-left: 24px;
+  color: var(--projects-sub);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+}
+.project-points .star::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-58%);
+  color: var(--projects-accent);
+  font-size: 16px;
+  line-height: 1;
 }
 
 .project-tools {
   font-size: var(--font-size-base);
   font-weight: 500;
-  color: #374151;
+  color: var(--projects-sub);
   margin-bottom: 1rem;
 }
 
+/* Inline links under description */
 .project-links a {
   margin-right: 1rem;
   font-size: var(--font-size-base);
@@ -148,6 +208,13 @@
   text-decoration: underline;
 }
 
+.project-links a:hover,
+.project-links a:focus-visible {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Launch button */
 .project-launch-btn {
   display: inline-block;
   padding: 0.75rem 1.25rem;
@@ -156,15 +223,21 @@
   color: white;
   font-size: var(--font-size-base);
   font-weight: 600;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
   text-align: center;
+  margin-top: 0.25rem;
 }
 
 .project-launch-btn:hover {
   background-color: #1d4ed8;
 }
 
-/* Exploratory section */
+.project-launch-btn:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* ===== Exploratory section ===== */
 .exploratory-projects {
   margin-top: 4rem;
 }
@@ -178,7 +251,7 @@
 
 .exploratory-intro {
   font-size: var(--font-size-lg);
-  color: #374151;
+  color: var(--projects-sub);
   margin-bottom: 2rem;
 }
 
@@ -201,11 +274,17 @@
 
 .exploratory-grid .project-card p {
   font-weight: 500;
-  color: #1f2937;
+  color: var(--projects-ink);
 }
 
 .exploratory-grid .project-card a {
   font-weight: 600;
   color: #1f3fb8;
   text-decoration: underline;
+}
+
+.exploratory-grid .project-card a:hover,
+.exploratory-grid .project-card a:focus-visible {
+  text-decoration: none;
+  outline: none;
 }
