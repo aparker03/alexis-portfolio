@@ -1,4 +1,4 @@
-# Alexis Parker — Portfolio
+# Alexis Parker - Portfolio
 
 I am Alexis Parker, a data scientist and graduate researcher at the University of Michigan.  
 This portfolio highlights projects that bring together my technical work, research, and creative problem solving in ways that are approachable for a wide audience.  
