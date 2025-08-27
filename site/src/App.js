@@ -1,7 +1,7 @@
 // src/App.js
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useFontSize, FontSizeProvider } from './context/FontSizeContext'; // 👈 import
+import { Routes, Route } from 'react-router-dom';
+import { useFontSize, FontSizeProvider } from './context/FontSizeContext';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -11,7 +11,7 @@ import Certifications from './pages/Certifications';
 
 // Wrapper component to apply font size globally
 function AppLayout() {
-  const { fontSize } = useFontSize(); // ⬅️ dynamic font size
+  const { fontSize } = useFontSize(); // dynamic font size
 
   return (
     <div className={`min-h-screen bg-white text-gray-900 font-sans flex flex-col text-${fontSize}`}>
@@ -23,6 +23,8 @@ function AppLayout() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/certifications" element={<Certifications />} />
+          {/* Optional catch-all */}
+          <Route path="*" element={<Home />} />
         </Routes>
       </main>
 
@@ -54,14 +56,10 @@ function AppLayout() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <FontSizeProvider>
-      <Router>
-        <AppLayout />
-      </Router>
+      <AppLayout />
     </FontSizeProvider>
   );
 }
-
-export default App;
