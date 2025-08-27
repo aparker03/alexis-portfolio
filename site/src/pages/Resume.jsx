@@ -1,5 +1,6 @@
 // src/pages/Resume.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import "../components/Resume/Resume.css";
 
 const P = process.env.PUBLIC_URL;
@@ -27,11 +28,11 @@ function Resume() {
       </div>
 
       <div className="resume-inner">
-        <header className="resume-header">
+        <header className="resume-header text-center">
           <h2 id="resume-heading" className="resume-title">Resume</h2>
 
-          {/* Intro */}
-          <p className="resume-intro">
+          {/* Intro (centered, readable width) */}
+          <p className="resume-intro mx-auto text-center">
             I studied psychology at CSU San Bernardino and looked for better ways to understand people and health.
             Data science gave me those tools. I will finish the Master of Applied Data Science at the University of
             Michigan in August 2025. I work where research meets code. I support studies that use large language
@@ -246,13 +247,13 @@ function Resume() {
             Depression Index built from BRFSS data, a Strava training analysis, and a California cancer
             surgery visualizer. Each app pairs clean methods with a simple interface.
           </p>
-          <a
-            href={`${P}/projects`}
+          <Link
+            to="/projects"
             className="btn-primary btn-inline"
             aria-label="Go to Projects page"
           >
             See projects →
-          </a>
+          </Link>
         </section>
 
         {/* Featured Certifications */}
@@ -261,7 +262,7 @@ function Resume() {
           <ul className="certs-list">
             <li>
               <strong>IBM Data Science Specialization</strong>: Python, SQL, machine learning, and visualization workflows.
-              <a href={`${P}/certifications`} className="btn-link"> View details</a>
+              <Link to="/certifications" className="btn-link"> View details</Link>
             </li>
             <li><strong>Deep Learning Specialization</strong>: neural networks, CNNs, sequence models, and optimization.</li>
             <li><strong>Machine Learning Specialization</strong>: regression, classification, recommenders, and unsupervised learning.</li>
@@ -269,24 +270,6 @@ function Resume() {
             <li><strong>Machine Learning on Google Cloud</strong>: MLOps pipelines, TensorFlow on GCP, and production ML.</li>
             <li><strong>Neuroscience and Neuroimaging</strong>: fMRI design and analysis, and neurohacking in R.</li>
           </ul>
-        </section>
-
-        {/* Independent Learning Journey */}
-        <section className="resume-section" aria-labelledby="learning-heading">
-          <h3 id="learning-heading" className="section-title">Independent learning journey</h3>
-          <p className="section-note">
-            Between 2022 and 2024 I completed more than one hundred Coursera courses and several professional
-            specializations in data science, neuroscience, and machine learning. This work deepened skills in Python,
-            R, cloud platforms, and statistical thinking. It also built a steady habit of focused learning. The full
-            list is on the certifications page.
-          </p>
-          <a
-            href={`${P}/certifications`}
-            className="btn-ghost btn-inline"
-            aria-label="View all certifications"
-          >
-            View all certifications →
-          </a>
         </section>
 
         {/* RPubs */}

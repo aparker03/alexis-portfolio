@@ -37,12 +37,20 @@
   color: var(--resume-text);
   padding: var(--space-7) var(--space-4);
   box-sizing: border-box;
-  /* no page-level font-size here so your global font changer controls everything */
+
+  /* Cohesive typography (matches Projects page) */
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+
+  /* Prevent horizontal scroll from decorative shapes */
+  position: relative;
+  overflow-x: hidden;
 }
 
 .resume-inner {
   max-width: 1400px;
   margin: 0 auto;
+  overflow-x: hidden; /* extra safeguard */
 }
 
 /* ====== Decorative shapes (optional) ====== */
@@ -74,7 +82,7 @@
   width: 188px;
   height: auto;
   border-radius: 16px;
-  border: none; box-shadow: none; background: none; /* no border */
+  border: none; box-shadow: none; background: none;
 }
 .scroll-cue {
   margin-top: var(--space-2);
@@ -84,19 +92,22 @@
 @keyframes nudge { 0%,100% { transform: translateY(0); opacity: .75; } 50% { transform: translateY(6px); opacity: 1; } }
 
 /* ====== Header ====== */
-.resume-header { margin-bottom: var(--space-6); }
+.resume-header { margin-bottom: var(--space-6); text-align: center; }
 .resume-title {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif; /* display face */
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: var(--space-2);
 }
 
-/* body copy — all one color; lede is just bigger via em so it tracks your font toggle */
+/* body copy — cohesive with Projects, centered */
 .resume-intro {
   line-height: 1.75;
   color: var(--resume-text);
   max-width: 78ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* ====== Downloads ====== */
@@ -107,6 +118,10 @@
 .btn-link { color: var(--resume-link); text-decoration: underline; }
 .btn-inline { margin-top: var(--space-2); }
 
+/* Make sure button text stays visible even when inside .resume-section */
+.resume-section .btn-primary { color: #fff; text-decoration: none; }
+.resume-section .btn-ghost { color: var(--resume-text); text-decoration: none; }
+
 /* ====== Sections ====== */
 .resume-section {
   background: var(--resume-card);
@@ -116,8 +131,35 @@
   margin-bottom: var(--space-6);
   box-shadow: var(--shadow-sm);
 }
-.section-title { font-size: 1.25rem; margin-bottom: var(--space-3); color: var(--resume-text); }
-.section-note { color: var(--resume-text); margin-bottom: var(--space-3); line-height: 1.7; }
+
+/* Typography cohesion: strong headers, medium-weight body, readable links */
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
+  color: var(--resume-text);
+  font-weight: 700;
+}
+.section-note {
+  color: var(--resume-text);
+  margin-bottom: var(--space-3);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* Standardize paragraph/list readability inside sections */
+.resume-section p,
+.resume-section li {
+  color: var(--resume-text);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* Links inside sections — exclude button-style links */
+.resume-section a:not(.btn-primary):not(.btn-ghost):not(.btn-link) {
+  color: var(--resume-link);
+  font-weight: 600;
+  text-decoration: underline;
+}
 
 /* ====== Highlights ====== */
 .highlights-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
