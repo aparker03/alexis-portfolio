@@ -5,7 +5,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const base = process.env.NODE_ENV === 'production' ? '/alexis-portfolio' : '/';
+// Derive basename from PUBLIC_URL so routing matches your deployed path.
+// On localhost, PUBLIC_URL is usually empty → basename becomes "/".
+const publicUrl = process.env.PUBLIC_URL || '/';
+const base = new URL(publicUrl, window.location.origin).pathname || '/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

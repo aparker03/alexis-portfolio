@@ -2,6 +2,8 @@
 import React from "react";
 import "../components/Resume/Resume.css";
 
+const P = process.env.PUBLIC_URL;
+
 function Resume() {
   return (
     <section className="resume-page" aria-labelledby="resume-heading">
@@ -13,7 +15,7 @@ function Resume() {
       {/* hero */}
       <div className="resume-hero">
         <img
-          src="/assets/avatars/avatar-resume.png"
+          src={`${P}/assets/avatars/avatar-resume.png`}
           alt="Portrait of Alexis Parker"
           className="resume-hero-avatar"
         />
@@ -40,15 +42,25 @@ function Resume() {
 
         {/* downloads */}
         <div className="resume-downloads" role="region" aria-label="Resume downloads">
-          <a href="/resume.pdf" download className="btn-primary" aria-label="Download resume as PDF">
+          <a
+            href={`${P}/resume.pdf`}
+            download
+            className="btn-primary"
+            aria-label="Download resume as PDF"
+          >
             Download PDF
           </a>
-          <a href="/resume.docx" download className="btn-ghost" aria-label="Download resume as DOCX">
+          <a
+            href={`${P}/resume.docx`}
+            download
+            className="btn-ghost"
+            aria-label="Download resume as DOCX"
+          >
             Download DOCX
           </a>
         </div>
 
-        {/* highlights (you said this is perfect) */}
+        {/* highlights */}
         <section className="resume-section" aria-labelledby="highlights-heading">
           <h3 id="highlights-heading" className="section-title">Highlights</h3>
           <ul className="highlights-list">
@@ -58,7 +70,7 @@ function Resume() {
           </ul>
         </section>
 
-        {/* skills snapshot (kept) */}
+        {/* skills snapshot */}
         <section className="resume-section" aria-labelledby="skills-heading">
           <h3 id="skills-heading" className="section-title">Skills snapshot</h3>
           <div className="skill-tiles">
@@ -105,7 +117,7 @@ function Resume() {
           </div>
         </section>
 
-        {/* journey timeline (unchanged structure) */}
+        {/* journey timeline */}
         <section className="resume-section" aria-labelledby="timeline-heading">
           <h3 id="timeline-heading" className="section-title">Journey</h3>
 
@@ -226,7 +238,7 @@ function Resume() {
           </div>
         </section>
 
-        {/* projects CTA — upgraded copy */}
+        {/* projects CTA */}
         <section className="resume-section" aria-labelledby="work-heading">
           <h3 id="work-heading" className="section-title">Explore the work</h3>
           <p className="section-note">
@@ -234,18 +246,22 @@ function Resume() {
             Depression Index built from BRFSS data, a Strava training analysis, and a California cancer
             surgery visualizer. Each app pairs clean methods with a simple interface.
           </p>
-          <a href="/projects" className="btn-primary btn-inline" aria-label="Go to Projects page">
+          <a
+            href={`${P}/projects`}
+            className="btn-primary btn-inline"
+            aria-label="Go to Projects page"
+          >
             See projects →
           </a>
         </section>
 
-        {/* Featured Certifications — tightened language */}
+        {/* Featured Certifications */}
         <section className="resume-section" aria-labelledby="certs-featured-heading">
           <h3 id="certs-featured-heading" className="section-title">Featured certifications</h3>
           <ul className="certs-list">
             <li>
               <strong>IBM Data Science Specialization</strong>: Python, SQL, machine learning, and visualization workflows.
-              <a href="/certifications" className="btn-link"> View details</a>
+              <a href={`${P}/certifications`} className="btn-link"> View details</a>
             </li>
             <li><strong>Deep Learning Specialization</strong>: neural networks, CNNs, sequence models, and optimization.</li>
             <li><strong>Machine Learning Specialization</strong>: regression, classification, recommenders, and unsupervised learning.</li>
@@ -255,7 +271,7 @@ function Resume() {
           </ul>
         </section>
 
-        {/* Independent Learning Journey — clearer and shorter */}
+        {/* Independent Learning Journey */}
         <section className="resume-section" aria-labelledby="learning-heading">
           <h3 id="learning-heading" className="section-title">Independent learning journey</h3>
           <p className="section-note">
@@ -264,7 +280,11 @@ function Resume() {
             R, cloud platforms, and statistical thinking. It also built a steady habit of focused learning. The full
             list is on the certifications page.
           </p>
-          <a href="/certifications" className="btn-ghost btn-inline" aria-label="View all certifications">
+          <a
+            href={`${P}/certifications`}
+            className="btn-ghost btn-inline"
+            aria-label="View all certifications"
+          >
             View all certifications →
           </a>
         </section>

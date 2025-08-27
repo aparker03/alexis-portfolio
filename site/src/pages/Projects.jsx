@@ -1,6 +1,8 @@
 import React from "react";
 import "../components/Projects/Projects.css";
 
+const P = process.env.PUBLIC_URL;
+
 function Projects() {
   return (
     <section className="projects-section min-h-screen">
@@ -21,7 +23,7 @@ function Projects() {
               {/* BRFSS */}
               <div className="project-card card-blue">
                 <img
-                  src="/images/projects/brfss/brfss-app-preview.png"
+                  src={`${P}/images/projects/brfss/brfss-app-preview.png`}
                   alt="Choropleth of Depression Index by State"
                   className="project-image"
                 />
@@ -36,9 +38,9 @@ function Projects() {
                   Tools: Streamlit, Pandas, Plotly, Scikit-learn
                 </p>
                 <div className="project-links">
-                  <a href="/notebooks/brfss/download.html">Download</a>
-                  <a href="/notebooks/brfss/eda.html">EDA</a>
-                  <a href="/notebooks/brfss/depression_index_analysis.html">
+                  <a href={`${P}/notebooks/brfss/download.html`}>Download</a>
+                  <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
+                  <a href={`${P}/notebooks/brfss/depression_index_analysis.html`}>
                     Index
                   </a>
                 </div>
@@ -55,7 +57,7 @@ function Projects() {
               {/* Strava */}
               <div className="project-card card-red">
                 <img
-                  src="/images/projects/strava/strava-app-preview.png"
+                  src={`${P}/images/projects/strava/strava-app-preview.png`}
                   alt="Strava Cadence KDE Plot"
                   className="project-image"
                 />
@@ -70,7 +72,7 @@ function Projects() {
                   Tools: Streamlit, Seaborn, Pandas, Matplotlib
                 </p>
                 <div className="project-links">
-                  <a href="/notebooks/strava/strava-analysis.html">
+                  <a href={`${P}/notebooks/strava/strava-analysis.html`}>
                     View Notebook →
                   </a>
                 </div>
@@ -87,7 +89,7 @@ function Projects() {
               {/* Cancer Surgeries */}
               <div className="project-card card-green">
                 <img
-                  src="/images/projects/cancer/cancer-app-preview.png"
+                  src={`${P}/images/projects/cancer/cancer-app-preview.png`}
                   alt="Density plot of common and rare cancer surgeries"
                   className="project-image"
                 />
@@ -104,7 +106,7 @@ function Projects() {
                   Tools: Streamlit, Pydeck, Pandas, Seaborn
                 </p>
                 <div className="project-links">
-                  <a href="/notebooks/cancer/cancer-analysis.html">
+                  <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>
                     View Notebook →
                   </a>
                 </div>
@@ -201,7 +203,7 @@ function Projects() {
           {/* Right column - full avatar */}
           <div className="projects-avatar-side">
             <img
-              src="/assets/avatars/avatar-projects.png"
+              src={`${P}/assets/avatars/avatar-projects.png`}
               alt="Projects Avatar Full"
               className="projects-avatar-full"
             />

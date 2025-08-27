@@ -2,6 +2,8 @@ import React from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import AnimatedBackground from './AnimatedBackground';
 
+const P = process.env.PUBLIC_URL;
+
 function Hero() {
   return (
     <section className="relative min-h-[80vh] overflow-hidden bg-black">
@@ -14,7 +16,7 @@ function Hero() {
       {/* Foreground Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-16 text-white">
         <img
-          src="/assets/avatars/avatar-cherry.png"
+          src={`${P}/assets/avatars/avatar-cherry.png`}
           alt="Avatar of Alexis"
           className="w-40 h-auto mb-6 object-contain drop-shadow-xl"
         />
