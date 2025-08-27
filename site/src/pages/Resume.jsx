@@ -51,7 +51,7 @@ function Resume() {
         {/* highlights (you said this is perfect) */}
         <section className="resume-section" aria-labelledby="highlights-heading">
           <h3 id="highlights-heading" className="section-title">Highlights</h3>
-          <ul className="highlights-list" role="list">
+          <ul className="highlights-list">
             <li className="star">Questions that stay close to people and health</li>
             <li className="star">Interactive apps that let others explore findings</li>
             <li className="star">Clear writing and visuals for mixed audiences</li>
