@@ -1,11 +1,23 @@
+# =========================
 # Node / web
+# =========================
 node_modules/
 dist/
 build/
-*.log
-*.lock       # e.g., yarn.lock or package-lock.json if you don’t want to track it
+.next/
+.nuxt/
+.parcel-cache/
+coverage/
 
+# Logs & temp
+*.log
+*.tmp
+*.bak
+*.swp
+
+# =========================
 # Python
+# =========================
 __pycache__/
 *.pyc
 .venv/
@@ -13,21 +25,28 @@ venv/
 .env
 .env.*
 
+# =========================
 # Jupyter
+# =========================
 .ipynb_checkpoints/
 *.ipynb_save
 *.ipynb_checkpoint
 
+# =========================
 # OS / editors
+# =========================
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
-# Misc
-*.tmp
-*.bak
-*.swp
+# =========================
+# Data (untracked, organized at repo root)
+# =========================
+/data/
 
-# Notebook data
-notebooks/*/data/
+# =========================
+# Misc binaries
+# =========================
+*.psd
+*.ai

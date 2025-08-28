@@ -48,13 +48,6 @@
   line-height: inherit;
 }
 
-@media (min-width: 1600px) {
-  .certifications-container {
-    padding-left: max(2rem, calc((100vw - 1500px) / 2));
-    padding-right: max(2rem, calc((100vw - 1500px) / 2));
-  }
-}
-
 /* Hero */
 .cert-hero {
   background: transparent;
@@ -90,11 +83,9 @@
   font-weight: 500;
 }
 
-/* Toolbar */
+/* Toolbar — NOT sticky anymore */
 .certifications-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
+  position: static; /* no sticky; bar scrolls away with the page */
   background: var(--cert-bg);
   padding: 0.75rem 0 1rem;
 }

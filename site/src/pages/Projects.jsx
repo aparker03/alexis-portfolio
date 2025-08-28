@@ -1,10 +1,15 @@
 // site/src/pages/Projects.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import "../components/Projects/Projects.css";
 
 const P = process.env.PUBLIC_URL;
 
 function Projects() {
+  // scroll-to-top on first mount so navigation never lands at the bottom
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
   return (
     <section className="projects-section min-h-screen">
       <div className="projects-container">

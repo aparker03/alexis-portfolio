@@ -51,7 +51,8 @@ function Certifications() {
       return matchCategory && matchType && matchQuery;
     });
 
-    const sorted = [...base].sort((a, b) => {
+    // return the sorted array directly (removes the “redundant local variable” warning)
+    return [...base].sort((a, b) => {
       const ta = (a.title || "").toLowerCase();
       const tb = (b.title || "").toLowerCase();
       const pa = (a.provider || "").toLowerCase();
@@ -60,8 +61,6 @@ function Certifications() {
       if (sortBy === "Provider A–Z") return pa.localeCompare(pb) || ta.localeCompare(tb);
       return ta.localeCompare(tb);
     });
-
-    return sorted;
   }, [selectedCategory, selectedType, query, sortBy]);
 
   const grouped = useMemo(() => {
@@ -98,6 +97,7 @@ function Certifications() {
           </div>
         </section>
 
+        {/* Not sticky — stays at the very top of the page only */}
         <div className="certifications-toolbar" role="region" aria-label="Certification controls">
           <div className="toolbar-row">
             <label className="control">

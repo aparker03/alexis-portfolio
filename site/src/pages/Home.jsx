@@ -66,18 +66,21 @@ function Home() {
             </h2>
             <div className="flex flex-wrap justify-center gap-4 text-base">
               {[
-                "Python",
-                "Pandas",
-                "NumPy",
-                "Scikit-learn",
-                "SQL",
+                // Core languages & data
+                "Python", "R", "SQL",
+                // Py data/ML stack
+                "Pandas", "NumPy", "SciPy", "scikit-learn",
+                "TensorFlow", "PyTorch",
+                // Visualization & apps
+                "Plotly", "Matplotlib", "Seaborn", "Altair", "Streamlit",
+                // Neuro/geo libs
+                "MNE-Python", "Pydeck",
+                // Workflow
+                "Jupyter", "VS Code", "Git/GitHub",
+                // Cloud & UI
+                "Google Cloud Platform", "Tailwind CSS",
+                // BI (kept from your list)
                 "Tableau",
-                "Altair",
-                "TensorFlow",
-                "R",
-                "Jupyter",
-                "Git",
-                "Tailwind CSS",
               ].map((tool) => (
                 <span key={tool} className="bg-white border px-4 py-2 rounded-lg">
                   {tool}
