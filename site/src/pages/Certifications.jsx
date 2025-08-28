@@ -1,7 +1,8 @@
 // site/src/pages/Certifications.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import certifications from "../data/certifications";
-import "../components/Certifications/Certifications.css";
+import "../components/sections/Certifications/Certifications.css";
+
 
 const P = process.env.PUBLIC_URL;
 

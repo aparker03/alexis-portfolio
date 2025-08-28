@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import FontSizeToggle from "./FontSizeToggle";
+import FontSizeToggle from "../ui/FontSizeToggle";
 
 function Navbar() {
   const [open, setOpen] = useState(false);

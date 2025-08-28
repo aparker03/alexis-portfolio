@@ -1,6 +1,6 @@
 // site/src/pages/Projects.jsx
 import React, { useEffect } from "react";
-import "../components/Projects/Projects.css";
+import "../components/sections/Projects/Projects.css";
 
 const P = process.env.PUBLIC_URL;
 

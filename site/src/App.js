@@ -3,7 +3,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useFontSize, FontSizeProvider } from './context/FontSizeContext';
 
-import Navbar from './components/Navbar';
+import Navbar from "./components/layout/Navbar";
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';

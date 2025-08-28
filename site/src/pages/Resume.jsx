@@ -1,7 +1,7 @@
 // src/pages/Resume.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "../components/Resume/Resume.css";
+import "../components/sections/Resume/Resume.css";
 
 const P = process.env.PUBLIC_URL;
 
@@ -40,10 +40,10 @@ function Resume() {
 
         {/* downloads */}
         <div className="resume-downloads" role="region" aria-label="Resume downloads">
-          <a href={`${P}/resume.pdf`} download className="btn-primary" aria-label="Download resume as PDF">
+          <a href={`${P}/downloads/resume.pdf`} download className="btn-primary" aria-label="Download resume as PDF">
             Download PDF
           </a>
-          <a href={`${P}/resume.docx`} download className="btn-ghost" aria-label="Download resume as DOCX">
+          <a href={`${P}/downloads/resume.docx`} download className="btn-ghost" aria-label="Download resume as DOCX">
             Download DOCX
           </a>
         </div>

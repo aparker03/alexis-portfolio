@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Hero from "../components/Hero";
+import Hero from "../components/layout/Hero";
 
 /**
  * Smoothly scroll to a hash target when the hash changes (or on initial mount).

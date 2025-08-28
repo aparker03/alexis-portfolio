@@ -1,6 +1,7 @@
 // src/components/FontSizeToggle.jsx
 import React from 'react';
-import { useFontSize } from '../context/FontSizeContext';
+import { useFontSize } from "../../context/FontSizeContext";
+
 
 function FontSizeToggle() {
   const { fontSize, changeFontSize } = useFontSize();
