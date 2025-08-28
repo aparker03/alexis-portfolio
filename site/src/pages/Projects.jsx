@@ -23,8 +23,16 @@ function Projects() {
               <div className="project-card card-gold">
                 <img
                   src={`${P}/images/projects/eeg/eeg-app-preview.png`}
-                  alt="EEG + NHIS Explorer with EEG bands, reaction time, and NHIS survey panels"
+                  alt="EEG + NHIS Explorer with EEG band power, reaction time, and NHIS survey panels"
                   className="project-image"
+                  loading="lazy"
+                />
+                {/* New complementary image */}
+                <img
+                  src={`${P}/images/projects/eeg/eeg-electrodes-preview.png`}
+                  alt="10-20 EEG electrode montage highlighting frontal, central, parietal, and occipital regions"
+                  className="project-image"
+                  loading="lazy"
                 />
                 <h3 className="project-title">EEG + NHIS Explorer</h3>
                 <ul className="project-points">
@@ -69,6 +77,7 @@ function Projects() {
                   src={`${P}/images/projects/brfss/brfss-app-preview.png`}
                   alt="BRFSS Depression Index choropleth by state"
                   className="project-image"
+                  loading="lazy"
                 />
                 <h3 className="project-title">BRFSS Depression Index Explorer</h3>
                 <ul className="project-points">
@@ -109,6 +118,7 @@ function Projects() {
                   src={`${P}/images/projects/strava/strava-app-preview.png`}
                   alt="Strava cadence density plot and training views"
                   className="project-image"
+                  loading="lazy"
                 />
                 <h3 className="project-title">Strava Wearable Metrics</h3>
                 <ul className="project-points">
@@ -149,6 +159,7 @@ function Projects() {
                   src={`${P}/images/projects/cancer/cancer-app-preview.png`}
                   alt="Cancer surgeries density plots and map"
                   className="project-image"
+                  loading="lazy"
                 />
                 <h3 className="project-title">Surgical Scope: Cancer Procedure Trends</h3>
                 <ul className="project-points">
@@ -258,6 +269,7 @@ function Projects() {
               src={`${P}/assets/avatars/avatar-projects.png`}
               alt="Full-body projects avatar"
               className="projects-avatar-full"
+              loading="lazy"
             />
           </div>
         </div>
