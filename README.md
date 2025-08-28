@@ -23,7 +23,6 @@ The portfolio includes three parts:
 alexis-portfolio/
 ├── site/             # React + Tailwind portfolio site
 ├── notebooks/        # Jupyter notebooks with analysis and HTML exports
-├── apps/             # Local development versions of Streamlit apps
 └── ...
 ```
 
