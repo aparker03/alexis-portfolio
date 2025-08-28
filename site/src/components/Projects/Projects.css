@@ -113,7 +113,7 @@
 .project-card {
   /* Base card */
   background: #E1DE9B;
-  border-radius: 0.75rem;
+  border-radius: 0.75rem; /* keep rounded corners for cards */
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -139,16 +139,23 @@
 .card-green,
 .card-gold { border-left-color: var(--projects-accent); }
 
-/* Project preview image */
+/* Project preview image: show full image, sharp edges */
 .project-image {
+  display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: 0.5rem;
+  height: auto;              /* intrinsic height */
+  object-fit: contain;       /* no cropping */
+  border-radius: 0;          /* sharp corners */
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   margin-bottom: 1rem;
-  background: #fff;
+  background: #fff;          /* fills any letterbox with white */
+}
+
+/* Keep extremely tall screenshots from dominating on large screens */
+@media (min-width: 1280px) {
+  .project-image {
+    max-height: 540px;
+  }
 }
 
 .project-title {

@@ -13,10 +13,8 @@ function Projects() {
           <div className="projects-main">
             <h2 className="projects-title">Projects</h2>
             <p className="projects-intro">
-              These projects reflect my interests in behavioral data, mental
-              health, and applied data storytelling. Each one is grounded in
-              real-world data and explores questions through thoughtful design
-              and analysis.
+              These projects reflect interests in behavioral data, mental health, and applied data storytelling.
+              Each one is grounded in real data and uses clear methods, reproducible code, and accessible visuals.
             </p>
 
             {/* Main Projects Grid */}
@@ -25,22 +23,22 @@ function Projects() {
               <div className="project-card card-gold">
                 <img
                   src={`${P}/images/projects/eeg/eeg-app-preview.png`}
-                  alt="EEG + NHIS Explorer showing EEG bands, reaction time, and survey panels"
+                  alt="EEG + NHIS Explorer with EEG bands, reaction time, and NHIS survey panels"
                   className="project-image"
                 />
                 <h3 className="project-title">EEG + NHIS Explorer</h3>
                 <ul className="project-points">
                   <li className="star">
-                    Processed OpenNeuro EEG to extract theta, alpha, and beta band power using MNE-Python and NumPy.
+                    Processed OpenNeuro EEG recordings with MNE-Python and NumPy, extracting theta, alpha, and beta band power from cleaned epochs.
                   </li>
                   <li className="star">
-                    Implemented a PVT reaction-time panel to visualize performance shifts under sleep deprivation.
+                    Implemented a Psychomotor Vigilance Task panel that visualizes reaction-time distributions and lapse rates under sleep loss.
                   </li>
                   <li className="star">
-                    Combined PANAS mood changes from the lab study with 2024 NHIS sleep indicators (hours, restfulness, sleep-aid use).
+                    Combined PANAS mood changes from a sleep-deprivation lab study with 2024 NHIS indicators including hours slept, restfulness, and sleep-aid use.
                   </li>
                   <li className="star">
-                    Built interactive Streamlit dashboards with Plotly for side-by-side lab vs. survey exploration (educational, non-diagnostic).
+                    Built an interactive Streamlit app using Plotly for side-by-side exploration of lab signals and national survey patterns. Educational and not diagnostic.
                   </li>
                 </ul>
                 <p className="project-tools">
@@ -69,33 +67,31 @@ function Projects() {
               <div className="project-card card-blue">
                 <img
                   src={`${P}/images/projects/brfss/brfss-app-preview.png`}
-                  alt="Choropleth of Depression Index by State"
+                  alt="BRFSS Depression Index choropleth by state"
                   className="project-image"
                 />
                 <h3 className="project-title">BRFSS Depression Index Explorer</h3>
                 <ul className="project-points">
                   <li className="star">
-                    Engineered a custom Depression Index from 2022 BRFSS mental-health items with transparent scoring logic.
+                    Engineered a Depression Index from 2022 BRFSS mental health items with transparent scoring that maps to PHQ-9 style signals.
                   </li>
                   <li className="star">
-                    Compared imputation strategies inside the app and reflected choices in all downstream visuals.
+                    Compared multiple imputation strategies inside the app and reflected choices in all downstream visuals and summaries.
                   </li>
                   <li className="star">
-                    Delivered state-level choropleths and group comparisons (boxplots/density) with live filters and data download.
+                    Delivered state-level choropleths and group comparisons with live filters and CSV export for reproducible analysis.
                   </li>
                   <li className="star">
-                    Linked EDA and index methodology notebooks for reproducibility and review.
+                    Linked EDA and methodology notebooks so readers can trace data cleaning, assumptions, and index logic.
                   </li>
                 </ul>
                 <p className="project-tools">
-                  Tools: Streamlit, Pandas, Plotly, Scikit-learn
+                  Tools: Streamlit, Pandas, Plotly, scikit-learn
                 </p>
                 <div className="project-links">
                   <a href={`${P}/notebooks/brfss/download.html`}>Download</a>
                   <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
-                  <a href={`${P}/notebooks/brfss/depression_index_analysis.html`}>
-                    Index
-                  </a>
+                  <a href={`${P}/notebooks/brfss/depression_index_analysis.html`}>Index</a>
                 </div>
                 <a
                   href="https://state-of-mind.streamlit.app/"
@@ -111,22 +107,22 @@ function Projects() {
               <div className="project-card card-red">
                 <img
                   src={`${P}/images/projects/strava/strava-app-preview.png`}
-                  alt="Strava Cadence KDE Plot"
+                  alt="Strava cadence density plot and training views"
                   className="project-image"
                 />
                 <h3 className="project-title">Strava Wearable Metrics</h3>
                 <ul className="project-points">
                   <li className="star">
-                    Parsed a personal Strava export to analyze cadence, heart-rate zones, and pace consistency over time.
+                    Parsed a personal Strava export and organized time-stamped sessions to study cadence, pace consistency, and heart-rate zones.
                   </li>
                   <li className="star">
-                    Produced KDE and density views that surface training distribution patterns beyond single-run summaries.
+                    Produced KDE and distribution views that surface training patterns beyond single-run summaries and averages.
                   </li>
                   <li className="star">
-                    Built an interactive Streamlit interface to filter sessions and compare metrics within and across weeks.
+                    Built a Streamlit interface to filter sessions, compare periods, and review trends within and across weeks.
                   </li>
                   <li className="star">
-                    Documented methods and assumptions in a companion notebook linked from the app.
+                    Documented data assumptions and cleaning steps in a companion notebook linked from the app.
                   </li>
                 </ul>
                 <p className="project-tools">
@@ -151,24 +147,22 @@ function Projects() {
               <div className="project-card card-green">
                 <img
                   src={`${P}/images/projects/cancer/cancer-app-preview.png`}
-                  alt="Density plot of common and rare cancer surgeries"
+                  alt="Cancer surgeries density plots and map"
                   className="project-image"
                 />
-                <h3 className="project-title">
-                  Surgical Scope: Cancer Procedure Trends
-                </h3>
+                <h3 className="project-title">Surgical Scope: Cancer Procedure Trends</h3>
                 <ul className="project-points">
                   <li className="star">
-                    Analyzed California HCAI hospital surgery volumes (2013–2022) with attention to the 2015 ICD-9→ICD-10 transition period.
+                    Analyzed California HCAI hospital surgery volumes from 2013 to 2022 with attention to the 2015 ICD-9 to ICD-10 transition period.
                   </li>
                   <li className="star">
-                    Compared common (e.g., breast, colon, prostate) vs. rarer procedures (e.g., esophagus, pancreas, stomach) with KDE trends.
+                    Compared high-volume procedures such as breast, colon, and prostate to rarer procedures including esophagus, pancreas, and stomach using KDE trends.
                   </li>
                   <li className="star">
-                    Included outlier-aware views (IQR filtering) and a “California (Statewide)” option distinct from the “Filtered Total.”
+                    Included outlier-aware views using IQR filtering and added a California (Statewide) option that is distinct from the Filtered Total.
                   </li>
                   <li className="star">
-                    Provided geographic exploration via choropleth and hospital-level visuals, with filters for site, region, and year.
+                    Added geographic exploration with county-level choropleths and hospital-level visuals with filters for site, region, and year.
                   </li>
                 </ul>
                 <p className="project-tools">
@@ -192,24 +186,17 @@ function Projects() {
 
             {/* Exploratory Projects */}
             <div className="exploratory-projects">
-              <h3 className="exploratory-title">
-                Exploratory Projects (R / RPubs)
-              </h3>
+              <h3 className="exploratory-title">Exploratory Projects (R / RPubs)</h3>
               <p className="exploratory-intro">
-                These projects were completed during early MOOCs and coursework
-                using R and Shiny. While lightweight and experimental, they
-                helped me explore web-based interactivity, reproducibility, and
-                geographic data visualization.
+                These early projects used R, Shiny, and Leaflet during MOOCs and coursework. They helped build habits
+                around interactivity, reproducibility, and spatial visualization.
               </p>
 
               <div className="exploratory-grid">
                 <div className="project-card">
-                  <h4 className="project-subtitle">
-                    Prediction App Presentation
-                  </h4>
+                  <h4 className="project-subtitle">Prediction App Presentation</h4>
                   <p className="exploratory-desc">
-                    A lightweight demonstration app showcasing user prediction
-                    inputs and output rendering.
+                    A lightweight demonstration app that accepts user inputs and renders predicted outcomes.
                   </p>
                   <a
                     href="https://rpubs.com/alex23/658708"
@@ -223,8 +210,7 @@ function Projects() {
                 <div className="project-card">
                   <h4 className="project-subtitle">Shiny Application & Pitch</h4>
                   <p className="exploratory-desc">
-                    A reproducible web app built with Shiny, submitted with an
-                    interactive pitch and demo.
+                    A reproducible Shiny app packaged with an interactive pitch that explains use cases and design choices.
                   </p>
                   <a
                     href="https://rpubs.com/alex23/658269"
@@ -238,8 +224,7 @@ function Projects() {
                 <div className="project-card">
                   <h4 className="project-subtitle">Creating a Map With Leaflet</h4>
                   <p className="exploratory-desc">
-                    Interactive map built using Leaflet and R to display
-                    geo-located data.
+                    An interactive Leaflet map built in R to display geo-located data with popups and tooltips.
                   </p>
                   <a
                     href="https://rpubs.com/alex23/658015"
@@ -253,9 +238,7 @@ function Projects() {
                 <div className="project-card">
                   <h4 className="project-subtitle">Storm Data Analysis</h4>
                   <p className="exploratory-desc">
-                    Analysis of U.S. storm data as part of a peer-reviewed
-                    course project. Includes impact comparison and
-                    visualization.
+                    An analysis of U.S. storm data as part of a peer-reviewed course project with impact comparisons and visualizations.
                   </p>
                   <a
                     href="https://rpubs.com/alex23/656680"
@@ -273,7 +256,7 @@ function Projects() {
           <div className="projects-avatar-side">
             <img
               src={`${P}/assets/avatars/avatar-projects.png`}
-              alt="Projects Avatar Full"
+              alt="Full-body projects avatar"
               className="projects-avatar-full"
             />
           </div>

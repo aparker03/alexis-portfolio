@@ -281,8 +281,28 @@
   .cert-card, .cert-link { transition: none; }
 }
 
-/* Small screens */
+/* --- Mobile & small tablet fixes --- */
+@media (max-width: 900px) {
+  .toolbar-row {
+    grid-template-columns: 1fr !important;
+    align-items: stretch;
+    overflow-x: visible;
+  }
+  .control,
+  .toggle { width: 100%; }
+  .control--grow { min-width: 0; }
+  .control select,
+  .control input[type="search"] { width: 100%; }
+  .toggle { justify-content: space-between; }
+  .certifications-toolbar { padding-top: 0.5rem; padding-bottom: 0.75rem; }
+}
+
 @media (max-width: 640px) {
-  .cert-hero { grid-template-columns: 120px 1fr; }
-  .cert-hero__avatar img { width: 120px; height: 120px; }
+  .cert-hero { grid-template-columns: 100px 1fr; gap: 0.75rem; }
+  .cert-hero__avatar img { width: 100px; height: 100px; }
+  .certifications-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+}
+
+@media (max-width: 400px) {
+  .certifications-grid { grid-template-columns: 1fr; }
 }

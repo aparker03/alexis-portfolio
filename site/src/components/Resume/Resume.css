@@ -110,15 +110,37 @@
   text-align: center;
 }
 
-/* ====== Downloads ====== */
+/* ====== Downloads & Buttons ====== */
 .resume-downloads { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6); }
-.btn-primary, .btn-ghost, .btn-link, .btn-inline { font-weight: 600; text-decoration: none; display: inline-block; }
-.btn-primary { background: var(--resume-link); color: #fff; padding: 10px 16px; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
-.btn-ghost { background: rgba(255,255,255,.85); color: var(--resume-text); padding: 10px 16px; border-radius: var(--radius-sm); border: 1px solid var(--resume-border); }
+
+.btn-primary, .btn-ghost, .btn-link, .btn-inline {
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--resume-link);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { filter: brightness(0.92); }
+.btn-primary:focus { outline: 3px solid rgba(31, 63, 184, 0.28); outline-offset: 2px; }
+
+.btn-ghost {
+  background: rgba(255,255,255,.85);
+  color: var(--resume-text);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--resume-border);
+}
+.btn-ghost:hover { background: #fff; }
+
 .btn-link { color: var(--resume-link); text-decoration: underline; }
 .btn-inline { margin-top: var(--space-2); }
 
-/* Make sure button text stays visible even when inside .resume-section */
+/* Ensure button colors inside sections */
 .resume-section .btn-primary { color: #fff; text-decoration: none; }
 .resume-section .btn-ghost { color: var(--resume-text); text-decoration: none; }
 
@@ -269,6 +291,12 @@
   color: var(--resume-text);
 }
 .certs-list strong { color: var(--resume-text); }
+
+/* Prevent overlap: add spacing to inline links inside certs */
+.certs-list .btn-link {
+  margin-left: 8px;
+  white-space: nowrap;
+}
 
 /* Mobile */
 @media (max-width: 900px) {
