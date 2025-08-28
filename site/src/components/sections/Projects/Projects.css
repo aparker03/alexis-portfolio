@@ -1,19 +1,18 @@
-/* site/src/components/Projects/Projects.css */
+/* site/src/components/sections/Projects/Projects.css */
 
-/* Font-size vars (EM so parent text-* scaling works) */
+/* Font-size vars */
 :root {
-  --font-size-base: 1em;     /* base */
-  --font-size-lg: 1.125em;   /* +12.5% */
-  --font-size-xl: 1.25em;    /* +25% */
+  --font-size-base: 1em;
+  --font-size-lg: 1.125em;
+  --font-size-xl: 1.25em;
 
-  /* Accent + tokens aligned with Resume */
   --projects-accent: #b28a2f;   /* muted gold */
   --projects-ink: #1f2937;      /* slate-800 */
   --projects-sub: #374151;      /* slate-700 */
   --projects-border: #e5e7eb;
 }
 
-/* Font-size hooks (match your Certifications pattern) */
+/* Font-size hooks */
 .projects-section { font-size: 1em; }
 .text-base .projects-section { font-size: 1em; }
 .text-lg   .projects-section { font-size: 1.125em; }
@@ -24,20 +23,14 @@
   background-color: #9FC5AF;
   padding: 4rem 2rem;
   min-height: 100vh;
-
-  /* Cohesive font + color across page */
   font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
   color: var(--projects-ink);
   line-height: 1.6;
 }
 
-.projects-container {
-  max-width: 1600px;
-  width: 100%;
-  margin: 0 auto;
-}
+.projects-container { max-width: 1600px; width: 100%; margin: 0 auto; }
 
-/* Two-column layout */
+/* Two-column page layout */
 .projects-layout {
   display: grid;
   grid-template-columns: 4fr 1.2fr;
@@ -45,26 +38,13 @@
   align-items: start;
 }
 
-@media (max-width: 1280px) {
-  .projects-layout {
-    grid-template-columns: 3fr 1fr;
-  }
-}
-
+@media (max-width: 1280px) { .projects-layout { grid-template-columns: 3fr 1fr; } }
 @media (max-width: 1024px) {
-  .projects-layout {
-    grid-template-columns: 1fr;
-  }
-  .projects-avatar-side {
-    order: -1;
-    margin-bottom: 1.25rem;
-  }
+  .projects-layout { grid-template-columns: 1fr; }
+  .projects-avatar-side { order: -1; margin-bottom: 1.25rem; }
 }
 
-.projects-main {
-  display: flex;
-  flex-direction: column;
-}
+.projects-main { display: flex; flex-direction: column; }
 
 .projects-title {
   font-size: var(--font-size-xl);
@@ -77,110 +57,108 @@
   margin-bottom: 2rem;
   font-size: var(--font-size-base);
   color: var(--projects-sub);
-  max-width: 800px;
+  max-width: 900px;
 }
 
 /* Avatar */
-.projects-avatar-side {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
+.projects-avatar-side { display: flex; justify-content: center; align-items: flex-start; }
+.projects-avatar-full { width: 100%; max-width: 260px; height: auto; }
 
-.projects-avatar-full {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-}
-
-/* ===== Project Cards ===== */
-
-/* Responsive grid that handles 4+ cards gracefully */
+/* ===== Main card grid: make cards WIDER, still responsive ===== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
   gap: 2.5rem;
   align-items: stretch;
 }
 
 @media (max-width: 640px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
+/* ===== Project Card ===== */
 .project-card {
-  /* Base card */
   background: #E1DE9B;
-  border-radius: 0.75rem; /* keep rounded corners for cards */
-  padding: 2rem;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column;  /* vertical, mobile-first */
+  gap: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-  /* Unified gold accent rail for ALL main cards */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border-left: 6px solid var(--projects-accent);
-
   font-size: var(--font-size-base);
   line-height: 1.7;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+.card-blue, .card-red, .card-green, .card-gold { border-left-color: var(--projects-accent); }
+
+/* ===== Media row ===== */
+.project-media {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;   /* stack on small screens */
 }
 
-/* (Former) color variants disabled — keeping for compatibility but all gold now */
-.card-blue,
-.card-red,
-.card-green,
-.card-gold { border-left-color: var(--projects-accent); }
+@media (min-width: 900px) {
+  .project-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* EEG uses two side-by-side */
+    align-items: center;
+  }
+}
 
-/* Project preview image: show full image, sharp edges */
+/* Preview images: centered, no rounded edges, no border */
 .project-image {
   display: block;
   width: 100%;
-  height: auto;              /* intrinsic height */
-  object-fit: contain;       /* no cropping */
-  border-radius: 0;          /* sharp corners */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  margin-bottom: 1rem;
-  background: #fff;          /* fills any letterbox with white */
+  height: auto;
+  object-fit: contain;      /* full image, no cropping */
+  border-radius: 0;         /* no rounded edges */
+  box-shadow: none;         /* no shadow */
+  background: transparent;
+  max-height: 360px;
 }
 
-/* Keep extremely tall screenshots from dominating on large screens */
-@media (min-width: 1280px) {
-  .project-image {
-    max-height: 540px;
-  }
+/* Center single-preview images (BRFSS, Strava, Cancer) */
+.card-blue .project-media,
+.card-red .project-media,
+.card-green .project-media {
+  display: flex;
+  justify-content: center;
 }
+
+.card-blue .project-image,
+.card-red .project-image,
+.card-green .project-image {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* ===== Content ===== */
+.project-card-content { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
 
 .project-title {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
   color: #111827;
 }
 
-/* Paragraph description (still supported if you keep any) */
-.project-description {
-  font-size: var(--font-size-lg);
-  font-weight: 500;
-  margin-bottom: 1rem;
-  color: var(--projects-ink);
-}
-
-/* Star bullet list (matches Resume style) */
+/* Bullets in a 2×2 grid on larger screens; 1 column on mobile */
 .project-points {
   list-style: none;
   padding: 0;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
   display: grid;
-  gap: 8px;
+  grid-template-columns: 1fr;  /* mobile */
+  gap: 10px 18px;
 }
+
+@media (min-width: 900px) {
+  .project-points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .project-points .star {
   position: relative;
   padding-left: 24px;
@@ -188,12 +166,12 @@
   font-size: var(--font-size-lg);
   font-weight: 500;
 }
+
 .project-points .star::before {
   content: "★";
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-58%);
+  top: 0.2em;
   color: var(--projects-accent);
   font-size: 16px;
   line-height: 1;
@@ -203,23 +181,21 @@
   font-size: var(--font-size-base);
   font-weight: 500;
   color: var(--projects-sub);
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 }
 
-/* Inline links under description */
+/* Inline links */
 .project-links a {
   margin-right: 1rem;
   font-size: var(--font-size-base);
   font-weight: 600;
   color: #1f3fb8;
   text-decoration: underline;
+  word-break: break-word;
 }
 
 .project-links a:hover,
-.project-links a:focus-visible {
-  text-decoration: none;
-  outline: none;
-}
+.project-links a:focus-visible { text-decoration: none; outline: none; }
 
 /* Launch button */
 .project-launch-btn {
@@ -227,27 +203,20 @@
   padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
   background-color: #2563eb;
-  color: white;
+  color: #fff;
   font-size: var(--font-size-base);
   font-weight: 600;
   transition: background-color 0.2s ease, transform 0.1s ease;
   text-align: center;
   margin-top: 0.25rem;
+  align-self: start;
 }
 
-.project-launch-btn:hover {
-  background-color: #1d4ed8;
-}
-
-.project-launch-btn:focus-visible {
-  outline: 2px solid #1d4ed8;
-  outline-offset: 2px;
-}
+.project-launch-btn:hover { background-color: #1d4ed8; }
+.project-launch-btn:focus-visible { outline: 2px solid #1d4ed8; outline-offset: 2px; }
 
 /* ===== Exploratory section ===== */
-.exploratory-projects {
-  margin-top: 4rem;
-}
+.exploratory-projects { margin-top: 4rem; }
 
 .exploratory-title {
   font-size: var(--font-size-xl);
@@ -271,27 +240,12 @@
 
 .exploratory-grid .project-card {
   background: #E1DE9B;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 6px solid var(--projects-accent);
 }
 
-.exploratory-grid .project-card h4 {
-  font-weight: 700;
-  color: #111827;
-}
-
-.exploratory-grid .project-card p {
-  font-weight: 500;
-  color: var(--projects-ink);
-}
-
-.exploratory-grid .project-card a {
-  font-weight: 600;
-  color: #1f3fb8;
-  text-decoration: underline;
-}
-
+.exploratory-grid .project-card h4 { font-weight: 700; color: #111827; }
+.exploratory-grid .project-card p { font-weight: 500; color: var(--projects-ink); }
+.exploratory-grid .project-card a { font-weight: 600; color: #1f3fb8; text-decoration: underline; }
 .exploratory-grid .project-card a:hover,
-.exploratory-grid .project-card a:focus-visible {
-  text-decoration: none;
-  outline: none;
-}
+.exploratory-grid .project-card a:focus-visible { text-decoration: none; outline: none; }

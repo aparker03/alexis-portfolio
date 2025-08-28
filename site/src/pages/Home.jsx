@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+// site/src/pages/Home.jsx
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Hero from "../components/layout/Hero";
@@ -31,28 +31,62 @@ function Home() {
   return (
     <>
       {/* Cohesive typography like Projects: Inter + slate ink */}
-      <main style={{ fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif", color: "#1f2937", lineHeight: 1.6 }}>
+      <main
+        style={{
+          fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif",
+          color: "#1f2937",
+          lineHeight: 1.6,
+        }}
+      >
         <Hero />
+
+        {/* About Me - distinct from Hero */}
+        <section
+          id="about"
+          className="py-section-y px-6 bg-white scroll-mt-24"
+          aria-labelledby="about-heading"
+        >
+          <div className="max-w-3xl mx-auto">
+            <h2
+              id="about-heading"
+              className="text-3xl font-semibold text-[#111827] mb-6"
+            >
+              About Me
+            </h2>
+            <p className="text-[#1f2937] mb-5">
+              My path started in psychology and grew into data science. Along the way I have worked with EEG recordings, national survey data, and wearable metrics, always with the goal of building tools and analyses that are clear, rigorous, and ethically framed.
+            </p>
+            <p className="text-[#1f2937]">
+              What excites me most is translating complex data into insights that people can use. Whether modeling depression risk, exploring how sleep relates to performance, or creating interactive dashboards, I approach projects with curiosity, persistence, and care. My aim is to create work that is transparent, reproducible, and meaningful to both technical and non-technical communities.
+            </p>
+          </div>
+        </section>
 
         {/* 3-Block Overview */}
         <section className="py-section-y px-6 bg-white">
           <div className="max-w-5xl mx-auto grid gap-10 md:grid-cols-3 text-center">
             <div>
-              <h3 className="text-xl font-semibold text-[#111827] mb-3">Data Science</h3>
+              <h3 className="text-xl font-semibold text-[#111827] mb-3">
+                Modeling and Analysis
+              </h3>
               <p className="text-[#374151] font-medium">
-                Exploratory analysis, machine learning, and model interpretation across domains.
+                Exploratory analysis, machine learning, and thoughtful model interpretation.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-[#111827] mb-3">Research</h3>
+              <h3 className="text-xl font-semibold text-[#111827] mb-3">
+                Research Practice
+              </h3>
               <p className="text-[#374151] font-medium">
-                Background in behavioral psychology, neuroscience, and public health data.
+                Foundations in psychology with hands-on work across neuroscience and public health data.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-[#111827] mb-3">Communication</h3>
+              <h3 className="text-xl font-semibold text-[#111827] mb-3">
+                Communication
+              </h3>
               <p className="text-[#374151] font-medium">
-                Translating complex data into insights that inform, clarify, and challenge assumptions.
+                Turning complex results into clear stories, visuals, and usable tools.
               </p>
             </div>
           </div>
@@ -67,22 +101,39 @@ function Home() {
             <div className="flex flex-wrap justify-center gap-4 text-base">
               {[
                 // Core languages & data
-                "Python", "R", "SQL",
+                "Python",
+                "R",
+                "SQL",
                 // Py data/ML stack
-                "Pandas", "NumPy", "SciPy", "scikit-learn",
-                "TensorFlow", "PyTorch",
+                "Pandas",
+                "NumPy",
+                "SciPy",
+                "scikit-learn",
+                "TensorFlow",
+                "PyTorch",
                 // Visualization & apps
-                "Plotly", "Matplotlib", "Seaborn", "Altair", "Streamlit",
+                "Plotly",
+                "Matplotlib",
+                "Seaborn",
+                "Altair",
+                "Streamlit",
                 // Neuro/geo libs
-                "MNE-Python", "Pydeck",
+                "MNE-Python",
+                "Pydeck",
                 // Workflow
-                "Jupyter", "VS Code", "Git/GitHub",
+                "Jupyter",
+                "VS Code",
+                "Git/GitHub",
                 // Cloud & UI
-                "Google Cloud Platform", "Tailwind CSS",
-                // BI (kept from your list)
+                "Google Cloud Platform",
+                "Tailwind CSS",
+                // BI
                 "Tableau",
               ].map((tool) => (
-                <span key={tool} className="bg-white border px-4 py-2 rounded-lg">
+                <span
+                  key={tool}
+                  className="bg-white border px-4 py-2 rounded-lg"
+                >
                   {tool}
                 </span>
               ))}
@@ -104,10 +155,13 @@ function Home() {
               Contact
             </h2>
             <p className="text-[#1f2937] mb-6 font-medium">
-              Whether you're interested in working together or just want to connect, feel free to reach out.
+              Whether you are interested in working together or just want to connect, feel free to reach out.
             </p>
             <div className="flex justify-center gap-6 text-blue-700">
-              <a href="mailto:aparker0917@gmail.com" className="hover:underline font-semibold">
+              <a
+                href="mailto:aparker0917@gmail.com"
+                className="hover:underline font-semibold"
+              >
                 Email
               </a>
               <a
