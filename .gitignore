@@ -46,8 +46,14 @@ Thumbs.db
 /data/
 
 # =========================
+# Local dev tools (keep local)
+# =========================
+/tools/
+
+# =========================
 # Misc binaries
 # =========================
 *.psd
 *.ai
+
 /notebooks/
