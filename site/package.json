@@ -1,7 +1,7 @@
 {
   "name": "alexis-portfolio",
   "version": "0.1.0",
-  "homepage": "https://aparker03.github.io/alexis-portfolio",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
