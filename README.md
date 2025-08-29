@@ -22,13 +22,10 @@ The portfolio includes three parts:
 ```text
 alexis-portfolio/
 ├── site/             # React + Tailwind portfolio site
-├── notebooks/        # Jupyter notebooks with analysis and HTML exports
 └── ...
 ```
 
-- `site/` is the main website built with React and Tailwind  
-- `notebooks/` contains Jupyter notebooks used for analysis and HTML exports that appear on the site  
-- `apps/` holds local app prototypes; production deployments live in separate repositories  
+- `site/` is the main website built with React and Tailwind    
 
 ## Running Locally
 
