@@ -204,7 +204,7 @@ function Resume() {
           <ul className="item-points">
             <li className="star">Depression Index (BRFSS) - state-level analysis of mental health risk.</li>
             <li className="star">Movement-Mapped (Strava) - performance patterns from wearable data.</li>
-            <li className="star">Surgical Scope (CalHHS) — cancer: hospital case volumes across California.</li>
+            <li className="star">Surgical Scope (CalHHS) - cancer: hospital case volumes across California.</li>
             <li className="star">Capstone: EEG + NHIS Explorer. Combined EEG band power, reaction-time tasks, PANAS mood, and NHIS sleep data in a Streamlit app (educational, non-diagnostic).</li>
           </ul>
           <Link to="/projects" className="btn-primary btn-inline" aria-label="Go to Projects page">
