@@ -1,12 +1,42 @@
 // src/pages/Resume.jsx
-import React from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../components/sections/Resume/Resume.css";
 import AnimatedBackgroundResume from "../components/layout/AnimatedBackgroundResume";
 
 const P = process.env.PUBLIC_URL;
+const TIMELINE_KEY = "timelineMode"; // 'vertical' | 'horizontal'
+
+function getInitialTimelineMode() {
+  try {
+    const usp = new URLSearchParams(window.location.search);
+    const q = usp.get("timeline");
+    if (q === "horizontal" || q === "vertical") return q;
+    const saved = localStorage.getItem(TIMELINE_KEY);
+    if (saved === "horizontal" || saved === "vertical") return saved;
+  } catch {}
+  return "vertical";
+}
 
 function Resume() {
+  const [timelineMode, setTimelineMode] = useState(getInitialTimelineMode);
+  const isHorizontal = timelineMode === "horizontal";
+
+  const trackRef = useRef(null);
+  const firstItemRef = useRef(null);
+
+  // Persist preference
+  useEffect(() => {
+    try { localStorage.setItem(TIMELINE_KEY, timelineMode); } catch {}
+  }, [timelineMode]);
+
+  // When switching to horizontal, ensure the first card is visible/snapped
+  useEffect(() => {
+    if (!isHorizontal || !trackRef.current || !firstItemRef.current) return;
+    // Scroll so first card is nicely in view without jank
+    trackRef.current.scrollTo({ left: 0, top: 0, behavior: "instant" });
+  }, [isHorizontal]);
+
   return (
     <section className="resume-page" aria-labelledby="resume-heading">
       {/* decorative shapes (kept as-is; they don't capture clicks) */}
@@ -71,7 +101,7 @@ function Resume() {
         <section className="resume-section" aria-labelledby="skills-heading">
           <h3 id="skills-heading" className="section-title">Skills snapshot</h3>
           <div className="skill-tiles">
-            <article className="skill-tile">
+            <article className="skill-tile hover-card">
               <h4 className="tile-title">Research and foundations</h4>
               <ul className="tile-points">
                 <li className="star">Designed and evaluated studies in psychology and public health contexts.</li>
@@ -79,7 +109,7 @@ function Resume() {
                 <li className="star">Applied mixed methods to connect behavioral science with applied analysis.</li>
               </ul>
             </article>
-            <article className="skill-tile">
+            <article className="skill-tile hover-card">
               <h4 className="tile-title">Data and analysis</h4>
               <ul className="tile-points">
                 <li className="star">Processed datasets from CDC, NIH, and Strava with Python (Pandas, NumPy).</li>
@@ -87,7 +117,7 @@ function Resume() {
                 <li className="star">Used SQL and reproducible pipelines to clean and merge multi-module data.</li>
               </ul>
             </article>
-            <article className="skill-tile">
+            <article className="skill-tile hover-card">
               <h4 className="tile-title">Applied machine learning</h4>
               <ul className="tile-points">
                 <li className="star">Trained supervised models such as Logistic Regression, Random Forest, and SVM, evaluated with ROC-AUC and SHAP.</li>
@@ -95,7 +125,7 @@ function Resume() {
                 <li className="star">Engineered features and tuned hyperparameters for interpretable results.</li>
               </ul>
             </article>
-            <article className="skill-tile">
+            <article className="skill-tile hover-card">
               <h4 className="tile-title">Visualization and apps</h4>
               <ul className="tile-points">
                 <li className="star">Built dashboards with EEG scalp maps, reaction-time panels, and NHIS sleep indicators.</li>
@@ -103,7 +133,7 @@ function Resume() {
                 <li className="star">Designed Streamlit apps to make exploration of large datasets accessible.</li>
               </ul>
             </article>
-            <article className="skill-tile">
+            <article className="skill-tile hover-card">
               <h4 className="tile-title">Workflow and collaboration</h4>
               <ul className="tile-points">
                 <li className="star">Versioned work with Git and GitHub for transparent collaboration.</li>
@@ -116,89 +146,118 @@ function Resume() {
 
         {/* journey timeline */}
         <section className="resume-section" aria-labelledby="timeline-heading">
-          <h3 id="timeline-heading" className="section-title">Journey</h3>
+          <div className="timeline-header-row">
+            <h3 id="timeline-heading" className="section-title">Journey</h3>
 
-          <div className="timeline">
+            {/* Layout toggle (visible on all sizes) */}
+            <div className="timeline-controls" role="group" aria-label="Timeline layout">
+              <label className={`segmented ${!isHorizontal ? "is-active" : ""}`}>
+                <input
+                  type="radio"
+                  name="timeline-layout"
+                  value="vertical"
+                  checked={!isHorizontal}
+                  onChange={() => setTimelineMode("vertical")}
+                />
+                Vertical
+              </label>
+              <label className={`segmented ${isHorizontal ? "is-active" : ""}`}>
+                <input
+                  type="radio"
+                  name="timeline-layout"
+                  value="horizontal"
+                  checked={isHorizontal}
+                  onChange={() => setTimelineMode("horizontal")}
+                />
+                Horizontal
+              </label>
+            </div>
+          </div>
+
+          <div className={`timeline ${isHorizontal ? "is-horizontal" : ""}`}>
             <div className="timeline-rail" aria-hidden="true"></div>
 
-            {/* CSU */}
-            <div className="timeline-item">
-              <div className="timeline-card left">
-                <span className="time-badge">2015–2019</span>
-                <h4 className="item-title">CSU San Bernardino</h4>
-                <p className="item-sub">B.A. in Psychology</p>
-                <ul className="item-points">
-                  <li className="star">Explored cognition, drugs and behavior, and neuroscience through labs and coursework.</li>
-                  <li className="star">Served as a behavioral neuroscience RA, applying structured protocols and ANOVA to lab studies.</li>
-                  <li className="star">Turned raw lab data into visualizations that supported conclusions on adolescent relapse risk.</li>
-                </ul>
+            {/* horizontal mode uses this track for snap-scroll; harmless in vertical */}
+            <div className="timeline-track" ref={trackRef}>
+              {/* CSU */}
+              <div className="timeline-item">
+                <div className="timeline-card hover-card left" ref={firstItemRef}>
+                  <span className="time-badge">2015–2019</span>
+                  <h4 className="item-title">CSU San Bernardino</h4>
+                  <p className="item-sub">B.A. in Psychology</p>
+                  <ul className="item-points">
+                    <li className="star">Explored cognition, drugs and behavior, and neuroscience through labs and coursework.</li>
+                    <li className="star">Served as a behavioral neuroscience RA, applying structured protocols and ANOVA to lab studies.</li>
+                    <li className="star">Turned raw lab data into visualizations that supported conclusions on adolescent relapse risk.</li>
+                  </ul>
+                </div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
-              <span className="timeline-node" aria-hidden="true"></span>
-              <div className="timeline-spacer right" aria-hidden="true"></div>
-            </div>
 
-            {/* Caregiver */}
-            <div className="timeline-item">
-              <div className="timeline-spacer left" aria-hidden="true"></div>
-              <span className="timeline-node" aria-hidden="true"></span>
-              <div className="timeline-card right">
-                <span className="time-badge">2019–Present</span>
-                <h4 className="item-title">IHSS Caregiver</h4>
-                <p className="item-sub">Long-term support role</p>
-                <ul className="item-points">
-                  <li className="star">Provided personalized care that supported medication adherence, mobility, and independence.</li>
-                  <li className="star">Monitored health changes and improved communication with providers, reducing hospitalizations.</li>
-                  <li className="star">Built planning and resilience while balancing caregiving with academic and research work.</li>
-                </ul>
+              {/* Caregiver */}
+              <div className="timeline-item">
+                <div className="timeline-spacer left" aria-hidden="true"></div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-card hover-card right">
+                  <span className="time-badge">2019–Present</span>
+                  <h4 className="item-title">IHSS Caregiver</h4>
+                  <p className="item-sub">Long-term support role</p>
+                  <ul className="item-points">
+                    <li className="star">Provided personalized care that supported medication adherence, mobility, and independence.</li>
+                    <li className="star">Monitored health changes and improved communication with providers, reducing hospitalizations.</li>
+                    <li className="star">Built planning and resilience while balancing caregiving with academic and research work.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
 
-            {/* Independent projects */}
-            <div className="timeline-item t-gap-lg">
-              <div className="timeline-card left">
-                <span className="time-badge">2022–Present</span>
-                <h4 className="item-title">Independent projects</h4>
-                <p className="item-sub">Public health and behavioral data</p>
-                <ul className="item-points">
-                  <li className="star">Created Streamlit and R Shiny apps that turned survey data into interactive visuals.</li>
-                  <li className="star">Practiced reproducibility and transparency through open portfolio work.</li>
-                  <li className="star">Used self-directed exploration to build a foundation for later graduate projects.</li>
-                </ul>
+              {/* Independent projects */}
+              <div className="timeline-item t-gap-lg">
+                <div className="timeline-card hover-card left">
+                  <span className="time-badge">2022–Present</span>
+                  <h4 className="item-title">Independent projects</h4>
+                  <p className="item-sub">Public health and behavioral data</p>
+                  <ul className="item-points">
+                    <li className="star">Created Streamlit and R Shiny apps that turned survey data into interactive visuals.</li>
+                    <li className="star">Practiced reproducibility and transparency through open portfolio work.</li>
+                    <li className="star">Used self-directed exploration to build a foundation for later graduate projects.</li>
+                  </ul>
+                </div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
-              <span className="timeline-node" aria-hidden="true"></span>
-              <div className="timeline-spacer right" aria-hidden="true"></div>
-            </div>
 
-            {/* MADS */}
-            <div className="timeline-item">
-              <div className="timeline-spacer left" aria-hidden="true"></div>
-              <span className="timeline-node" aria-hidden="true"></span>
-              <div className="timeline-card right">
-                <span className="time-badge">2024–2025</span>
-                <h4 className="item-title">Master of Applied Data Science</h4>
-                <p className="item-sub">University of Michigan</p>
-                <ul className="item-points">
-                  <li className="star">Developed supervised and unsupervised models across health and behavioral datasets.</li>
-                  <li className="star">Completed projects on BRFSS depression, Strava performance, and California cancer surgeries.</li>
-                  <li className="star">Led a Capstone project (EEG + NHIS Explorer) merging EEG band power, reaction-time tasks, mood surveys, and NHIS sleep indicators into interactive dashboards.</li>
-                </ul>
+              {/* MADS */}
+              <div className="timeline-item">
+                <div className="timeline-spacer left" aria-hidden="true"></div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-card hover-card right">
+                  <span className="time-badge">2024–2025</span>
+                  <h4 className="item-title">Master of Applied Data Science</h4>
+                  <p className="item-sub">University of Michigan</p>
+                  <ul className="item-points">
+                    <li className="star">Developed supervised and unsupervised models across health and behavioral datasets.</li>
+                    <li className="star">Completed projects on BRFSS depression, Strava performance, and California cancer surgeries.</li>
+                    <li className="star">Led a Capstone project (EEG + NHIS Explorer) merging EEG band power, reaction-time tasks, mood surveys, and NHIS sleep indicators into interactive dashboards.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
 
-            {/* Graduate RA */}
-            <div className="timeline-item">
-              <div className="timeline-card left">
-                <span className="time-badge">2025–Present</span>
-                <h4 className="item-title">Graduate Research Assistant</h4>
-                <p className="item-sub">University of Michigan</p>
-                <ul className="item-points">
-                  <li className="star">Built reproducible pipelines with Pandas and scikit-learn to support exploratory LLM studies.</li>
-                  <li className="star">Conducted literature review, annotation, and qualitative coding for health and AI research.</li>
-                  <li className="star">Created visualizations such as KDE plots, regressions, and time series that informed decision-making.</li>
-                </ul>
+              {/* Graduate RA */}
+              <div className="timeline-item">
+                <div className="timeline-card hover-card left">
+                  <span className="time-badge">2025–Present</span>
+                  <h4 className="item-title">Graduate Research Assistant</h4>
+                  <p className="item-sub">University of Michigan</p>
+                  <ul className="item-points">
+                    <li className="star">Built reproducible pipelines with Pandas and scikit-learn to support exploratory LLM studies.</li>
+                    <li className="star">Conducted literature review, annotation, and qualitative coding for health and AI research.</li>
+                    <li className="star">Created visualizations such as KDE plots, regressions, and time series that informed decision-making.</li>
+                  </ul>
+                </div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
-              <span className="timeline-node" aria-hidden="true"></span>
-              <div className="timeline-spacer right" aria-hidden="true"></div>
             </div>
           </div>
         </section>

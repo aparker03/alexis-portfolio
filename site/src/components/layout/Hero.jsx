@@ -2,12 +2,13 @@
 import React from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import AnimatedBackground from './AnimatedBackground';
+import './Hero.css';
 
 const P = process.env.PUBLIC_URL;
 
 function Hero() {
   return (
-    <section className="relative min-h-[80vh] overflow-hidden bg-black">
+    <section className="hero-section relative min-h-[80vh] overflow-hidden bg-black">
       {/* Stars animation */}
       <AnimatedBackground />
 
@@ -26,8 +27,8 @@ function Hero() {
           Data with context. Questions with purpose.
         </h1>
 
-        {/* Name + title, then one clean line about the portfolio focus */}
-        <p className="mt-1 text-sm uppercase tracking-wider text-gray-300">
+        {/* Name + title — now sized in em so it follows the font toggle */}
+        <p className="hero-kicker mt-1 text-[0.9em] uppercase tracking-wider text-gray-300">
           Alexis Parker · Data Scientist
         </p>
 
