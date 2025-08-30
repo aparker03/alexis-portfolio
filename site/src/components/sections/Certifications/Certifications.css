@@ -1,4 +1,4 @@
-/* site/src/components/Certifications/Certifications.css */
+/* site/src/components/sections/Certifications/Certifications.css */
 
 :root {
   --cert-bg: #F3C78F;
@@ -19,116 +19,130 @@
   --spec-strong: #7B3FE6;
   --spec-text: #ffffff;
 
-  --neutral-hover: #d0e2ff;
-  --neutral-text: #0f172a;
+  --neutral-hover: #143c3a;
+  --neutral-text: #F8FAFC;
 
   --radius: 14px;
   --shadow: 0 6px 18px rgba(17, 24, 39, 0.12);
 }
 
-/* Font-size hooks */
-.certifications-section {
-  font-size: 1em;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-}
+/* ===== Font-size hooks ===== */
+.certifications-section { font-size: 1em; font-family: 'Inter','Segoe UI',Roboto,sans-serif; line-height: 1.6; }
 .text-base .certifications-section { font-size: 1em; }
 .text-lg   .certifications-section { font-size: 1.125em; }
 .text-xl   .certifications-section { font-size: 1.25em; }
 .text-2xl  .certifications-section { font-size: 1.5em; }
 
+/* Clamp on small screens so XX-Large never spills */
+@media (max-width: 640px) { .text-2xl .certifications-section { font-size: 1.125em; } }
+
+/* ===== Page shell ===== */
 .certifications-container {
   padding: 2rem 2rem 3rem;
   width: 100%;
-  max-width: none;
   margin: 0;
   color: var(--ink);
   background: var(--cert-bg);
-  font-family: inherit;
-  line-height: inherit;
+  overflow-x: hidden; /* no horizontal scrollbars */
 }
 
-/* Hero */
+/* ===== Hero ===== */
 .cert-hero {
-  background: transparent;
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 1.25rem;
   align-items: center;
-  padding: 0;
   margin-bottom: 1.5rem;
 }
+.cert-hero__avatar img { display:block; max-width:100%; height:auto; object-fit:contain; }
+.certifications-title { font-size: clamp(1.7em, 1.1em + 1.6vw, 2.2em); margin:0 0 .25em 0; font-weight:700; color:#111827; }
+.cert-hero__subtitle { margin:0; font-size:1em; color:#2a2a2a; font-weight:500; overflow-wrap:anywhere; }
 
-.cert-hero__avatar img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
-  object-fit: contain;
+/* Phones */
+@media (max-width: 640px) {
+  .cert-hero { grid-template-columns: 100px 1fr; gap:.75rem; }
+  .cert-hero__avatar img { width:100px; height:100px; }
+}
+/* Very small phones: stack to stop cutoffs at XX-Large */
+@media (max-width: 480px) {
+  .cert-hero { grid-template-columns: 1fr; }
+  .cert-hero__avatar { order:-1; justify-self:start; }
+  .text-2xl .certifications-section { font-size: 1.08em; }
 }
 
-.certifications-title {
-  font-size: clamp(1.7em, 1.1em + 1.6vw, 2.2em);
-  margin: 0 0 0.25em 0;
-  font-weight: 700;
-  color: #111827;
-}
+/* ===== Toolbar ===== */
+.certifications-toolbar { padding: .75rem 0 1rem; background: var(--cert-bg); }
 
-.cert-hero__subtitle {
-  margin: 0;
-  font-size: 1em;
-  color: #2a2a2a;
-  font-weight: 500;
-}
-
-/* Toolbar — NOT sticky anymore */
-.certifications-toolbar {
-  position: static; /* no sticky; bar scrolls away with the page */
-  background: var(--cert-bg);
-  padding: 0.75rem 0 1rem;
-}
-
+/* Use minmax(0,1fr) so columns can shrink; never rely on overflow */
 .toolbar-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, max-content));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .75rem 1rem;
   align-items: end;
-  gap: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
+  overflow: visible;  /* no horizontal scrollbar */
 }
 
-.control { display: grid; gap: 0.35rem; font-size: 0.95em; }
-.control span { font-weight: 700; color: #111827; }
+.control { display:grid; gap:.35rem; font-size:.95em; min-width:0; }
+.control span { font-weight:700; color:#111827; }
 
 .control select,
 .control input[type="search"] {
-  min-width: 12ch;
-  padding: 0.5rem 0.65rem;
-  font-size: 1em;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: #fff;
+  width:100%;
+  min-width:0;
+  padding:.5rem .65rem;
+  font-size:1em;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
 }
 
-.control--grow { min-width: 26ch; }
+/* --- TWEAK 1: Search matches other controls by default; compact in split view --- */
+.control--grow,
+.control--grow input[type="search"] {
+  width: 100%;
+  max-width: none;   /* same length as other bars in normal layouts */
+}
 
-.toggle { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.95em; user-select: none; }
+/* Side-by-side widths: keep Search compact so it never causes a scrollbar */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .toolbar-row .control--grow,
+  .toolbar-row .control--grow input[type="search"] {
+    max-width: 28ch;
+  }
+}
+@media (min-width: 901px) and (max-width: 1280px) {
+  .text-2xl .toolbar-row .control--grow,
+  .text-2xl .toolbar-row .control--grow input[type="search"] {
+    max-width: 26ch;
+  }
+}
+
+/* Reduce columns at larger fonts so controls don’t overlap */
+.text-lg .toolbar-row  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.text-xl .toolbar-row  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Side-by-side widths: compress earlier and let Search drop to its own row */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .toolbar-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .toolbar-row .control--grow { grid-column: 1 / -1; }
+}
+
+.toggle { display:inline-flex; align-items:center; gap:.5rem; font-size:.95em; user-select:none; }
 .toggle input { transform: translateY(1px); }
+.toolbar-meta { margin-top:.5rem; font-size:.98em; color:var(--muted); }
 
-.toolbar-meta { margin-top: 0.5rem; font-size: 0.98em; color: var(--muted); }
+/* Mobile toolbar: single column stack */
+@media (max-width: 900px) {
+  .toolbar-row { grid-template-columns: 1fr !important; }
+  .control, .toggle { width:100%; }
+  .control--grow { max-width:none; }
+}
 
-/* Grid + cards */
+/* ===== Grid + cards ===== */
 .cert-group { margin-top: 1rem; }
-
 .cert-group__title {
-  font-size: 1.15em;
-  font-weight: 700;
-  margin: 1rem 0 0.5rem;
-  border-left: 4px solid var(--line);
-  padding-left: 0.5rem;
-  color: #111827;
+  font-size: 1.15em; font-weight:700; margin:1rem 0 .5rem;
+  border-left:4px solid var(--line); padding-left:.5rem; color:#111827;
 }
 
 .certifications-grid {
@@ -137,6 +151,24 @@
   gap: 1rem;
 }
 
+/* ✅ SIDE-BY-SIDE ONLY (approx 1024–1439px):
+   When the font is XX-Large, force EXACTLY 2 across.
+   (Full-screen ultra-wide will not be affected.) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .text-2xl .certifications-grid { grid-template-columns: repeat(2, minmax(360px, 1fr)); }
+}
+
+/* ✅ FULL-SCREEN / ULTRA-WIDE (≥1600px):
+   Allow 3 across at XX-Large */
+@media (min-width: 1600px) {
+  .text-2xl .certifications-grid { grid-template-columns: repeat(3, minmax(360px, 1fr)); }
+}
+
+/* Phones */
+@media (max-width: 640px) { .certifications-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); } }
+@media (max-width: 400px) { .certifications-grid { grid-template-columns: 1fr; } }
+
+/* ===== Card ===== */
 .cert-card {
   background: var(--card-bg);
   border-left: 6px solid #ccc;
@@ -151,19 +183,23 @@
     background-color 140ms ease,
     border-color 140ms ease,
     color 140ms ease;
+  overflow-wrap: anywhere;
+  color: #111827; /* base text color */
 }
 
-/* Idle state borders by type */
 .cert-card.course { border-left-color: var(--course); }
 .cert-card.specialization { border-left-color: var(--spec); }
 
-/* Default/other hover */
+/* Make text inherit the card color so it flips on hover */
+.cert-title, .cert-provider, .cert-meta { color: currentColor; }
+
+/* Neutral hover */
 .cert-card:not(.course):not(.specialization):hover {
   transform: translateY(-4px);
   background-color: var(--neutral-hover);
-  border-left-color: var(--brand);
+  border-left-color: var(--neutral-hover);
   color: var(--neutral-text);
-  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.2);
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.25);
 }
 
 /* Course hover */
@@ -185,74 +221,42 @@
 }
 
 /* Header + meta */
-.cert-header { margin-bottom: 0.5rem; }
-.cert-title {
-  margin: 0;
-  font-size: 1.06em;
-  font-weight: 700;
-  color: #111827;
-  transition: color 120ms ease;
-}
-/* Ensure card text (title/provider/meta) flips together on hover */
-.cert-card:hover .cert-title,
-.cert-card:hover .cert-provider,
-.cert-card:hover .cert-meta,
-.cert-card:hover .cert-meta li {
-  color: inherit;
-}
+.cert-header { margin-bottom: .5rem; }
+.cert-title { margin:0; font-size:1.06em; font-weight:700; transition: color 120ms ease; }
+.cert-provider { margin:.25rem 0 0; font-size:.96em; font-weight:500; }
+.cert-meta { list-style:none; padding:0; margin:.5rem 0 1rem; font-size:.95em; font-weight:500; }
+.cert-meta li { margin:.25rem 0; overflow-wrap:anywhere; }
 
-.cert-provider {
-  margin: 0.25rem 0 0;
-  font-size: 0.96em;
-  color: var(--muted);
-  font-weight: 500;
-}
+.cert-actions { margin-top:auto; }
 
-.cert-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 1rem;
-  font-size: 0.95em;
-  color: #333;
-  font-weight: 500;
-}
-.cert-meta li { margin: 0.25rem 0; }
-
-.cert-actions { margin-top: auto; }
-
-/* Button/link styling */
+/* Button/link */
 .cert-link {
-  display: inline-block;
-  text-decoration: underline;
-  font-weight: 600;
-  font-size: 0.96em;
-  color: #fff;
-  background: var(--brand);
-  padding: 0.55rem 0.95rem;
-  border-radius: 10px;
-  border: 1px solid var(--brand-ink);
+  display:inline-block;
+  text-decoration:underline;
+  font-weight:600;
+  font-size:.96em;
+  color:#fff;
+  background:var(--brand);
+  padding:.55rem .95rem;
+  border-radius:10px;
+  border:1px solid var(--brand-ink);
   transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
 }
-.cert-link:hover, .cert-link:focus {
-  background: var(--brand-ink);
-  outline: none;
-}
+.cert-link:hover, .cert-link:focus { background: var(--brand-ink); outline:none; }
 
-/* On course hover: invert button */
+/* --- TWEAK 2: Keep "View Certificate" visible on colored hovers --- */
 .cert-card.course:hover .cert-link {
-  background: #ffffff;
-  color: var(--course-strong);
-  border-color: #ffffff;
+  background:#ffffff;
+  color: var(--course-strong);   /* explicit contrast (not inherit) */
+  border-color:#ffffff;
 }
-
-/* On specialization hover: invert button */
 .cert-card.specialization:hover .cert-link {
-  background: #ffffff;
-  color: var(--spec-strong);
-  border-color: #ffffff;
+  background:#ffffff;
+  color: var(--spec-strong);     /* explicit contrast (not inherit) */
+  border-color:#ffffff;
 }
 
-/* On neutral hover */
+/* Neutral hover keeps good contrast */
 .cert-card:not(.course):not(.specialization):hover .cert-link {
   background: var(--brand);
   color: #ffffff;
@@ -268,32 +272,4 @@
 }
 
 /* Motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .cert-card, .cert-link { transition: none; }
-}
-
-/* --- Mobile & small tablet fixes --- */
-@media (max-width: 900px) {
-  .toolbar-row {
-    grid-template-columns: 1fr !important;
-    align-items: stretch;
-    overflow-x: visible;
-  }
-  .control,
-  .toggle { width: 100%; }
-  .control--grow { min-width: 0; }
-  .control select,
-  .control input[type="search"] { width: 100%; }
-  .toggle { justify-content: space-between; }
-  .certifications-toolbar { padding-top: 0.5rem; padding-bottom: 0.75rem; }
-}
-
-@media (max-width: 640px) {
-  .cert-hero { grid-template-columns: 100px 1fr; gap: 0.75rem; }
-  .cert-hero__avatar img { width: 100px; height: 100px; }
-  .certifications-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-}
-
-@media (max-width: 400px) {
-  .certifications-grid { grid-template-columns: 1fr; }
-}
+@media (prefers-reduced-motion: reduce) { .cert-card, .cert-link { transition: none; } }

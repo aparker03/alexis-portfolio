@@ -3,7 +3,6 @@ import React, { useMemo, useState, useEffect } from "react";
 import certifications from "../data/certifications";
 import "../components/sections/Certifications/Certifications.css";
 
-
 const P = process.env.PUBLIC_URL;
 
 function Certifications() {
@@ -52,7 +51,6 @@ function Certifications() {
       return matchCategory && matchType && matchQuery;
     });
 
-    // return the sorted array directly (removes the “redundant local variable” warning)
     return [...base].sort((a, b) => {
       const ta = (a.title || "").toLowerCase();
       const tb = (b.title || "").toLowerCase();
@@ -127,17 +125,6 @@ function Certifications() {
               </select>
             </label>
 
-            <label className="control control--grow">
-              <span>Search</span>
-              <input
-                type="search"
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                placeholder="Title, provider, specialization…"
-                aria-label="Search certifications"
-              />
-            </label>
-
             <label className="control">
               <span>Sort</span>
               <select
@@ -149,6 +136,19 @@ function Certifications() {
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
+            </label>
+
+            {/* SEARCH BELOW SORT: full-row placement, but capped width so it isn't too long */}
+            <label className="control control--grow" style={{ gridColumn: '1 / -1' }}>
+              <span>Search</span>
+              <input
+                type="search"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                placeholder="Title, provider, specialization…"
+                aria-label="Search certifications"
+                style={{ maxWidth: '36ch' }}
+              />
             </label>
 
             <label className="toggle">

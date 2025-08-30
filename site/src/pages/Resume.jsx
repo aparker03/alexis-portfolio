@@ -2,28 +2,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../components/sections/Resume/Resume.css";
+import AnimatedBackgroundResume from "../components/layout/AnimatedBackgroundResume";
 
 const P = process.env.PUBLIC_URL;
 
 function Resume() {
   return (
     <section className="resume-page" aria-labelledby="resume-heading">
-      {/* decorative shapes */}
+      {/* decorative shapes (kept as-is; they don't capture clicks) */}
       <div className="shape shape-circle" aria-hidden="true"></div>
       <div className="shape shape-triangle" aria-hidden="true"></div>
       <div className="shape shape-squiggle" aria-hidden="true"></div>
 
-      {/* hero */}
-      <div className="resume-hero">
-        <img
-          src={`${P}/assets/avatars/avatar-resume.png`}
-          alt="Portrait of Alexis Parker"
-          className="resume-hero-avatar"
-        />
-        <div className="scroll-cue" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" role="img" aria-hidden="true">
-            <path d="M12 16l-6-6h12z" fill="currentColor"></path>
-          </svg>
+      {/* hero with scoped animated background (canvas sits behind content) */}
+      <div
+        className="resume-hero-wrap"
+        style={{ position: "relative", overflow: "hidden" }}
+      >
+        <AnimatedBackgroundResume zIndex={1} />
+
+        <div className="resume-hero" style={{ position: "relative", zIndex: 2 }}>
+          <img
+            src={`${P}/assets/avatars/avatar-resume.png`}
+            alt="Portrait of Alexis Parker"
+            className="resume-hero-avatar"
+          />
+          <div className="scroll-cue" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M12 16l-6-6h12z" fill="currentColor"></path>
+            </svg>
+          </div>
         </div>
       </div>
 

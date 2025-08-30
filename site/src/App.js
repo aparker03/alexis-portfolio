@@ -1,6 +1,7 @@
 // src/App.js
 
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useFontSize, FontSizeProvider } from './context/FontSizeContext';
 
 import Navbar from "./components/layout/Navbar";
@@ -9,9 +10,82 @@ import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Certifications from './pages/Certifications';
 
+/** 1) Route-based titles (can’t be clobbered by child effects) */
+function useRouteTitle() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      '/': 'Alexis Parker · Data Scientist',
+      '/projects': 'Projects - Alexis Parker',
+      '/resume': 'Resume - Alexis Parker',
+      '/certifications': 'Certifications - Alexis Parker',
+    };
+    const raf = requestAnimationFrame(() => {
+      document.title = titles[pathname] || 'Alexis Parker';
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [pathname]);
+}
+
+/** 2) Also disable scroll restoration at runtime (belt + suspenders) */
+function useManualScrollRestoration() {
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      const prev = window.history.scrollRestoration;
+      window.history.scrollRestoration = 'manual';
+      return () => { window.history.scrollRestoration = prev; };
+    }
+  }, []);
+}
+
+/** 3) Scroll to top (or to #hash) on route change and on hard refresh */
+function useScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    const scrollOnce = () => {
+      if (hash) {
+        const id = hash.startsWith('#') ? hash.slice(1) : hash;
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          return;
+        }
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      // Extra safety for engines that ignore window.scrollTo
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    // Immediately after nav
+    scrollOnce();
+    // Next frame (beats late effects)
+    const raf = requestAnimationFrame(scrollOnce);
+    // After images/layout settle
+    const t = setTimeout(scrollOnce, 150);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, [pathname, hash]);
+
+  // Handle hard refresh / bfcache restores
+  useEffect(() => {
+    const handlePageShow = () => window.scrollTo(0, 0);
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
+}
+
 // Wrapper component to apply font size globally
 function AppLayout() {
-  const { fontSize } = useFontSize(); // dynamic font size
+  const { fontSize } = useFontSize();
+  useRouteTitle();
+  useManualScrollRestoration();
+  useScrollToTop();
 
   return (
     <div className={`min-h-screen bg-white text-gray-900 font-sans flex flex-col text-${fontSize}`}>

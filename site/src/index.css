@@ -6,6 +6,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent the browser's scroll anchoring from keeping content at the same visual position
+   when images/fonts load and change layout height. This helps ensure we land at the top. */
+html, body, #root, main {
+  overflow-anchor: none;
+}
+
 canvas {
   animation: fadeIn 2s ease-in-out;
 }
