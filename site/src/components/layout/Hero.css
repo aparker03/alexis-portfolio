@@ -1,9 +1,8 @@
-/* Make the hero opt-in to your global font toggle (same pattern you use elsewhere) */
-/* These selectors assume your toggle puts one of these classes on <html> or <body>. */
+/* site/src/components/layout/Hero.css */
 .text-base .hero-section { font-size: 1em; }
 .text-lg   .hero-section { font-size: 1.125em; }
 .text-xl   .hero-section { font-size: 1.25em; }
 .text-2xl  .hero-section { font-size: 1.5em; }
 
-/* Optional: tiny tuning just for the kicker if you want */
+/* tiny tuning just for the kicker */
 .hero-kicker { letter-spacing: 0.08em; }

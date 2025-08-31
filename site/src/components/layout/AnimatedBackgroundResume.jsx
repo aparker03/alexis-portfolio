@@ -1,9 +1,18 @@
 // src/components/layout/AnimatedBackgroundResume.jsx
 // Concentric rings + orbiters. Palette: #25445C / #E39C2C. GPU transforms, respects prefers-reduced-motion.
 
-import React from "react";
+import React, { useMemo } from "react";
 
 export default function AnimatedBackgroundResume({ zIndex = 1 }) {
+  // Read the CSS variable from the computed styles at runtime (with fallback),
+  // so the component stays stable even if the CSS hasn't been updated yet.
+  const ringsTranslateY = useMemo(() => {
+    if (typeof window === "undefined") return "-28%"; // SSR safeguard
+    const root = document.querySelector(".resume-hero") || document.documentElement;
+    const val = getComputedStyle(root).getPropertyValue("--rings-ty")?.trim();
+    return val && val !== "" ? val : "-28%";
+  }, []);
+
   return (
     <div
       aria-hidden="true"
@@ -29,23 +38,11 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
         @media (max-width: 900px)   { .rings-frame { width: min(88vmin, 620px); } }
         @media (max-width: 600px)   { .rings-frame { width: 84vmin; } }
 
-        /* Offset the ring group vertically. Fullscreen unchanged.
-           Side-by-side + mobile: raise rings a bit so the avatar appears lower. */
         .rings-offset {
           width: 100%;
           height: 100%;
-          transform: translateY(-28%) translateZ(0); /* fullscreen baseline (perfect) */
           will-change: transform;
           margin: 0 auto;
-        }
-        /* previous tablet/smaller rules */
-        @media (max-width: 1200px) { .rings-offset { transform: translateY(-22%) translateZ(0); } }
-        @media (max-width: 900px)  { .rings-offset { transform: translateY(-18%) translateZ(0); } }
-        @media (max-width: 600px)  { .rings-offset { transform: translateY(-12%) translateZ(0); } } /* was -9% */
-
-        /* explicit side-by-side range: raise more than before (was -22%) */
-        @media (min-width: 900px) and (max-width: 1399px) {
-          .rings-offset { transform: translateY(-26%) translateZ(0); }
         }
 
         .resume-rings { display: block; width: 100%; height: 100%; }
@@ -72,7 +69,11 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
       `}</style>
 
       <div className="rings-frame">
-        <div className="rings-offset">
+        {/* IMPORTANT: transform is injected inline using the CSS var to avoid touching other styles */}
+        <div
+          className="rings-offset"
+          style={{ transform: `translateY(${ringsTranslateY}) translateZ(0)` }}
+        >
           <svg className="resume-rings" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
             <defs>
               <radialGradient id="resume-halo" cx="50%" cy="45%" r="40%">

@@ -27,7 +27,7 @@ function Hero() {
           Data with context. Questions with purpose.
         </h1>
 
-        {/* Name + title — now sized in em so it follows the font toggle */}
+        {/* Name + title — sized in em so it follows the font toggle */}
         <p className="hero-kicker mt-1 text-[0.9em] uppercase tracking-wider text-gray-300">
           Alexis Parker · Data Scientist
         </p>

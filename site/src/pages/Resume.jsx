@@ -1,5 +1,5 @@
 // src/pages/Resume.jsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../components/sections/Resume/Resume.css";
 import AnimatedBackgroundResume from "../components/layout/AnimatedBackgroundResume";
@@ -33,9 +33,38 @@ function Resume() {
   // When switching to horizontal, ensure the first card is visible/snapped
   useEffect(() => {
     if (!isHorizontal || !trackRef.current || !firstItemRef.current) return;
-    // Scroll so first card is nicely in view without jank
-    trackRef.current.scrollTo({ left: 0, top: 0, behavior: "instant" });
+    trackRef.current.scrollTo({ left: 0, top: 0, behavior: "auto" });
   }, [isHorizontal]);
+
+  // Precise jump to Highlights with a responsive offset to avoid overshoot
+  const handleScrollToHighlights = (e) => {
+    e.preventDefault();
+    const heading = document.getElementById("highlights-heading");
+    if (!heading) return;
+
+    // Scroll the whole Highlights section (more stable than the <h3>)
+    const section = heading.closest(".resume-section") || heading;
+
+    // Responsive offset (px): a bit larger on desktop / fullscreen to counter visual overshoot
+    const vw = window.innerWidth;
+    const isMobile = vw <= 600;
+    const isFullscreen = vw >= 1400;
+    const OFFSET = isMobile ? 80 : isFullscreen ? 150 : 110;
+
+    const rect = section.getBoundingClientRect();
+    const y = rect.top + window.pageYOffset - OFFSET;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+
+    // Keep URL hash in sync (no second jump)
+    try { window.history.replaceState(null, "", "#highlights-heading"); } catch {}
+
+    // a11y: focus the heading without re-scrolling
+    try {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    } catch {}
+  };
 
   return (
     <section className="resume-page" aria-labelledby="resume-heading">
@@ -57,11 +86,16 @@ function Resume() {
             alt="Portrait of Alexis Parker"
             className="resume-hero-avatar"
           />
-          <div className="scroll-cue" aria-hidden="true">
+          <a
+            className="scroll-cue"
+            href="#highlights-heading"
+            aria-label="Jump to highlights"
+            onClick={handleScrollToHighlights}
+          >
             <svg width="26" height="26" viewBox="0 0 24 24" role="img" aria-hidden="true">
               <path d="M12 16l-6-6h12z" fill="currentColor"></path>
             </svg>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -87,7 +121,12 @@ function Resume() {
         </div>
 
         {/* highlights */}
-        <section className="resume-section" aria-labelledby="highlights-heading">
+        {/* scrollMarginTop here ensures native hash jumps (if any) also land correctly */}
+        <section
+          className="resume-section"
+          aria-labelledby="highlights-heading"
+          style={{ scrollMarginTop: "150px" }}
+        >
           <h3 id="highlights-heading" className="section-title">Highlights</h3>
           <ul className="highlights-list">
             <li className="star">Analyzed health and behavioral datasets including BRFSS, NHANES, NHIS, and OpenNeuro EEG.</li>
