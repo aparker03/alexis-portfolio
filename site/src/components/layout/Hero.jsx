@@ -33,7 +33,7 @@ function Hero() {
         </p>
 
         <p className="max-w-xl text-gray-300 leading-relaxed mt-4">
-          I build interpretable analyses and tools across neuroscience datasets, national health surveys, and wearable signals.
+          I create data stories and tools that make complex information usable. My work spans neuroscience signals, national health surveys, and wearable devices, always with an emphasis on clarity and ethical design.
         </p>
 
         {/* Jump link to About section */}

@@ -15,9 +15,7 @@ function useScrollToHash() {
     const id = hash.startsWith("#") ? hash.slice(1) : hash;
     const el = document.getElementById(id);
     if (el) {
-      // Use smooth scroll and offset via CSS (scroll-mt-24 on the section)
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Move focus to the section heading for screen readers (if present)
       const heading = el.querySelector("h2, h3, h1");
       (heading || el).setAttribute("tabindex", "-1");
       (heading || el).focus({ preventScroll: true });
@@ -30,7 +28,6 @@ function Home() {
 
   return (
     <>
-      {/* Cohesive typography like Projects: Inter + slate ink */}
       <main
         style={{
           fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif",
@@ -54,10 +51,20 @@ function Home() {
               About Me
             </h2>
             <p className="text-[#1f2937] mb-5">
-              My path started in psychology and grew into data science. Along the way I have worked with EEG recordings, national survey data, and wearable metrics, always with the goal of building tools and analyses that are clear, rigorous, and ethically framed.
+              I began in psychology, fascinated by how people think, learn, and
+              change. That curiosity carried me into data science, where I found
+              the methods to explore questions at scale. Since then, I have
+              worked with EEG recordings, large federal surveys, and wearable
+              data, building analyses that are rigorous yet approachable.
             </p>
             <p className="text-[#1f2937]">
-              What excites me most is translating complex data into insights that people can use. Whether modeling depression risk, exploring how sleep relates to performance, or creating interactive dashboards, I approach projects with curiosity, persistence, and care. My aim is to create work that is transparent, reproducible, and meaningful to both technical and non-technical communities.
+              What drives me is turning raw data into knowledge that people can
+              trust and apply. I enjoy finding the bridge between technical
+              precision and real-world meaning. Whether modeling depression
+              risk, examining how sleep relates to performance, or designing
+              dashboards that make research more open, my goal is to produce
+              work that is transparent, reproducible, and accessible to diverse
+              audiences.
             </p>
           </div>
         </section>
@@ -70,7 +77,8 @@ function Home() {
                 Modeling and Analysis
               </h3>
               <p className="text-[#374151] font-medium">
-                Exploratory analysis, machine learning, and thoughtful model interpretation.
+                Exploratory analysis, machine learning, and thoughtful model
+                interpretation.
               </p>
             </div>
             <div>
@@ -78,7 +86,8 @@ function Home() {
                 Research Practice
               </h3>
               <p className="text-[#374151] font-medium">
-                Foundations in psychology with hands-on work across neuroscience and public health data.
+                Foundations in psychology with hands-on work across neuroscience
+                and public health data.
               </p>
             </div>
             <div>
@@ -86,7 +95,8 @@ function Home() {
                 Communication
               </h3>
               <p className="text-[#374151] font-medium">
-                Turning complex results into clear stories, visuals, and usable tools.
+                Turning complex results into clear stories, visuals, and usable
+                tools.
               </p>
             </div>
           </div>
@@ -100,34 +110,27 @@ function Home() {
             </h2>
             <div className="flex flex-wrap justify-center gap-4 text-base">
               {[
-                // Core languages & data
                 "Python",
                 "R",
                 "SQL",
-                // Py data/ML stack
                 "Pandas",
                 "NumPy",
                 "SciPy",
                 "scikit-learn",
                 "TensorFlow",
                 "PyTorch",
-                // Visualization & apps
                 "Plotly",
                 "Matplotlib",
                 "Seaborn",
                 "Altair",
                 "Streamlit",
-                // Neuro/geo libs
                 "MNE-Python",
                 "Pydeck",
-                // Workflow
                 "Jupyter",
                 "VS Code",
                 "Git/GitHub",
-                // Cloud & UI
                 "Google Cloud Platform",
                 "Tailwind CSS",
-                // BI
                 "Tableau",
               ].map((tool) => (
                 <span
@@ -155,7 +158,8 @@ function Home() {
               Contact
             </h2>
             <p className="text-[#1f2937] mb-6 font-medium">
-              Whether you are interested in working together or just want to connect, feel free to reach out.
+              Whether you are interested in working together or just want to
+              connect, feel free to reach out.
             </p>
             <div className="flex justify-center gap-6 text-blue-700">
               <a

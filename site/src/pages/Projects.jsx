@@ -18,11 +18,8 @@ function Projects() {
   return (
     <section className="projects-section min-h-screen" aria-labelledby="projects-heading">
       <style>{`
-        /* Full-bleed hero (no left/right gap); restore padding for the rest */
         .projects-section { padding-left: 0 !important; padding-right: 0 !important; }
         .projects-container { padding-left: 2rem; padding-right: 2rem; }
-
-        /* HERO */
         .projects-hero-wrap {
           position: relative;
           height: 54vh;
@@ -53,32 +50,19 @@ function Projects() {
         .projects-scroll-cue:focus-visible { box-shadow: 0 0 0 3px rgba(37,99,235,.6); border-radius: 9999px; }
         @keyframes arrow-bounce { 0%,100%{transform:translateY(0);opacity:.85} 50%{transform:translateY(6px);opacity:1} }
         @media (prefers-reduced-motion: reduce) { .projects-scroll-cue { animation: none; } }
-
-        /* Layout */
         .projects-layout { grid-template-columns: 1fr; }
-
-        /* Grid: 2×2 only when really wide; side-by-side (≤1600px) is single column */
         .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; align-items: stretch; }
         @media (max-width: 1600px) { .projects-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 1000px) { .projects-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } }
-
-        /* Keep cards roomy at large fonts; don’t let them spill */
         .project-card { max-width: 1400px; width: 100%; box-sizing: border-box; margin: 0 auto; }
-
-        /* Center page heading + intro */
         .projects-title { text-align: center; margin: 0.5rem auto 1rem; }
         .projects-intro  { text-align: center; margin: 0 auto 2rem; max-width: 980px; color: #374151; }
-
-        /* Center the four project titles */
         .project-title { text-align: center; }
-
-        /* Bullet layout fix for side-by-side: force single column to avoid overlap */
         @media (max-width: 1600px) {
           .project-points { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
-      {/* HERO with bounded animation (trimmed for smoother scroll near top) */}
       <div className="projects-hero-wrap">
         <AnimatedBackgroundProjects
           fixed={false}
@@ -90,7 +74,6 @@ function Projects() {
             "rgba(126, 173, 179, 0.95)",
           ]}
           count={140}
-          /* Perf: pause and cap work to kill micro-jank on scroll/resize */
           pauseWhenOffscreen
           pauseWhenHidden
           maxDpr={1.5}
@@ -122,12 +105,11 @@ function Projects() {
           <div className="projects-main">
             <h2 className="projects-title" id="projects-heading">Projects</h2>
             <p className="projects-intro">
-              I build small, trustworthy tools: clean pipelines you can audit, notebooks that explain decisions, and interfaces that invite exploration.
-              Below are EEG with reaction-time lapses connected to NHIS sleep, a transparent BRFSS depression index, Strava wearables that surface training patterns,
+              I design projects as tools people can use. That means clear pipelines you can follow, notebooks that show decisions, and interfaces that invite exploration.
+              Below are a sleep measurement comparison using EEG and NHIS self-reports, a research-informed BRFSS depression index study, Strava wearables that surface training patterns,
               and statewide surgery volumes you can navigate without guesswork.
             </p>
 
-            {/* Main Projects Grid */}
             <div className="projects-grid">
               {/* EEG + NHIS */}
               <div className="project-card card-gold">
@@ -141,7 +123,7 @@ function Projects() {
                   />
                   <img
                     src={`${P}/images/projects/eeg/eeg-electrodes-preview.png`}
-                    alt="10-20 EEG electrode montage highlighting frontal, central, parietal, and occipital regions"
+                    alt="10 20 EEG electrode montage highlighting frontal, central, parietal, and occipital regions"
                     className="project-image"
                     loading="lazy"
                     decoding="async"
@@ -158,10 +140,10 @@ function Projects() {
                       Visualized Psychomotor Vigilance Task reaction-time distributions and lapse rates under sleep loss.
                     </li>
                     <li className="star">
-                      Combined PANAS mood changes from a sleep-deprivation study with 2024 NHIS indicators (hours slept, restfulness, sleep-aid use).
+                      Built a comparative view that places lab-based sleep signals beside NHIS self-reported sleep measures to examine measurement differences.
                     </li>
                     <li className="star">
-                      Interactive Streamlit app with Plotly for side-by-side exploration of lab signals and national survey patterns (educational, not diagnostic).
+                      Interactive Streamlit app with Plotly for side-by-side exploration of lab and survey measures. Educational only and not diagnostic.
                     </li>
                   </ul>
                   <p className="project-tools">Tools: Streamlit, MNE-Python, Plotly, Pandas, NumPy</p>
@@ -185,12 +167,17 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">BRFSS Depression Index Explorer</h3>
+                  <h3 className="project-title">BRFSS Depression Index Study</h3>
                   <ul className="project-points">
-                    <li className="star">Engineered a Depression Index from 2022 BRFSS items with transparent scoring aligned to PHQ-style signals.</li>
-                    <li className="star">Compared imputation strategies in-app; choices propagate to all visuals and summaries.</li>
-                    <li className="star">State-level choropleths, group comparisons, live filters, and CSV export for reproducible analysis.</li>
-                    <li className="star">Linked EDA/methodology notebooks so readers can trace cleaning steps and assumptions.</li>
+                    <li className="star">
+                      Built a research-informed composite score to capture self-reported mental health distress using BRFSS survey items. This is exploratory and not an official clinical index.
+                    </li>
+                    <li className="star">
+                      Included survey measures on days of poor mental and physical health, life satisfaction, emotional support, stress, social isolation, and depression diagnosis.
+                    </li>
+                    <li className="star">
+                      In-app imputation choices carry through to all visuals and summaries. Linked notebooks make cleaning steps and assumptions clear.
+                    </li>
                   </ul>
                   <p className="project-tools">Tools: Streamlit, Pandas, Plotly, scikit-learn</p>
                   <div className="project-links">
@@ -198,7 +185,14 @@ function Projects() {
                     <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
                     <a href={`${P}/notebooks/brfss/depression_index_analysis.html`}>Index</a>
                   </div>
-                  <a href="https://state-of-mind.streamlit.app/" target="_blank" rel="noopener noreferrer" className="project-launch-btn">Launch App →</a>
+                  <a
+                    href="https://state-of-mind.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-launch-btn"
+                  >
+                    Launch App →
+                  </a>
                 </div>
               </div>
 
@@ -218,7 +212,7 @@ function Projects() {
                   <h3 className="project-title">Strava Wearable Metrics</h3>
                   <ul className="project-points">
                     <li className="star">Parsed a personal Strava export to study cadence, pace stability, and heart-rate zones across runs.</li>
-                    <li className="star">Distribution/KDE views reveal training patterns that single-run summaries miss.</li>
+                    <li className="star">Distribution and density views reveal training patterns that single-run summaries miss.</li>
                     <li className="star">Filters for periods and sessions make week-over-week trends easy to compare.</li>
                     <li className="star">Companion notebook documents assumptions and cleaning decisions.</li>
                   </ul>
@@ -245,9 +239,9 @@ function Projects() {
                 <div className="project-card-content">
                   <h3 className="project-title">Surgical Scope: Cancer Procedure Trends</h3>
                   <ul className="project-points">
-                    <li className="star">Analyzed California HCAI hospital surgery volumes (2013–2022) across the ICD-9 to ICD-10 transition.</li>
-                    <li className="star">Compared high-volume procedures (breast, colon, prostate) to rarer ones (esophagus, pancreas, stomach) using KDE trends.</li>
-                    <li className="star">Outlier-aware views (IQR) and a California-wide roll-up separate from filtered totals.</li>
+                    <li className="star">Analyzed California HCAI hospital surgery volumes from 2013 to 2022 across the ICD-9 to ICD-10 transition.</li>
+                    <li className="star">Compared high-volume procedures such as breast, colon, and prostate to rarer ones such as esophagus, pancreas, and stomach using KDE trends.</li>
+                    <li className="star">Outlier-aware views using IQR and a California-wide roll-up separate from filtered totals.</li>
                     <li className="star">County-level choropleths and hospital-level visuals with filters for site, region, and year.</li>
                   </ul>
                   <p className="project-tools">Tools: Streamlit, Pydeck, Pandas, Seaborn</p>
@@ -259,7 +253,6 @@ function Projects() {
               </div>
             </div>
 
-            {/* Exploratory Projects */}
             <div className="exploratory-projects">
               <h3 className="exploratory-title">Exploratory Projects (R / RPubs)</h3>
               <p className="exploratory-intro" style={{ textAlign: "center", maxWidth: 980, margin: "0 auto 2rem" }}>
@@ -293,8 +286,8 @@ function Projects() {
               </div>
             </div>
           </div>
-        </div>{/* /.projects-layout */}
-      </div>{/* /.projects-container */}
+        </div>
+      </div>
     </section>
   );
 }

@@ -160,7 +160,13 @@
 
 /* ====== Downloads & Buttons ====== */
 .resume-downloads { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6); }
-.btn-primary, .btn-ghost, .btn-link, .btn-inline { font-weight: 600; text-decoration: none; display: inline-block; }
+.btn-primary, .btn-ghost, .btn-link, .btn-inline {
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color .2s ease, color .2s ease,
+              border-color .2s ease, box-shadow .2s ease, filter .2s ease;
+}
 .btn-primary { background: var(--btn-bg); color: var(--btn-fg); padding: 10px 16px; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
 .btn-primary:hover { filter: brightness(0.92); }
 .btn-primary:focus { outline: 3px solid var(--btn-outline); outline-offset: 2px; }
@@ -169,6 +175,24 @@
 .btn-ghost:focus { outline: 3px solid var(--btn-outline); outline-offset: 2px; }
 .btn-link { color: var(--link-color); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px; }
 .btn-inline { margin-top: var(--space-2); }
+
+/* DOWNLOADS: swap styles on hover (primary ↔ ghost) */
+.resume-downloads .btn-primary:hover,
+.resume-downloads .btn-primary:focus-visible {
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-fg);
+  border: 1px solid var(--btn-ghost-border);
+  filter: none;
+}
+.resume-downloads .btn-ghost:hover,
+.resume-downloads .btn-ghost:focus-visible {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border-color: transparent;
+  filter: none;
+}
+.resume-downloads .btn-primary:hover,
+.resume-downloads .btn-ghost:hover { box-shadow: var(--shadow-md); }
 
 /* ====== Sections ====== */
 .resume-section {
@@ -486,6 +510,18 @@
 .resume-section[aria-labelledby="rpubs-heading"]:hover,
 .resume-section[aria-labelledby="rpubs-heading"]:focus-within {
   --link-color: #DBEAFE;
+}
+
+/* LEARNING: make “View all certifications” button behave like 'See projects' */
+.resume-section[aria-labelledby="learning-heading"]:hover .btn-primary,
+.resume-section[aria-labelledby="learning-heading"]:focus-within .btn-primary {
+  background: #0ea5e9;
+  color: #ffffff;
+  filter: none;
+}
+.resume-section[aria-labelledby="learning-heading"]:hover .btn-primary:hover,
+.resume-section[aria-labelledby="learning-heading"]:focus-within .btn-primary:hover {
+  background: #0284c7;
 }
 
 /* ====== Mobile timeline collapse (vertical mode only) ====== */
