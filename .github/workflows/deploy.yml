@@ -36,7 +36,8 @@ jobs:
         working-directory: site
         run: |
           npm run build
-          cp build/index.html build/404.html   # SPA fallback
+          # Use the custom SPA redirect page so deep links don't 404
+          cp public/404.html build/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
