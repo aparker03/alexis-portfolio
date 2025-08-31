@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
 
+    <!-- Restore pretty URL after GitHub Pages 404 redirect -->
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var p = params.get("p");
+          if (p) history.replaceState(null, "", p);
+        } catch (e) {}
+      })();
+    </script>
+
     <meta
       name="description"
       content="Portfolio of Alexis Parker – data science, health analytics, and interactive apps."
