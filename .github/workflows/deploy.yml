@@ -36,8 +36,11 @@ jobs:
         working-directory: site
         run: |
           npm run build
-          # Use the custom SPA redirect page so deep links don't 404
+          touch build/.nojekyll
+          # Copy our custom SPA redirect file into the build output
           cp public/404.html build/404.html
+          echo "==== HEAD build/404.html ===="
+          head -n 20 build/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
