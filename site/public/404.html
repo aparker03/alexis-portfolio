@@ -5,9 +5,19 @@
     <title>Redirecting…</title>
     <meta name="robots" content="noindex" />
     <script>
-      (function () {
+      (function() {
+        // Based on rafgraph/spa-github-pages
         var l = window.location;
-        var dest = "/?p=" + encodeURIComponent(l.pathname + l.search + l.hash);
+
+        // Skip if we’re already at the root with a ?p= param (avoid loops)
+        if (l.search && l.search.indexOf('p=') === 1) {
+          return;
+        }
+
+        // Build the redirect destination: /?p=<full path + query + hash>
+        var dest = '/?p=' + encodeURIComponent(
+          l.pathname.replace(/^\//, '') + (l.search || '') + (l.hash || '')
+        );
         l.replace(dest);
       })();
     </script>
