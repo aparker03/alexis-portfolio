@@ -34,6 +34,10 @@ function Pipeline({ steps }) {
 }
 
 function CaseStudyPage({ study }) {
+  const hasLinks = Boolean(
+    study.links?.app || study.links?.github || study.links?.notebooks?.length
+  );
+
   return (
     <article className="case-study-page">
       <header className="case-hero">
@@ -104,39 +108,38 @@ function CaseStudyPage({ study }) {
         </section>
       </div>
 
-      <section className="case-panel case-panel--wide case-links">
-        <h2>Links</h2>
-        <div className="case-actions">
-          {study.links?.app && (
-            <a
-              href={study.links.app}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="case-button case-button--primary"
-            >
-              Launch app →
-            </a>
-          )}
-          {study.links?.github && (
-            <a
-              href={study.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="case-button"
-            >
-              GitHub repo →
-            </a>
-          )}
-          {study.links?.notebooks?.map((notebook) => (
-            <a key={notebook.href} href={notebook.href} className="case-button">
-              {notebook.label} →
-            </a>
-          ))}
-        </div>
-        {study.links?.codeNote && (
-          <p className="case-muted">{study.links.codeNote}</p>
-        )}
-      </section>
+      {hasLinks && (
+        <section className="case-panel case-panel--wide case-links">
+          <h2>Links</h2>
+          <div className="case-actions">
+            {study.links?.app && (
+              <a
+                href={study.links.app}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case-button case-button--primary"
+              >
+                Launch app →
+              </a>
+            )}
+            {study.links?.github && (
+              <a
+                href={study.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case-button"
+              >
+                GitHub repo →
+              </a>
+            )}
+            {study.links?.notebooks?.map((notebook) => (
+              <a key={notebook.href} href={notebook.href} className="case-button">
+                {notebook.label} →
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }

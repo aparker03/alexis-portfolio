@@ -387,17 +387,6 @@
 .project-metric span {
   font-weight: 700;
 }
-.project-link-note {
-  display: inline-block;
-  margin-right: 1rem;
-  color: var(--projects-sub);
-  font-weight: 700;
-}
-.project-card:hover .project-link-note,
-.project-card:focus-within .project-link-note {
-  color: var(--card-hover-sub);
-}
-
 /* ====== Next-build roadmap ====== */
 .next-builds {
   margin-top: 4rem;
