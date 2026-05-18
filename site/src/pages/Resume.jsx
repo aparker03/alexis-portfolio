@@ -27,7 +27,9 @@ function Resume() {
 
   // Persist preference
   useEffect(() => {
-    try { localStorage.setItem(TIMELINE_KEY, timelineMode); } catch {}
+    try {
+      localStorage.setItem(TIMELINE_KEY, timelineMode);
+    } catch {}
   }, [timelineMode]);
 
   // When switching to horizontal, ensure the first card is visible
@@ -53,7 +55,9 @@ function Resume() {
 
     window.scrollTo({ top: y, behavior: "smooth" });
 
-    try { window.history.replaceState(null, "", "#highlights-heading"); } catch {}
+    try {
+      window.history.replaceState(null, "", "#highlights-heading");
+    } catch {}
 
     try {
       heading.setAttribute("tabindex", "-1");
@@ -75,7 +79,10 @@ function Resume() {
       >
         <AnimatedBackgroundResume zIndex={1} />
 
-        <div className="resume-hero" style={{ position: "relative", zIndex: 2 }}>
+        <div
+          className="resume-hero"
+          style={{ position: "relative", zIndex: 2 }}
+        >
           <img
             src={`${P}/assets/avatars/avatar-resume.png`}
             alt="Portrait of Alexis Parker"
@@ -87,7 +94,13 @@ function Resume() {
             aria-label="Jump to highlights"
             onClick={handleScrollToHighlights}
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" role="img" aria-hidden="true">
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              role="img"
+              aria-hidden="true"
+            >
               <path d="M12 16l-6-6h12z" fill="currentColor"></path>
             </svg>
           </a>
@@ -96,23 +109,42 @@ function Resume() {
 
       <div className="resume-inner">
         <header className="resume-header text-center">
-          <h2 id="resume-heading" className="resume-title">Resume</h2>
+          <h2 id="resume-heading" className="resume-title">
+            Resume
+          </h2>
           <p className="resume-intro mx-auto text-center">
-            I started in psychology, where questions about health and behavior first took shape.
-            Over time those questions grew into data science, giving me tools to explore patterns at scale and share them clearly.
-
-            I completed the Master of Applied Data Science at the University of Michigan in August 2025.
-            My work blends rigor with creativity, turning raw information into visuals, pipelines, and interactive tools that make results both trustworthy and engaging.
+            I started in psychology, where questions about health and behavior
+            first took shape. Over time those questions grew into data science,
+            giving me tools to explore patterns at scale and share them clearly.
+            I completed the Master of Applied Data Science at the University of
+            Michigan in August 2025 and am pursuing a PhD in Information Systems
+            &amp; Technology with a Data Science &amp; Analytics concentration
+            at Claremont Graduate University. My work blends rigor with
+            creativity, turning raw information into visuals, pipelines, and
+            interactive tools that make results both trustworthy and engaging.
           </p>
-
         </header>
 
         {/* downloads */}
-        <div className="resume-downloads" role="region" aria-label="Resume downloads">
-          <a href={`${P}/downloads/resume.pdf`} download className="btn-primary" aria-label="Download resume as PDF">
+        <div
+          className="resume-downloads"
+          role="region"
+          aria-label="Resume downloads"
+        >
+          <a
+            href={`${P}/downloads/resume.pdf`}
+            download
+            className="btn-primary"
+            aria-label="Download resume as PDF"
+          >
             Download PDF
           </a>
-          <a href={`${P}/downloads/resume.docx`} download className="btn-ghost" aria-label="Download resume as DOCX">
+          <a
+            href={`${P}/downloads/resume.docx`}
+            download
+            className="btn-ghost"
+            aria-label="Download resume as DOCX"
+          >
             Download DOCX
           </a>
         </div>
@@ -123,57 +155,116 @@ function Resume() {
           aria-labelledby="highlights-heading"
           style={{ scrollMarginTop: "150px" }}
         >
-          <h3 id="highlights-heading" className="section-title">Highlights</h3>
+          <h3 id="highlights-heading" className="section-title">
+            Highlights
+          </h3>
           <ul className="highlights-list">
-            <li className="star">Work spans federal surveys, neuroscience signals, and wearable data with attention to data quality and interpretation.</li>
-            <li className="star">Shaped results into interactive apps that explain choices and make exploration straightforward.</li>
-            <li className="star">Built reproducible Python workflows for cleaning, modeling, and communication.</li>
-            <li className="star">Comfortable presenting to technical and general audiences and adapting methods to new domains.</li>
+            <li className="star">
+              PhD student in Information Systems &amp; Technology focused on
+              Data Science &amp; Analytics.
+            </li>
+            <li className="star">
+              Work spans federal surveys, neuroscience signals, wearable data,
+              health analytics, and AI interfaces for drug-design workflows.
+            </li>
+            <li className="star">
+              Built reproducible Python workflows for cleaning, modeling,
+              visualization, qualitative coding, annotation, and research
+              communication.
+            </li>
+            <li className="star">
+              Shaped results into interactive apps that explain choices and make
+              exploration straightforward for technical and general audiences.
+            </li>
           </ul>
         </section>
 
         {/* skills snapshot */}
         <section className="resume-section" aria-labelledby="skills-heading">
-          <h3 id="skills-heading" className="section-title">Skills snapshot</h3>
+          <h3 id="skills-heading" className="section-title">
+            Skills snapshot
+          </h3>
           <div className="skill-tiles">
             <article className="skill-tile hover-card">
               <h4 className="tile-title">Research and foundations</h4>
               <ul className="tile-points">
-                <li className="star">Designed and evaluated studies in psychology and public health contexts.</li>
-                <li className="star">Synthesized literature and qualitative notes to frame questions and decisions.</li>
-                <li className="star">Applied mixed methods to connect behavioral insight with applied modeling.</li>
+                <li className="star">
+                  Designed and evaluated studies in psychology, public health,
+                  and health-data contexts.
+                </li>
+                <li className="star">
+                  Synthesized literature, qualitative notes, and annotations to
+                  frame questions and decisions.
+                </li>
+                <li className="star">
+                  Applied mixed methods to connect behavioral insight with
+                  applied modeling and LLM-based research methods.
+                </li>
               </ul>
             </article>
             <article className="skill-tile hover-card">
               <h4 className="tile-title">Data and analysis</h4>
               <ul className="tile-points">
-                <li className="star">Processed CDC and NIH surveys and sensor data with Pandas and NumPy.</li>
-                <li className="star">Used exploratory analysis, regression, and clustering where appropriate.</li>
-                <li className="star">Wrote SQL and built stepwise pipelines that preserve provenance.</li>
+                <li className="star">
+                  Processed CDC and NIH surveys and sensor data with Pandas and
+                  NumPy.
+                </li>
+                <li className="star">
+                  Used exploratory analysis, regression, and clustering where
+                  appropriate.
+                </li>
+                <li className="star">
+                  Wrote SQL and built stepwise pipelines that preserve
+                  provenance.
+                </li>
               </ul>
             </article>
             <article className="skill-tile hover-card">
               <h4 className="tile-title">Applied machine learning</h4>
               <ul className="tile-points">
-                <li className="star">Trained models such as Logistic Regression, Random Forest, and SVM with ROC AUC and SHAP for interpretation.</li>
-                <li className="star">Applied KMeans, PCA, and DBSCAN for structure discovery and segmentation.</li>
-                <li className="star">Engineered features and tuned hyperparameters for stable results.</li>
+                <li className="star">
+                  Trained models such as Logistic Regression, Random Forest, and
+                  SVM with ROC AUC and SHAP for interpretation.
+                </li>
+                <li className="star">
+                  Applied KMeans, PCA, and DBSCAN for structure discovery and
+                  segmentation.
+                </li>
+                <li className="star">
+                  Engineered features and tuned hyperparameters for stable
+                  results.
+                </li>
               </ul>
             </article>
             <article className="skill-tile hover-card">
               <h4 className="tile-title">Visualization and apps</h4>
               <ul className="tile-points">
-                <li className="star">Built dashboards that organize signals, survey measures, and performance outcomes.</li>
-                <li className="star">Created visuals with Seaborn, Matplotlib, and Plotly for clear communication.</li>
-                <li className="star">Developed Streamlit apps that bring methods and results into one place.</li>
+                <li className="star">
+                  Built dashboards that organize signals, survey measures, and
+                  performance outcomes.
+                </li>
+                <li className="star">
+                  Created visuals with Seaborn, Matplotlib, and Plotly,
+                  including KDE plots, time series, regressions, and dashboards.
+                </li>
+                <li className="star">
+                  Developed Streamlit apps that bring methods and results into
+                  one place.
+                </li>
               </ul>
             </article>
             <article className="skill-tile hover-card">
               <h4 className="tile-title">Workflow and collaboration</h4>
               <ul className="tile-points">
-                <li className="star">Used Git and GitHub for versioning and review.</li>
-                <li className="star">Maintained reproducible notebooks in Jupyter and R Markdown.</li>
-                <li className="star">Documented choices so others can repeat or extend the work.</li>
+                <li className="star">
+                  Used Git and GitHub for versioning and review.
+                </li>
+                <li className="star">
+                  Maintained reproducible notebooks in Jupyter and R Markdown.
+                </li>
+                <li className="star">
+                  Documented choices so others can repeat or extend the work.
+                </li>
               </ul>
             </article>
           </div>
@@ -182,11 +273,19 @@ function Resume() {
         {/* journey timeline */}
         <section className="resume-section" aria-labelledby="timeline-heading">
           <div className="timeline-header-row">
-            <h3 id="timeline-heading" className="section-title">Journey</h3>
+            <h3 id="timeline-heading" className="section-title">
+              Journey
+            </h3>
 
             {/* Layout toggle */}
-            <div className="timeline-controls" role="group" aria-label="Timeline layout">
-              <label className={`segmented ${!isHorizontal ? "is-active" : ""}`}>
+            <div
+              className="timeline-controls"
+              role="group"
+              aria-label="Timeline layout"
+            >
+              <label
+                className={`segmented ${!isHorizontal ? "is-active" : ""}`}
+              >
                 <input
                   type="radio"
                   name="timeline-layout"
@@ -215,46 +314,80 @@ function Resume() {
             <div className="timeline-track" ref={trackRef}>
               {/* CSU */}
               <div className="timeline-item">
-                <div className="timeline-card hover-card left" ref={firstItemRef}>
-                  <span className="time-badge">2015 to 2019</span>
+                <div
+                  className="timeline-card hover-card left"
+                  ref={firstItemRef}
+                >
+                  <span className="time-badge">2015 to June 2019</span>
                   <h4 className="item-title">CSU San Bernardino</h4>
                   <p className="item-sub">B.A. in Psychology</p>
                   <ul className="item-points">
-                    <li className="star">Explored cognition, drugs and behavior, and neuroscience through labs and coursework.</li>
-                    <li className="star">Served as a behavioral neuroscience RA using structured protocols and ANOVA in lab studies.</li>
-                    <li className="star">Turned lab data into visuals that supported conclusions on adolescent relapse risk.</li>
+                    <li className="star">
+                      Built foundations in experimental psychology, biological
+                      psychology, drugs and behavior, and research methods.
+                    </li>
+                    <li className="star">
+                      Connected behavioral questions with structured study
+                      design and statistical analysis.
+                    </li>
+                    <li className="star">
+                      Developed the research interests that later shaped health,
+                      neuroscience, and data science projects.
+                    </li>
                   </ul>
                 </div>
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
 
-              {/* Caregiver */}
+              {/* Behavioral neuroscience RA */}
               <div className="timeline-item">
                 <div className="timeline-spacer left" aria-hidden="true"></div>
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
-                  <span className="time-badge">2019 to Present</span>
-                  <h4 className="item-title">IHSS Caregiver</h4>
-                  <p className="item-sub">Long-term support role</p>
+                  <span className="time-badge">April to June 2019</span>
+                  <h4 className="item-title">
+                    Behavioral Neuroscience Research Assistant
+                  </h4>
+                  <p className="item-sub">
+                    California State University, San Bernardino
+                  </p>
                   <ul className="item-points">
-                    <li className="star">Supported medication routines, mobility, and independence.</li>
-                    <li className="star">Monitored health changes and improved communication with providers.</li>
-                    <li className="star">Balanced caregiving with research and school while keeping commitments.</li>
+                    <li className="star">
+                      Conducted a behavioral study on substance-related
+                      conditioned preference in adolescent rats.
+                    </li>
+                    <li className="star">
+                      Followed structured research protocols and analyzed
+                      responses with three-way ANOVA.
+                    </li>
+                    <li className="star">
+                      Translated lab observations into evidence that supported
+                      interpretation of adolescent relapse risk.
+                    </li>
                   </ul>
                 </div>
               </div>
 
-              {/* Independent projects */}
+              {/* Caregiver */}
               <div className="timeline-item t-gap-lg">
                 <div className="timeline-card hover-card left">
-                  <span className="time-badge">2022 to Present</span>
-                  <h4 className="item-title">Independent projects</h4>
-                  <p className="item-sub">Public health and behavioral data</p>
+                  <span className="time-badge">April 2019 to Present</span>
+                  <h4 className="item-title">IHSS Caregiver</h4>
+                  <p className="item-sub">IHSS Public Authority</p>
                   <ul className="item-points">
-                    <li className="star">Created Streamlit and R Shiny apps that turned survey data into interactive visuals.</li>
-                    <li className="star">Practiced reproducibility and transparency through public portfolio work.</li>
-                    <li className="star">Built a base that supported later graduate projects.</li>
+                    <li className="star">
+                      Provided long-term, personalized support for elderly and
+                      disabled clients.
+                    </li>
+                    <li className="star">
+                      Coordinated daily care around mobility, hygiene, routines,
+                      and independence.
+                    </li>
+                    <li className="star">
+                      Balanced caregiving responsibilities with research,
+                      graduate study, and applied data projects.
+                    </li>
                   </ul>
                 </div>
                 <span className="timeline-node" aria-hidden="true"></span>
@@ -266,31 +399,151 @@ function Resume() {
                 <div className="timeline-spacer left" aria-hidden="true"></div>
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
-                  <span className="time-badge">2024 to 2025</span>
+                  <span className="time-badge">2024 to August 2025</span>
                   <h4 className="item-title">Master of Applied Data Science</h4>
-                  <p className="item-sub">University of Michigan</p>
+                  <p className="item-sub">
+                    University of Michigan School of Information
+                  </p>
                   <ul className="item-points">
-                    <li className="star">Completed the program in August 2025 with a focus on transparent, interpretable analysis.</li>
-                    <li className="star">Projects included a depression index from BRFSS self-reports, training pattern views from Strava, and statewide surgery trend exploration.</li>
-                    <li className="star">Built an educational app that presents lab measures and survey measures side by side for sleep and performance exploration.</li>
+                    <li className="star">
+                      Focused on experimental design, deep learning, Bayesian
+                      inference, health data analysis, EDA, public health
+                      research, and LLM-based research methods.
+                    </li>
+                    <li className="star">
+                      Applied GANs, RNNs, scikit-learn workflows, and
+                      interpretable analysis across graduate projects.
+                    </li>
+                    <li className="star">
+                      Completed the program in August 2025 with an emphasis on
+                      transparent, reproducible, and explainable data products.
+                    </li>
                   </ul>
                 </div>
               </div>
 
-              {/* Graduate RA */}
+              {/* Graduate projects */}
               <div className="timeline-item">
                 <div className="timeline-card hover-card left">
-                  <span className="time-badge">2025 to Present</span>
-                  <h4 className="item-title">Graduate Research Assistant</h4>
-                  <p className="item-sub">University of Michigan</p>
+                  <span className="time-badge">January to August 2025</span>
+                  <h4 className="item-title">Graduate Project Portfolio</h4>
+                  <p className="item-sub">
+                    Health surveys, EEG, and population-level analytics
+                  </p>
                   <ul className="item-points">
-                    <li className="star">Built Python pipelines to support exploratory LLM and health projects.</li>
-                    <li className="star">Completed literature reviews, annotation, and qualitative coding to guide analysis.</li>
-                    <li className="star">Created KDE plots, regressions, and time series that informed study decisions.</li>
+                    <li className="star">
+                      Created a CDC BRFSS Depression Index from 400,000+
+                      responses and visualized regional variation in
+                      self-reported symptoms.
+                    </li>
+                    <li className="star">
+                      Merged and cleaned seven NHANES modules with about 12,000
+                      records for depression severity modeling using KMeans,
+                      PCA, DBSCAN, Logistic Regression, Random Forest, SVM,
+                      SHAP, and ROC-AUC.
+                    </li>
+                    <li className="star">
+                      Processed OpenNeuro EEG with NumPy, SciPy, and MNE-Python,
+                      then connected band power, PVT plots, and 2024 NHIS sleep
+                      data from 32,000 respondents in a Streamlit app.
+                    </li>
                   </ul>
                 </div>
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-spacer right" aria-hidden="true"></div>
+              </div>
+
+              {/* Graduate Student Researcher */}
+              <div className="timeline-item">
+                <div className="timeline-spacer left" aria-hidden="true"></div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-card hover-card right">
+                  <span className="time-badge">
+                    January 2025 to January 2026
+                  </span>
+                  <h4 className="item-title">Graduate Student Researcher</h4>
+                  <p className="item-sub">
+                    University of Michigan School of Information
+                  </p>
+                  <ul className="item-points">
+                    <li className="star">
+                      Built reproducible data pipelines with Pandas, Seaborn,
+                      and scikit-learn to support exploratory analysis and
+                      research decision-making.
+                    </li>
+                    <li className="star">
+                      Created KDE plots, time series graphs, and regression
+                      charts for technical review and communication.
+                    </li>
+                    <li className="star">
+                      Completed literature reviews, qualitative coding,
+                      annotation, and comparative method documentation for
+                      health and LLM-based research.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* AlphaRose */}
+              <div className="timeline-item">
+                <div className="timeline-card hover-card left">
+                  <span className="time-badge">
+                    November 2025 to February 2026
+                  </span>
+                  <h4 className="item-title">
+                    Data Science Intern, AI Interfaces
+                  </h4>
+                  <p className="item-sub">AlphaRose Therapeutics</p>
+                  <ul className="item-points">
+                    <li className="star">
+                      Developed tokenization and embedding methods for
+                      nucleotide sequences, protein sequences, SMILES strings,
+                      and PDB files.
+                    </li>
+                    <li className="star">
+                      Used RDKit, molecular graph structures, and
+                      chemoinformatic syntax to support multi-modal,
+                      structurally aware drug-design modeling.
+                    </li>
+                    <li className="star">
+                      Debugged sequence encoders and intramolecular torsion
+                      calculation workflows with RDKit, Snakemake, and
+                      chemoinformatic tooling to improve model readiness.
+                    </li>
+                  </ul>
+                </div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-spacer right" aria-hidden="true"></div>
+              </div>
+
+              {/* PhD */}
+              <div className="timeline-item">
+                <div className="timeline-spacer left" aria-hidden="true"></div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-card hover-card right">
+                  <span className="time-badge">2026 to May 2030</span>
+                  <h4 className="item-title">
+                    PhD in Information Systems &amp; Technology
+                  </h4>
+                  <p className="item-sub">
+                    Claremont Graduate University · Data Science &amp; Analytics
+                  </p>
+                  <ul className="item-points">
+                    <li className="star">
+                      Continuing doctoral training in information systems, data
+                      science, analytics, and research methods.
+                    </li>
+                    <li className="star">
+                      Building on prior work in public health, neuroscience, AI
+                      interfaces, and reproducible data products.
+                    </li>
+                    <li className="star">
+                      Interested in projects that combine health AI evaluation,
+                      annotation workflows, equity analytics, wearable data, and
+                      reproducibility scorecards.
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -298,50 +551,105 @@ function Resume() {
 
         {/* projects CTA */}
         <section className="resume-section" aria-labelledby="work-heading">
-          <h3 id="work-heading" className="section-title">Explore the work</h3>
+          <h3 id="work-heading" className="section-title">
+            Explore the work
+          </h3>
           <p className="section-note">
             See examples of methods, decisions, and outcomes in context.
           </p>
           <ul className="item-points">
-            <li className="star">Depression Index study from BRFSS self-reports.</li>
+            <li className="star">
+              Depression Index study from 400,000+ BRFSS self-reports.
+            </li>
+            <li className="star">
+              NHANES depression risk modeling with clustering, supervised
+              models, and SHAP interpretation.
+            </li>
             <li className="star">Movement-Mapped from Strava activity data.</li>
-            <li className="star">Surgical Scope using California HCAI surgery volumes.</li>
-            <li className="star">EEG and NHIS Explorer for sleep and performance measures. Educational and not diagnostic.</li>
+            <li className="star">
+              Surgical Scope using California HCAI surgery volumes.
+            </li>
+            <li className="star">
+              EEG and NHIS Explorer connecting lab sleep measures with 32,000
+              NHIS survey respondents. Educational and not diagnostic.
+            </li>
           </ul>
-          <Link to="/projects" className="btn-primary btn-inline" aria-label="Go to Projects page">
+          <Link
+            to="/projects"
+            className="btn-primary btn-inline"
+            aria-label="Go to Projects page"
+          >
             See projects →
           </Link>
         </section>
 
         {/* Featured Certifications */}
-        <section className="resume-section" aria-labelledby="certs-featured-heading">
-          <h3 id="certs-featured-heading" className="section-title">Featured certifications</h3>
+        <section
+          className="resume-section"
+          aria-labelledby="certs-featured-heading"
+        >
+          <h3 id="certs-featured-heading" className="section-title">
+            Featured certifications
+          </h3>
           <ul className="certs-list">
-            <li><strong>IBM Data Science Specialization</strong>: Python, SQL, ML, and visualization workflows. <Link to="/certifications" className="btn-link">View details</Link></li>
-            <li><strong>Deep Learning Specialization</strong>: CNNs, RNNs, GANs, and optimization strategies.</li>
-            <li><strong>Machine Learning Specialization</strong>: regression, classification, clustering, and recommenders.</li>
-            <li><strong>Data Science Specialization</strong>: R programming, reproducible workflows, and exploratory analysis.</li>
-            <li><strong>Machine Learning on Google Cloud</strong>: TensorFlow on GCP and MLOps pipelines.</li>
-            <li><strong>Neuroscience and Neuroimaging</strong>: fMRI design, analysis, and neurohacking in R.</li>
+            <li>
+              <strong>IBM Data Science Specialization</strong>: Python, SQL, ML,
+              and visualization workflows.{" "}
+              <Link to="/certifications" className="btn-link">
+                View details
+              </Link>
+            </li>
+            <li>
+              <strong>Deep Learning Specialization</strong>: CNNs, RNNs, GANs,
+              and optimization strategies.
+            </li>
+            <li>
+              <strong>Machine Learning Specialization</strong>: regression,
+              classification, clustering, and recommenders.
+            </li>
+            <li>
+              <strong>Data Science Specialization</strong>: R programming,
+              reproducible workflows, and exploratory analysis.
+            </li>
+            <li>
+              <strong>Machine Learning on Google Cloud</strong>: TensorFlow on
+              GCP and MLOps pipelines.
+            </li>
+            <li>
+              <strong>Neuroscience and Neuroimaging</strong>: fMRI design,
+              analysis, and neurohacking in R.
+            </li>
           </ul>
         </section>
 
         {/* Independent Learning */}
         <section className="resume-section" aria-labelledby="learning-heading">
-          <h3 id="learning-heading" className="section-title">Independent learning journey</h3>
+          <h3 id="learning-heading" className="section-title">
+            Independent learning journey
+          </h3>
           <p className="section-note">
-            From 2022 to 2024, I completed over one hundred courses and multiple specializations in data science, neuroscience, and machine learning. This practice shaped habits in evaluation, reproducibility, and applied analysis.
+            From 2022 to 2024, I completed over one hundred courses and multiple
+            specializations in data science, neuroscience, and machine learning.
+            This practice shaped habits in evaluation, reproducibility, and
+            applied analysis.
           </p>
-          <Link to="/certifications" className="btn-primary btn-inline" aria-label="View all certifications">
+          <Link
+            to="/certifications"
+            className="btn-primary btn-inline"
+            aria-label="View all certifications"
+          >
             View all certifications →
           </Link>
         </section>
 
         {/* RPubs */}
         <section className="resume-section" aria-labelledby="rpubs-heading">
-          <h3 id="rpubs-heading" className="section-title">Exploratory work in R</h3>
+          <h3 id="rpubs-heading" className="section-title">
+            Exploratory work in R
+          </h3>
           <p className="section-note">
-            Early projects with R Shiny, Leaflet, and R Markdown introduced interactivity and spatial views and informed later work in Python.
+            Early projects with R Shiny, Leaflet, and R Markdown introduced
+            interactivity and spatial views and informed later work in Python.
           </p>
           <a
             href="https://rpubs.com/alex23"
