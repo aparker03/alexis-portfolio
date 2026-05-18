@@ -1,19 +1,27 @@
 // src/App.js
 
-import React, { useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useFontSize, FontSizeProvider } from "./context/FontSizeContext";
 
 import Navbar from "./components/layout/Navbar";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Resume from "./pages/Resume";
-import Certifications from "./pages/Certifications";
-import EegNhis from "./pages/projectCaseStudies/EegNhis";
-import BrfssDepression from "./pages/projectCaseStudies/BrfssDepression";
-import StravaWearables from "./pages/projectCaseStudies/StravaWearables";
-import SurgicalScope from "./pages/projectCaseStudies/SurgicalScope";
-import NhanesDepressionRisk from "./pages/projectCaseStudies/NhanesDepressionRisk";
+const Home = lazy(() => import("./pages/Home"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Resume = lazy(() => import("./pages/Resume"));
+const Certifications = lazy(() => import("./pages/Certifications"));
+const EegNhis = lazy(() => import("./pages/projectCaseStudies/EegNhis"));
+const BrfssDepression = lazy(() =>
+  import("./pages/projectCaseStudies/BrfssDepression")
+);
+const StravaWearables = lazy(() =>
+  import("./pages/projectCaseStudies/StravaWearables")
+);
+const SurgicalScope = lazy(() =>
+  import("./pages/projectCaseStudies/SurgicalScope")
+);
+const NhanesDepressionRisk = lazy(() =>
+  import("./pages/projectCaseStudies/NhanesDepressionRisk")
+);
 
 /** 1) Route-based titles (can’t be clobbered by child effects) */
 function useRouteTitle() {
@@ -109,28 +117,36 @@ function AppLayout() {
       <Navbar />
 
       <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/certifications" element={<Certifications />} />
-          <Route path="/projects/eeg-nhis" element={<EegNhis />} />
-          <Route
-            path="/projects/brfss-depression-index"
-            element={<BrfssDepression />}
-          />
-          <Route
-            path="/projects/strava-wearables"
-            element={<StravaWearables />}
-          />
-          <Route path="/projects/surgical-scope" element={<SurgicalScope />} />
-          <Route
-            path="/projects/nhanes-depression-risk"
-            element={<NhanesDepressionRisk />}
-          />
-          {/* Optional catch-all */}
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Suspense
+          fallback={
+            <div className="min-h-[50vh] flex items-center justify-center text-gray-600">
+              Loading…
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/certifications" element={<Certifications />} />
+            <Route path="/projects/eeg-nhis" element={<EegNhis />} />
+            <Route
+              path="/projects/brfss-depression-index"
+              element={<BrfssDepression />}
+            />
+            <Route
+              path="/projects/strava-wearables"
+              element={<StravaWearables />}
+            />
+            <Route path="/projects/surgical-scope" element={<SurgicalScope />} />
+            <Route
+              path="/projects/nhanes-depression-risk"
+              element={<NhanesDepressionRisk />}
+            />
+            {/* Optional catch-all */}
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <footer className="bg-gray-100 py-8 px-6 text-sm text-gray-600">

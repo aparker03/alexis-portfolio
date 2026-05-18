@@ -27,6 +27,8 @@
   --btn-hover-bg: #0ea5e9;
   --btn-hover-bg-strong: #0284c7;
 
+  --preview-frame-bg: rgba(255, 255, 255, 0.74);
+  --preview-frame-border: rgba(17, 24, 39, 0.12);
   --transition-fast: 0.22s;
 }
 
@@ -98,6 +100,13 @@
   .project-card { margin: 0 auto; max-width: 95vw; }
 }
 
+/* Per-card hover palettes make every card visibly change color. */
+.card-gold { --card-hover-bg: #143c3a; --card-hover-accent: #e9e3b0; --btn-hover-bg: #0ea5e9; --btn-hover-bg-strong: #0284c7; }
+.card-blue { --card-hover-bg: #1e3a8a; --card-hover-accent: #bfdbfe; --btn-hover-bg: #38bdf8; --btn-hover-bg-strong: #0ea5e9; }
+.card-purple { --card-hover-bg: #4c1d95; --card-hover-accent: #ddd6fe; --btn-hover-bg: #a78bfa; --btn-hover-bg-strong: #8b5cf6; }
+.card-red { --card-hover-bg: #7f1d1d; --card-hover-accent: #fecaca; --btn-hover-bg: #fb7185; --btn-hover-bg-strong: #e11d48; }
+.card-green { --card-hover-bg: #14532d; --card-hover-accent: #bbf7d0; --btn-hover-bg: #22c55e; --btn-hover-bg-strong: #16a34a; }
+
 /* ====== Project Card ====== */
 .project-card {
   background: var(--card-bg);
@@ -125,20 +134,13 @@
 .text-xl .project-card,
 .text-2xl .project-card { max-width: 1400px; }
 
-@media (hover:hover) {
-  .project-card:hover {
-    background: var(--card-hover-bg);
-    color: var(--card-hover-ink);
-    border-left-color: var(--card-hover-accent);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.20);
-    transform: translateY(-2px);
-  }
-}
+.project-card:hover,
 .project-card:focus-within {
   background: var(--card-hover-bg);
   color: var(--card-hover-ink);
   border-left-color: var(--card-hover-accent);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+  transform: translateY(-2px);
 }
 
 /* Title flip */
@@ -153,35 +155,48 @@
 .project-card:focus-within .project-title { color: var(--card-hover-ink); }
 
 /* ====== Media row ====== */
-.project-media { display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
-@media (min-width: 900px) {
-  .project-media { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+.project-media {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
 }
-/* Keep previews neutral; no blending so they never “mesh” */
+@media (min-width: 900px) {
+  .project-media { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Preview images are capped near their natural size to avoid blurry upscaling. */
 .project-image {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 560px);
+  max-height: 260px;
   height: auto;
   object-fit: contain;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
-  max-height: 360px;
+  border-radius: 0.85rem;
+  padding: 0.45rem;
+  box-shadow: 0 8px 22px rgba(17, 24, 39, 0.12);
+  border: 1px solid var(--preview-frame-border);
+  background: var(--preview-frame-bg);
 }
+.project-card:hover .project-image,
+.project-card:focus-within .project-image {
+  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.9);
+}
+.card-gold .project-image:first-child { max-width: min(100%, 540px); }
+.card-gold .project-image:nth-child(2) { max-width: min(100%, 260px); }
 
-/* Center single-preview images (BRFSS, Strava, Cancer) */
+/* Center single-preview images without stretching small screenshots. */
 .card-blue .project-media,
 .card-red .project-media,
 .card-green .project-media {
   display: flex;
   justify-content: center;
 }
-.card-blue .project-image,
-.card-red .project-image,
-.card-green .project-image {
-  max-width: 90%;
-  margin: 0 auto;
-}
+.card-blue .project-image { max-width: min(100%, 486px); }
+.card-red .project-image { max-width: min(100%, 520px); }
+.card-green .project-image { max-width: min(100%, 560px); }
 
 /* ====== Bullets ====== */
 .project-card-content { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
@@ -372,17 +387,6 @@
 .project-metric span {
   font-weight: 700;
 }
-.project-link-note {
-  display: inline-block;
-  margin-right: 1rem;
-  color: var(--projects-sub);
-  font-weight: 700;
-}
-.project-card:hover .project-link-note,
-.project-card:focus-within .project-link-note {
-  color: var(--card-hover-sub);
-}
-
 /* ====== Next-build roadmap ====== */
 .next-builds {
   margin-top: 4rem;
