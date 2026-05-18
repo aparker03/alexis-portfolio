@@ -1,8 +1,43 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../components/sections/Projects/Projects.css";
 import AnimatedBackgroundProjects from "../components/layout/AnimatedBackgroundProjects";
+import { ProjectMetrics } from "../components/ui/ProjectMetric";
 
-const P = process.env.PUBLIC_URL;
+const P = process.env.PUBLIC_URL === "." ? "" : process.env.PUBLIC_URL || "";
+
+const PLANNED_BUILDS = [
+  {
+    label: "A",
+    title: "Health AI Evaluation Dashboard",
+    summary:
+      "Evaluate health-oriented AI outputs with synthetic prompts, safety labels, evidence checks, and annotation-style scoring.",
+  },
+  {
+    label: "B",
+    title: "Clinical + Survey Text Annotation Tool",
+    summary:
+      "Prototype a reproducible coding workspace for synthetic notes or survey text with labels, agreement checks, and exportable datasets.",
+  },
+  {
+    label: "C",
+    title: "Wearable Recovery Analytics",
+    summary:
+      "Extend Movement-Mapped into recovery-focused time-series views for activity load, sleep context, heart-rate trends, and anomalies.",
+  },
+  {
+    label: "D",
+    title: "Public Health Equity Explorer",
+    summary:
+      "Combine public health and Census-style indicators into maps, models, and plain-language explanations of geographic differences.",
+  },
+  {
+    label: "E",
+    title: "Reproducibility Scorecards",
+    summary:
+      "Audit portfolio projects for data-source clarity, assumptions, limitations, environment setup, ethics, and extension readiness.",
+  },
+];
 
 function Projects() {
   useEffect(() => {
@@ -16,7 +51,10 @@ function Projects() {
   };
 
   return (
-    <section className="projects-section min-h-screen" aria-labelledby="projects-heading">
+    <section
+      className="projects-section min-h-screen"
+      aria-labelledby="projects-heading"
+    >
       <style>{`
         .projects-section { padding-left: 0 !important; padding-right: 0 !important; }
         .projects-container { padding-left: 2rem; padding-right: 2rem; }
@@ -93,7 +131,13 @@ function Projects() {
             aria-label="Jump to projects"
             onClick={handleJump}
           >
-            <svg width="30" height="30" viewBox="0 0 24 24" role="img" aria-hidden="true">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              role="img"
+              aria-hidden="true"
+            >
               <path d="M12 16l-6-6h12z" fill="currentColor"></path>
             </svg>
           </a>
@@ -103,11 +147,17 @@ function Projects() {
       <div className="projects-container" id="projects-content">
         <div className="projects-layout">
           <div className="projects-main">
-            <h2 className="projects-title" id="projects-heading">Projects</h2>
+            <h2 className="projects-title" id="projects-heading">
+              Projects
+            </h2>
             <p className="projects-intro">
-              I design projects as tools people can use. That means clear pipelines you can follow, notebooks that show decisions, and interfaces that invite exploration.
-              Below are a sleep measurement comparison using EEG and NHIS self-reports, a research-informed BRFSS depression index study, Strava wearables that surface training patterns,
-              and statewide surgery volumes you can navigate without guesswork.
+              I design projects as tools people can use. That means clear
+              pipelines you can follow, notebooks that show decisions, and
+              interfaces that invite exploration. Below are a sleep measurement
+              comparison using EEG and NHIS self-reports, a research-informed
+              BRFSS depression index study, NHANES depression risk modeling,
+              Strava wearables that surface training patterns, and statewide
+              surgery volumes you can navigate without guesswork.
             </p>
 
             <div className="projects-grid">
@@ -132,25 +182,55 @@ function Projects() {
 
                 <div className="project-card-content">
                   <h3 className="project-title">EEG + NHIS Explorer</h3>
+                  <ProjectMetrics
+                    metrics={[
+                      { label: "Dataset", value: "OpenNeuro EEG + 32k NHIS" },
+                      { label: "Output", value: "Live app + case study" },
+                      { label: "Methods", value: "MNE, band power, PVT" },
+                    ]}
+                  />
                   <ul className="project-points">
                     <li className="star">
-                      Processed OpenNeuro EEG recordings with MNE-Python and NumPy, extracting theta, alpha, and beta band power from cleaned epochs.
+                      Processed OpenNeuro EEG recordings with MNE-Python and
+                      NumPy, extracting theta, alpha, and beta band power from
+                      cleaned epochs.
                     </li>
                     <li className="star">
-                      Visualized Psychomotor Vigilance Task reaction-time distributions and lapse rates under sleep loss.
+                      Visualized Psychomotor Vigilance Task reaction-time
+                      distributions and lapse rates under sleep loss.
                     </li>
                     <li className="star">
-                      Built a comparative view that places lab-based sleep signals beside NHIS self-reported sleep measures to examine measurement differences.
+                      Built a comparative view that places lab-based sleep
+                      signals beside NHIS self-reported sleep measures to
+                      examine measurement differences.
                     </li>
                     <li className="star">
-                      Interactive Streamlit app with Plotly for side-by-side exploration of lab and survey measures. Educational only and not diagnostic.
+                      Interactive Streamlit app with Plotly for side-by-side
+                      exploration of lab and survey measures. Educational only
+                      and not diagnostic.
                     </li>
                   </ul>
-                  <p className="project-tools">Tools: Streamlit, MNE-Python, Plotly, Pandas, NumPy</p>
+                  <p className="project-tools">
+                    Tools: Streamlit, MNE-Python, Plotly, Pandas, NumPy
+                  </p>
                   <div className="project-links">
-                    <a href="https://github.com/aparker03/eeg-nhis-app" target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+                    <Link to="/projects/eeg-nhis">Case Study →</Link>
+                    <a
+                      href="https://github.com/aparker03/eeg-nhis-app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub Repo →
+                    </a>
                   </div>
-                  <a href="https://eeg-nhis-app.streamlit.app/" target="_blank" rel="noopener noreferrer" className="project-launch-btn">Launch App →</a>
+                  <a
+                    href="https://eeg-nhis-app.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-launch-btn"
+                  >
+                    Launch App →
+                  </a>
                 </div>
               </div>
 
@@ -167,23 +247,51 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">BRFSS Depression Index Study</h3>
+                  <h3 className="project-title">
+                    BRFSS Depression Index Study
+                  </h3>
+                  <ProjectMetrics
+                    metrics={[
+                      { label: "Dataset", value: "400k+ BRFSS responses" },
+                      { label: "Output", value: "3 notebooks + app" },
+                      { label: "Methods", value: "Imputation + choropleths" },
+                    ]}
+                  />
                   <ul className="project-points">
                     <li className="star">
-                      Built a research-informed composite score to capture self-reported mental health distress using BRFSS survey items. This is exploratory and not an official clinical index.
+                      Built a research-informed composite score to capture
+                      self-reported mental health distress using BRFSS survey
+                      items. This is exploratory and not an official clinical
+                      index.
                     </li>
                     <li className="star">
-                      Included survey measures on days of poor mental and physical health, life satisfaction, emotional support, stress, social isolation, and depression diagnosis.
+                      Included survey measures on days of poor mental and
+                      physical health, life satisfaction, emotional support,
+                      stress, social isolation, and depression diagnosis.
                     </li>
                     <li className="star">
-                      In-app imputation choices carry through to all visuals and summaries. Linked notebooks make cleaning steps and assumptions clear.
+                      In-app imputation choices carry through to all visuals and
+                      summaries. Linked notebooks make cleaning steps and
+                      assumptions clear.
                     </li>
                   </ul>
-                  <p className="project-tools">Tools: Streamlit, Pandas, Plotly, scikit-learn</p>
+                  <p className="project-tools">
+                    Tools: Streamlit, Pandas, Plotly, scikit-learn
+                  </p>
                   <div className="project-links">
+                    <Link to="/projects/brfss-depression-index">
+                      Case Study →
+                    </Link>
                     <a href={`${P}/notebooks/brfss/download.html`}>Download</a>
                     <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
-                    <a href={`${P}/notebooks/brfss/depression_index_analysis.html`}>Index</a>
+                    <a
+                      href={`${P}/notebooks/brfss/depression_index_analysis.html`}
+                    >
+                      Index
+                    </a>
+                    <span className="project-link-note">
+                      Code cleanup planned
+                    </span>
                   </div>
                   <a
                     href="https://state-of-mind.streamlit.app/"
@@ -193,6 +301,52 @@ function Projects() {
                   >
                     Launch App →
                   </a>
+                </div>
+              </div>
+
+              {/* NHANES */}
+              <div className="project-card card-purple">
+                <div className="project-card-content">
+                  <h3 className="project-title">
+                    Depression Risk Modeling: NHANES
+                  </h3>
+                  <ProjectMetrics
+                    metrics={[
+                      { label: "Dataset", value: "~12k records" },
+                      { label: "Scope", value: "7 NHANES modules" },
+                      { label: "Evaluation", value: "SHAP + ROC-AUC" },
+                    ]}
+                  />
+                  <ul className="project-points">
+                    <li className="star">
+                      Merged and cleaned demographic, socioeconomic, health, and
+                      depression-related NHANES modules for severity prediction.
+                    </li>
+                    <li className="star">
+                      Used KMeans, PCA, and DBSCAN to explore structure and
+                      generate modeling features with scikit-learn.
+                    </li>
+                    <li className="star">
+                      Trained Logistic Regression, Random Forest, and SVM models
+                      with hyperparameter tuning and confusion-matrix review.
+                    </li>
+                    <li className="star">
+                      Interpreted model behavior with SHAP and engineered
+                      socioeconomic predictors from Census-style context.
+                    </li>
+                  </ul>
+                  <p className="project-tools">
+                    Tools: Python, Pandas, scikit-learn, SHAP, Matplotlib,
+                    Seaborn
+                  </p>
+                  <div className="project-links">
+                    <Link to="/projects/nhanes-depression-risk">
+                      Case Study →
+                    </Link>
+                    <span className="project-link-note">
+                      Code cleanup planned
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -210,17 +364,51 @@ function Projects() {
 
                 <div className="project-card-content">
                   <h3 className="project-title">Strava Wearable Metrics</h3>
+                  <ProjectMetrics
+                    metrics={[
+                      { label: "Dataset", value: "Personal Strava export" },
+                      { label: "Output", value: "Notebook + app" },
+                      { label: "Methods", value: "Cadence, pace, HR zones" },
+                    ]}
+                  />
                   <ul className="project-points">
-                    <li className="star">Parsed a personal Strava export to study cadence, pace stability, and heart-rate zones across runs.</li>
-                    <li className="star">Distribution and density views reveal training patterns that single-run summaries miss.</li>
-                    <li className="star">Filters for periods and sessions make week-over-week trends easy to compare.</li>
-                    <li className="star">Companion notebook documents assumptions and cleaning decisions.</li>
+                    <li className="star">
+                      Parsed a personal Strava export to study cadence, pace
+                      stability, and heart-rate zones across runs.
+                    </li>
+                    <li className="star">
+                      Distribution and density views reveal training patterns
+                      that single-run summaries miss.
+                    </li>
+                    <li className="star">
+                      Filters for periods and sessions make week-over-week
+                      trends easy to compare.
+                    </li>
+                    <li className="star">
+                      Companion notebook documents assumptions and cleaning
+                      decisions.
+                    </li>
                   </ul>
-                  <p className="project-tools">Tools: Streamlit, Seaborn, Pandas, Matplotlib</p>
+                  <p className="project-tools">
+                    Tools: Streamlit, Seaborn, Pandas, Matplotlib
+                  </p>
                   <div className="project-links">
-                    <a href={`${P}/notebooks/strava/strava-analysis.html`}>View Notebook →</a>
+                    <Link to="/projects/strava-wearables">Case Study →</Link>
+                    <a href={`${P}/notebooks/strava/strava-analysis.html`}>
+                      View Notebook →
+                    </a>
+                    <span className="project-link-note">
+                      Code cleanup planned
+                    </span>
                   </div>
-                  <a href="https://movement-mapped.streamlit.app/" target="_blank" rel="noopener noreferrer" className="project-launch-btn">Launch App →</a>
+                  <a
+                    href="https://movement-mapped.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-launch-btn"
+                  >
+                    Launch App →
+                  </a>
                 </div>
               </div>
 
@@ -237,51 +425,164 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">Surgical Scope: Cancer Procedure Trends</h3>
+                  <h3 className="project-title">
+                    Surgical Scope: Cancer Procedure Trends
+                  </h3>
+                  <ProjectMetrics
+                    metrics={[
+                      { label: "Coverage", value: "CA hospitals, 2013–2022" },
+                      { label: "Output", value: "Map + trend app" },
+                      { label: "Methods", value: "IQR, KDE, choropleths" },
+                    ]}
+                  />
                   <ul className="project-points">
-                    <li className="star">Analyzed California HCAI hospital surgery volumes from 2013 to 2022 across the ICD-9 to ICD-10 transition.</li>
-                    <li className="star">Compared high-volume procedures such as breast, colon, and prostate to rarer ones such as esophagus, pancreas, and stomach using KDE trends.</li>
-                    <li className="star">Outlier-aware views using IQR and a California-wide roll-up separate from filtered totals.</li>
-                    <li className="star">County-level choropleths and hospital-level visuals with filters for site, region, and year.</li>
+                    <li className="star">
+                      Analyzed California HCAI hospital surgery volumes from
+                      2013 to 2022 across the ICD-9 to ICD-10 transition.
+                    </li>
+                    <li className="star">
+                      Compared high-volume procedures such as breast, colon, and
+                      prostate to rarer ones such as esophagus, pancreas, and
+                      stomach using KDE trends.
+                    </li>
+                    <li className="star">
+                      Outlier-aware views using IQR and a California-wide
+                      roll-up separate from filtered totals.
+                    </li>
+                    <li className="star">
+                      County-level choropleths and hospital-level visuals with
+                      filters for site, region, and year.
+                    </li>
                   </ul>
-                  <p className="project-tools">Tools: Streamlit, Pydeck, Pandas, Seaborn</p>
+                  <p className="project-tools">
+                    Tools: Streamlit, Pydeck, Pandas, Seaborn
+                  </p>
                   <div className="project-links">
-                    <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>View Notebook →</a>
+                    <Link to="/projects/surgical-scope">Case Study →</Link>
+                    <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>
+                      View Notebook →
+                    </a>
+                    <span className="project-link-note">
+                      Code cleanup planned
+                    </span>
                   </div>
-                  <a href="https://surgical-scope.streamlit.app/" target="_blank" rel="noopener noreferrer" className="project-launch-btn">Launch App →</a>
+                  <a
+                    href="https://surgical-scope.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-launch-btn"
+                  >
+                    Launch App →
+                  </a>
                 </div>
               </div>
             </div>
 
+            <div className="next-builds" aria-labelledby="next-builds-heading">
+              <p className="section-eyebrow">Next portfolio builds</p>
+              <h3 className="exploratory-title" id="next-builds-heading">
+                Roadmap from A to E
+              </h3>
+              <p className="exploratory-intro">
+                I like all five directions, so I am keeping them visible as a
+                build queue: health AI evaluation, annotation tooling,
+                wearables, public health equity, and reproducibility.
+              </p>
+
+              <div className="next-builds-grid">
+                {PLANNED_BUILDS.map((build) => (
+                  <article className="next-build-card" key={build.label}>
+                    <span className="next-build-label" aria-hidden="true">
+                      {build.label}
+                    </span>
+                    <h4>{build.title}</h4>
+                    <p>{build.summary}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
             <div className="exploratory-projects">
-              <h3 className="exploratory-title">Exploratory Projects (R / RPubs)</h3>
-              <p className="exploratory-intro" style={{ textAlign: "center", maxWidth: 980, margin: "0 auto 2rem" }}>
-                Early work using R, Shiny, and Leaflet that built habits around interactivity, reproducibility, and spatial visualization.
+              <h3 className="exploratory-title">
+                Exploratory Projects (R / RPubs)
+              </h3>
+              <p
+                className="exploratory-intro"
+                style={{
+                  textAlign: "center",
+                  maxWidth: 980,
+                  margin: "0 auto 2rem",
+                }}
+              >
+                Early work using R, Shiny, and Leaflet that built habits around
+                interactivity, reproducibility, and spatial visualization.
               </p>
 
               <div className="exploratory-grid">
                 <div className="project-card">
-                  <h4 className="project-subtitle">Prediction App Presentation</h4>
-                  <p className="exploratory-desc">A lightweight demo app that accepts user inputs and renders predicted outcomes.</p>
-                  <a href="https://rpubs.com/alex23/998041" target="_blank" rel="noreferrer">View on RPubs →</a>
+                  <h4 className="project-subtitle">
+                    Prediction App Presentation
+                  </h4>
+                  <p className="exploratory-desc">
+                    A lightweight demo app that accepts user inputs and renders
+                    predicted outcomes.
+                  </p>
+                  <a
+                    href="https://rpubs.com/alex23/998041"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View on RPubs →
+                  </a>
                 </div>
 
                 <div className="project-card">
-                  <h4 className="project-subtitle">Shiny Application &amp; Pitch</h4>
-                  <p className="exploratory-desc">A reproducible Shiny app with an interactive pitch covering use cases and design choices.</p>
-                  <a href="https://rpubs.com/alex23/993970" target="_blank" rel="noreferrer">View on RPubs →</a>
+                  <h4 className="project-subtitle">
+                    Shiny Application &amp; Pitch
+                  </h4>
+                  <p className="exploratory-desc">
+                    A reproducible Shiny app with an interactive pitch covering
+                    use cases and design choices.
+                  </p>
+                  <a
+                    href="https://rpubs.com/alex23/993970"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View on RPubs →
+                  </a>
                 </div>
 
                 <div className="project-card">
-                  <h4 className="project-subtitle">Creating a Map With Leaflet</h4>
-                  <p className="exploratory-desc">Interactive Leaflet map in R to display geo-located data with popups and tooltips.</p>
-                  <a href="https://rpubs.com/alex23/991877" target="_blank" rel="noreferrer">View on RPubs →</a>
+                  <h4 className="project-subtitle">
+                    Creating a Map With Leaflet
+                  </h4>
+                  <p className="exploratory-desc">
+                    Interactive Leaflet map in R to display geo-located data
+                    with popups and tooltips.
+                  </p>
+                  <a
+                    href="https://rpubs.com/alex23/991877"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View on RPubs →
+                  </a>
                 </div>
 
                 <div className="project-card">
                   <h4 className="project-subtitle">Storm Data Analysis</h4>
-                  <p className="exploratory-desc">Peer-reviewed course project analyzing U.S. storm impacts with clear visualizations.</p>
-                  <a href="https://rpubs.com/alex23/981558" target="_blank" rel="noreferrer">View on RPubs →</a>
+                  <p className="exploratory-desc">
+                    Peer-reviewed course project analyzing U.S. storm impacts
+                    with clear visualizations.
+                  </p>
+                  <a
+                    href="https://rpubs.com/alex23/981558"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View on RPubs →
+                  </a>
                 </div>
               </div>
             </div>

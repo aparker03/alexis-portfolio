@@ -5,6 +5,39 @@ import "../components/sections/Certifications/Certifications.css";
 
 const P = process.env.PUBLIC_URL;
 
+const featuredLearningPaths = [
+  {
+    title: "Health AI / Medical ML",
+    categories: "Healthcare + Neuro, AI/ML",
+    focus:
+      "Medical AI, neuroimaging, diagnosis/prognosis coursework, and responsible health-data interpretation.",
+  },
+  {
+    title: "Applied Data Science",
+    categories: "Data Science, Visualization, Databases",
+    focus:
+      "Python, SQL, data cleaning, exploratory analysis, dashboards, and communication workflows.",
+  },
+  {
+    title: "Machine Learning / Deep Learning",
+    categories: "AI/ML, Math for Data Science",
+    focus:
+      "Regression, classification, clustering, CNNs, RNNs, optimization, and model evaluation.",
+  },
+  {
+    title: "Software Engineering Foundations",
+    categories: "Programming, Software Engineering",
+    focus:
+      "Python, Java, Git-based workflows, reproducible notebooks, and app-building habits.",
+  },
+  {
+    title: "Statistics + Research Methods",
+    categories: "Statistics + Math, Social Science + Ethics",
+    focus:
+      "Statistical thinking, research design, social science context, and ethical interpretation.",
+  },
+];
+
 function Certifications() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedType, setSelectedType] = useState("All");
@@ -18,7 +51,8 @@ function Certifications() {
     if (saved.type) setSelectedType(saved.type);
     if (saved.query !== undefined) setQuery(saved.query);
     if (saved.sortBy) setSortBy(saved.sortBy);
-    if (saved.groupByCategory !== undefined) setGroupByCategory(saved.groupByCategory);
+    if (saved.groupByCategory !== undefined)
+      setGroupByCategory(saved.groupByCategory);
   }, []);
 
   useEffect(() => {
@@ -30,18 +64,25 @@ function Certifications() {
         query,
         sortBy,
         groupByCategory,
-      })
+      }),
     );
   }, [selectedCategory, selectedType, query, sortBy, groupByCategory]);
 
-  const categories = ["All", ...new Set(certifications.map(c => c.category).filter(Boolean))];
-  const types = ["All", ...new Set(certifications.map(c => c.type).filter(Boolean))];
+  const categories = [
+    "All",
+    ...new Set(certifications.map((c) => c.category).filter(Boolean)),
+  ];
+  const types = [
+    "All",
+    ...new Set(certifications.map((c) => c.type).filter(Boolean)),
+  ];
   const sorters = ["Title A–Z", "Title Z–A", "Provider A–Z"];
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const base = certifications.filter(c => {
-      const matchCategory = selectedCategory === "All" || c.category === selectedCategory;
+    const base = certifications.filter((c) => {
+      const matchCategory =
+        selectedCategory === "All" || c.category === selectedCategory;
       const matchType = selectedType === "All" || c.type === selectedType;
       const text = [c.title, c.provider, c.specialization, c.category, c.type]
         .filter(Boolean)
@@ -57,7 +98,8 @@ function Certifications() {
       const pa = (a.provider || "").toLowerCase();
       const pb = (b.provider || "").toLowerCase();
       if (sortBy === "Title Z–A") return tb.localeCompare(ta);
-      if (sortBy === "Provider A–Z") return pa.localeCompare(pb) || ta.localeCompare(tb);
+      if (sortBy === "Provider A–Z")
+        return pa.localeCompare(pb) || ta.localeCompare(tb);
       return ta.localeCompare(tb);
     });
   }, [selectedCategory, selectedType, query, sortBy]);
@@ -65,12 +107,14 @@ function Certifications() {
   const grouped = useMemo(() => {
     if (!groupByCategory) return { All: filtered };
     const map = new Map();
-    filtered.forEach(c => {
+    filtered.forEach((c) => {
       const key = c.category || "Other";
       if (!map.has(key)) map.set(key, []);
       map.get(key).push(c);
     });
-    return Object.fromEntries([...map.entries()].sort(([a], [b]) => a.localeCompare(b)));
+    return Object.fromEntries(
+      [...map.entries()].sort(([a], [b]) => a.localeCompare(b)),
+    );
   }, [filtered, groupByCategory]);
 
   const totalCount = filtered.length;
@@ -91,23 +135,55 @@ function Certifications() {
           <div className="cert-hero__text">
             <h1 className="certifications-title">Certifications</h1>
             <p className="cert-hero__subtitle">
-              Curated coursework, specializations, and credentials with quick filters and verified links.
+              Curated coursework, specializations, and credentials with quick
+              filters and verified links.
             </p>
           </div>
         </section>
 
+        <section
+          className="learning-paths"
+          aria-labelledby="learning-paths-heading"
+        >
+          <p className="learning-paths__eyebrow">Featured learning paths</p>
+          <h2 id="learning-paths-heading">
+            Credentials grouped by story, not just by count
+          </h2>
+          <p className="learning-paths__intro">
+            The full list stays searchable below, while these paths summarize
+            the themes that connect the coursework to portfolio projects.
+          </p>
+          <div className="learning-paths__grid">
+            {featuredLearningPaths.map((path) => (
+              <article className="learning-path-card" key={path.title}>
+                <h3>{path.title}</h3>
+                <p className="learning-path-card__categories">
+                  {path.categories}
+                </p>
+                <p>{path.focus}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* Not sticky — stays at the very top of the page only */}
-        <div className="certifications-toolbar" role="region" aria-label="Certification controls">
+        <div
+          className="certifications-toolbar"
+          role="region"
+          aria-label="Certification controls"
+        >
           <div className="toolbar-row">
             <label className="control">
               <span>Category</span>
               <select
                 value={selectedCategory}
-                onChange={e => setSelectedCategory(e.target.value)}
+                onChange={(e) => setSelectedCategory(e.target.value)}
                 aria-label="Filter by category"
               >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
             </label>
@@ -116,11 +192,13 @@ function Certifications() {
               <span>Type</span>
               <select
                 value={selectedType}
-                onChange={e => setSelectedType(e.target.value)}
+                onChange={(e) => setSelectedType(e.target.value)}
                 aria-label="Filter by type"
               >
-                {types.map(t => (
-                  <option key={t} value={t}>{t}</option>
+                {types.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
                 ))}
               </select>
             </label>
@@ -129,25 +207,30 @@ function Certifications() {
               <span>Sort</span>
               <select
                 value={sortBy}
-                onChange={e => setSortBy(e.target.value)}
+                onChange={(e) => setSortBy(e.target.value)}
                 aria-label="Sort certifications"
               >
-                {sorters.map(s => (
-                  <option key={s} value={s}>{s}</option>
+                {sorters.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
                 ))}
               </select>
             </label>
 
             {/* SEARCH BELOW SORT: full-row placement, but capped width so it isn't too long */}
-            <label className="control control--grow" style={{ gridColumn: '1 / -1' }}>
+            <label
+              className="control control--grow"
+              style={{ gridColumn: "1 / -1" }}
+            >
               <span>Search</span>
               <input
                 type="search"
                 value={query}
-                onChange={e => setQuery(e.target.value)}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder="Title, provider, specialization…"
                 aria-label="Search certifications"
-                style={{ maxWidth: '36ch' }}
+                style={{ maxWidth: "36ch" }}
               />
             </label>
 
@@ -155,7 +238,7 @@ function Certifications() {
               <input
                 type="checkbox"
                 checked={groupByCategory}
-                onChange={e => setGroupByCategory(e.target.checked)}
+                onChange={(e) => setGroupByCategory(e.target.checked)}
                 aria-label="Group by category"
               />
               <span>Group by category</span>
@@ -163,7 +246,8 @@ function Certifications() {
           </div>
 
           <div className="toolbar-meta" aria-live="polite">
-            Showing <strong>{totalCount}</strong> {totalCount === 1 ? "item" : "items"}
+            Showing <strong>{totalCount}</strong>{" "}
+            {totalCount === 1 ? "item" : "items"}
           </div>
         </div>
 
@@ -172,16 +256,33 @@ function Certifications() {
             {groupByCategory && <h2 className="cert-group__title">{group}</h2>}
             <div className="certifications-grid">
               {items.map((cert, idx) => (
-                <article key={`${cert.title}-${idx}`} className={`cert-card ${String(cert.type || "").toLowerCase()}`}>
+                <article
+                  key={`${cert.title}-${idx}`}
+                  className={`cert-card ${String(cert.type || "").toLowerCase()}`}
+                >
                   <header className="cert-header">
                     <h3 className="cert-title">{cert.title}</h3>
-                    {cert.provider && <p className="cert-provider">{cert.provider}</p>}
+                    {cert.provider && (
+                      <p className="cert-provider">{cert.provider}</p>
+                    )}
                   </header>
 
                   <ul className="cert-meta">
-                    {cert.type && <li><strong>Type:</strong> {cert.type}</li>}
-                    {cert.specialization && <li><strong>Part of:</strong> {cert.specialization}</li>}
-                    {cert.category && <li><strong>Category:</strong> {cert.category}</li>}
+                    {cert.type && (
+                      <li>
+                        <strong>Type:</strong> {cert.type}
+                      </li>
+                    )}
+                    {cert.specialization && (
+                      <li>
+                        <strong>Part of:</strong> {cert.specialization}
+                      </li>
+                    )}
+                    {cert.category && (
+                      <li>
+                        <strong>Category:</strong> {cert.category}
+                      </li>
+                    )}
                   </ul>
 
                   <div className="cert-actions">

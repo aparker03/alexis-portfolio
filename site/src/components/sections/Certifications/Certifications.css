@@ -273,3 +273,84 @@
 
 /* Motion preference */
 @media (prefers-reduced-motion: reduce) { .cert-card, .cert-link { transition: none; } }
+
+/* ===== Featured learning paths ===== */
+.learning-paths {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+.learning-paths__eyebrow {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78em;
+  font-weight: 900;
+  color: #365f5c;
+}
+.learning-paths h2 {
+  margin: 0 0 0.5rem;
+  color: #111827;
+  font-size: 1.35em;
+}
+.learning-paths__intro {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.learning-paths__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.learning-path-card {
+  padding: 1rem;
+  border-left: 6px solid var(--spec);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.learning-path-card h3 {
+  margin: 0 0 0.35rem;
+  color: #111827;
+  font-weight: 800;
+}
+.learning-path-card p {
+  margin: 0;
+  color: #374151;
+  font-weight: 500;
+}
+.learning-path-card__categories {
+  margin-bottom: 0.65rem !important;
+  color: #365f5c !important;
+  font-weight: 800 !important;
+}
+
+.learning-path-card {
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.learning-path-card:hover,
+.learning-path-card:focus-within {
+  transform: translateY(-4px);
+  background: var(--spec-strong);
+  border-left-color: var(--spec-strong);
+  color: var(--spec-text);
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.25);
+}
+.learning-path-card:hover h3,
+.learning-path-card:focus-within h3,
+.learning-path-card:hover p,
+.learning-path-card:focus-within p,
+.learning-path-card:hover .learning-path-card__categories,
+.learning-path-card:focus-within .learning-path-card__categories { color: currentColor !important; }
+@media (max-width: 640px) {
+  .learning-paths { padding: 1rem; }
+  .learning-paths__grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .learning-path-card { transition: none; }
+  .learning-path-card:hover,
+  .learning-path-card:focus-within { transform: none; }
+}

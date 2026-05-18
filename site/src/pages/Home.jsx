@@ -1,7 +1,9 @@
 // site/src/pages/Home.jsx
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Hero from "../components/layout/Hero";
+
+const P = process.env.PUBLIC_URL === "." ? "" : process.env.PUBLIC_URL || "";
 
 /**
  * Smoothly scroll to a hash target when the hash changes (or on initial mount).
@@ -140,6 +142,139 @@ function Home() {
                   {tool}
                 </span>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Current Research Focus */}
+        <section
+          className="py-section-y px-6 bg-gray-50"
+          aria-labelledby="research-focus-heading"
+        >
+          <div className="max-w-6xl mx-auto">
+            <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
+              Current research focus
+            </p>
+            <h2
+              id="research-focus-heading"
+              className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
+            >
+              Health, LLM evaluation, and reproducible research workflows
+            </h2>
+            <div className="grid gap-5 md:grid-cols-3">
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-lg font-bold text-[#111827] mb-2">
+                  Evaluation and annotation
+                </h3>
+                <p className="text-[#374151] font-medium">
+                  Designing rubrics, qualitative coding workflows, and
+                  annotation structures for health and LLM-based research
+                  questions.
+                </p>
+              </article>
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-lg font-bold text-[#111827] mb-2">
+                  Reproducible pipelines
+                </h3>
+                <p className="text-[#374151] font-medium">
+                  Building Python workflows with clear assumptions, visual
+                  checks, and documented data transformations.
+                </p>
+              </article>
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-lg font-bold text-[#111827] mb-2">
+                  Responsible interpretation
+                </h3>
+                <p className="text-[#374151] font-medium">
+                  Using synthetic examples, method notes, and limitations
+                  sections when private research data cannot be shared directly.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Work */}
+        <section
+          className="py-section-y px-6 bg-white"
+          aria-labelledby="featured-work-heading"
+        >
+          <div className="max-w-6xl mx-auto">
+            <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
+              Featured work
+            </p>
+            <h2
+              id="featured-work-heading"
+              className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
+            >
+              Health data projects with transparent methods
+            </h2>
+            <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-stretch">
+              <article className="bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <img
+                  src={`${P}/images/projects/eeg/eeg-app-preview.png`}
+                  alt="EEG + NHIS Explorer dashboard preview"
+                  className="mb-5 w-full rounded-xl bg-white object-contain shadow-sm"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 className="text-xl font-bold text-[#111827] mb-3">
+                  EEG + NHIS Explorer
+                </h3>
+                <p className="text-[#374151] font-medium mb-4">
+                  A graduate project that connects lab-based sleep signals with
+                  national survey measures, using MNE-Python, NumPy, Plotly, and
+                  Streamlit to make assumptions and measurement differences
+                  visible.
+                </p>
+                <ul className="grid gap-3 text-[#374151] font-medium mb-5">
+                  <li>
+                    • OpenNeuro EEG band-power extraction with alpha, theta, and
+                    beta summaries.
+                  </li>
+                  <li>
+                    • PVT reaction-time views and NHIS sleep distributions for
+                    population context.
+                  </li>
+                  <li>
+                    • Educational, non-diagnostic dashboard designed for clear
+                    comparison.
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/projects/eeg-nhis"
+                    className="inline-flex rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+                  >
+                    Read case study →
+                  </Link>
+                  <a
+                    href="https://eeg-nhis-app.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50"
+                  >
+                    Launch app →
+                  </a>
+                </div>
+              </article>
+
+              <aside className="bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-xl font-bold text-[#111827] mb-3">
+                  Next build queue
+                </h3>
+                <p className="text-[#374151] font-medium mb-4">
+                  I am keeping all five portfolio directions active so the next
+                  updates can show both depth and range.
+                </p>
+                <ol className="grid gap-2 text-[#1f2937] font-semibold">
+                  <li>A. Health AI evaluation dashboard</li>
+                  <li>B. Clinical / survey text annotation tool</li>
+                  <li>C. Wearable recovery analytics</li>
+                  <li>D. Public health equity explorer</li>
+                  <li>E. Reproducibility scorecards</li>
+                </ol>
+              </aside>
             </div>
           </div>
         </section>
