@@ -100,12 +100,7 @@
   .project-card { margin: 0 auto; max-width: 95vw; }
 }
 
-/* Per-card hover palettes make every card visibly change color. */
-.card-gold { --card-hover-bg: #143c3a; --card-hover-accent: #e9e3b0; --btn-hover-bg: #0ea5e9; --btn-hover-bg-strong: #0284c7; }
-.card-blue { --card-hover-bg: #1e3a8a; --card-hover-accent: #bfdbfe; --btn-hover-bg: #38bdf8; --btn-hover-bg-strong: #0ea5e9; }
-.card-purple { --card-hover-bg: #4c1d95; --card-hover-accent: #ddd6fe; --btn-hover-bg: #a78bfa; --btn-hover-bg-strong: #8b5cf6; }
-.card-red { --card-hover-bg: #7f1d1d; --card-hover-accent: #fecaca; --btn-hover-bg: #fb7185; --btn-hover-bg-strong: #e11d48; }
-.card-green { --card-hover-bg: #14532d; --card-hover-accent: #bbf7d0; --btn-hover-bg: #22c55e; --btn-hover-bg-strong: #16a34a; }
+/* Project cards share one unified hover palette for consistency. */
 
 /* ====== Project Card ====== */
 .project-card {

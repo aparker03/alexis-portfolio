@@ -30,6 +30,36 @@ function Home() {
 
   return (
     <>
+      <style>{`
+        .home-hover-card {
+          transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+        .home-hover-card:hover,
+        .home-hover-card:focus-within {
+          background: #143c3a !important;
+          border-color: #e9e3b0 !important;
+          color: #f8fafc !important;
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
+          transform: translateY(-2px);
+        }
+        .home-hover-card:hover h3,
+        .home-hover-card:focus-within h3 { color: #f8fafc !important; }
+        .home-hover-card:hover p,
+        .home-hover-card:focus-within p,
+        .home-hover-card:hover li,
+        .home-hover-card:focus-within li { color: #e5e7eb !important; }
+        .home-hover-card:hover img,
+        .home-hover-card:focus-within img { background: #fff !important; }
+        .home-hover-card:hover .home-primary-link,
+        .home-hover-card:focus-within .home-primary-link { background: #0ea5e9 !important; color: #fff !important; }
+        .home-hover-card:hover .home-secondary-link,
+        .home-hover-card:focus-within .home-secondary-link { background: rgba(255, 255, 255, 0.92) !important; border-color: #e9e3b0 !important; color: #143c3a !important; }
+        @media (prefers-reduced-motion: reduce) {
+          .home-hover-card { transition: none; }
+          .home-hover-card:hover,
+          .home-hover-card:focus-within { transform: none; }
+        }
+      `}</style>
       <main
         style={{
           fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif",
@@ -162,7 +192,7 @@ function Home() {
               Health, LLM evaluation, and reproducible research workflows
             </h2>
             <div className="grid gap-5 md:grid-cols-3">
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Evaluation and annotation
                 </h3>
@@ -172,7 +202,7 @@ function Home() {
                   questions.
                 </p>
               </article>
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Reproducible pipelines
                 </h3>
@@ -181,7 +211,7 @@ function Home() {
                   checks, and documented data transformations.
                 </p>
               </article>
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Responsible interpretation
                 </h3>
@@ -210,7 +240,7 @@ function Home() {
               Health data projects with transparent methods
             </h2>
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-stretch">
-              <article className="bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <article className="home-hover-card bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
                 <img
                   src={`${P}/images/projects/eeg/eeg-app-preview.png`}
                   alt="EEG + NHIS Explorer dashboard preview"
@@ -244,7 +274,7 @@ function Home() {
                 <div className="flex flex-wrap gap-3">
                   <Link
                     to="/projects/eeg-nhis"
-                    className="inline-flex rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+                    className="home-primary-link inline-flex rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
                   >
                     Read case study →
                   </Link>
@@ -252,14 +282,14 @@ function Home() {
                     href="https://eeg-nhis-app.streamlit.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50"
+                    className="home-secondary-link inline-flex rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50"
                   >
                     Launch app →
                   </a>
                 </div>
               </article>
 
-              <aside className="bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <aside className="home-hover-card bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold text-[#111827] mb-3">
                   Next build queue
                 </h3>
