@@ -163,7 +163,6 @@ const projectCaseStudies = {
           href: asset("/notebooks/brfss/depression_index_analysis.html"),
         },
       ],
-      codeNote: "Code cleanup planned for a public reproducibility repository.",
     },
   },
   "strava-wearables": {
@@ -239,7 +238,6 @@ const projectCaseStudies = {
           href: asset("/notebooks/strava/strava-analysis.html"),
         },
       ],
-      codeNote: "Code cleanup planned for a shareable reproducibility version.",
     },
   },
   "surgical-scope": {
@@ -318,7 +316,6 @@ const projectCaseStudies = {
           href: asset("/notebooks/cancer/cancer-analysis.html"),
         },
       ],
-      codeNote: "Code cleanup planned for a public reproducibility repository.",
     },
   },
   "nhanes-depression-risk": {
@@ -388,9 +385,6 @@ const projectCaseStudies = {
       "Publish a synthetic-data demo of the modeling workflow.",
       "Turn the analysis into a full interactive model-card case study.",
     ],
-    links: {
-      codeNote: "Code cleanup planned before public release.",
-    },
   },
 };
 

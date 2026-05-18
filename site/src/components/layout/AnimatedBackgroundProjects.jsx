@@ -21,9 +21,9 @@ function AnimatedBackgroundProjects({
 }) {
   const canvasRef = useRef(null);
   const rafRef = useRef(0);
+  const frameTimerRef = useRef(0);
   const roRef = useRef(null);
   const ioRef = useRef(null);
-  const lastFrameRef = useRef(0);
 
   // Refs instead of state to avoid re-renders/re-inits
   const onscreenRef = useRef(true);
@@ -185,26 +185,22 @@ function AnimatedBackgroundProjects({
       if (p.y > state.h + pad) p.y = -pad;
     };
 
-    const shouldAnimateNow = (now) => {
-      if ((pauseWhenOffscreen && !onscreenRef.current) || (pauseWhenHidden && !docVisibleRef.current)) {
-        return false;
-      }
-      if (!targetFps || targetFps <= 0) return true;
-      const minDelta = 1000 / targetFps;
-      if (!lastFrameRef.current) {
-        lastFrameRef.current = now;
-        return true;
-      }
-      if (now - lastFrameRef.current >= minDelta) {
-        lastFrameRef.current = now;
-        return true;
-      }
-      return false;
+    const isPaused = () =>
+      (pauseWhenOffscreen && !onscreenRef.current) ||
+      (pauseWhenHidden && !docVisibleRef.current);
+
+    const scheduleFrame = (delay = 0) => {
+      if (frameTimerRef.current) clearTimeout(frameTimerRef.current);
+      frameTimerRef.current = window.setTimeout(() => {
+        rafRef.current = requestAnimationFrame(render);
+      }, delay);
     };
 
-    const render = (now = performance.now()) => {
-      rafRef.current = requestAnimationFrame(render);
-      if (!shouldAnimateNow(now) || prefersReduced) return;
+    const render = () => {
+      if (isPaused()) {
+        scheduleFrame(300);
+        return;
+      }
 
       ctx.clearRect(0, 0, state.w, state.h);
       if (backgroundTint) {
@@ -235,6 +231,8 @@ function AnimatedBackgroundProjects({
 
         p.r = rStore;
       }
+
+      scheduleFrame(targetFps && targetFps > 0 ? 1000 / targetFps : 0);
     };
 
     init();
@@ -270,8 +268,8 @@ function AnimatedBackgroundProjects({
       });
     };
 
-    // Start animation
-    rafRef.current = requestAnimationFrame(render);
+    // Start animation, but avoid a continuous 60fps loop when a lower FPS is requested.
+    if (!prefersReduced) scheduleFrame();
 
     // Resize listeners
     if (fixed) {
@@ -308,6 +306,7 @@ function AnimatedBackgroundProjects({
 
     return () => {
       cancelAnimationFrame(rafRef.current);
+      if (frameTimerRef.current) clearTimeout(frameTimerRef.current);
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
       if (fixed) {
         window.removeEventListener("resize", scheduleResize);
