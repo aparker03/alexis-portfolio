@@ -39,39 +39,6 @@ const plannedBuilds = [
   },
 ];
 
-const plannedBuilds = [
-  {
-    label: "A",
-    title: "Health AI Evaluation Dashboard",
-    summary:
-      "Evaluate health-oriented AI outputs with synthetic prompts, safety labels, evidence checks, and annotation-style scoring.",
-  },
-  {
-    label: "B",
-    title: "Clinical + Survey Text Annotation Tool",
-    summary:
-      "Prototype a reproducible coding workspace for synthetic notes or survey text with labels, agreement checks, and exportable datasets.",
-  },
-  {
-    label: "C",
-    title: "Wearable Recovery Analytics",
-    summary:
-      "Extend Movement-Mapped into recovery-focused time-series views for activity load, sleep context, heart-rate trends, and anomalies.",
-  },
-  {
-    label: "D",
-    title: "Public Health Equity Explorer",
-    summary:
-      "Combine public health and Census-style indicators into maps, models, and plain-language explanations of geographic differences.",
-  },
-  {
-    label: "E",
-    title: "Reproducibility Scorecards",
-    summary:
-      "Audit portfolio projects for data-source clarity, assumptions, limitations, environment setup, ethics, and extension readiness.",
-  },
-];
-
 function Projects() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
