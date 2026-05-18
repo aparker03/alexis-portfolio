@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Hero from "../components/layout/Hero";
 
+const P = process.env.PUBLIC_URL === "." ? "" : process.env.PUBLIC_URL || "";
+
 /**
  * Smoothly scroll to a hash target when the hash changes (or on initial mount).
  * Also moves focus for accessibility.
@@ -160,7 +162,7 @@ function Home() {
               Health, LLM evaluation, and reproducible research workflows
             </h2>
             <div className="grid gap-5 md:grid-cols-3">
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Evaluation and annotation
                 </h3>
@@ -170,7 +172,7 @@ function Home() {
                   questions.
                 </p>
               </article>
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Reproducible pipelines
                 </h3>
@@ -179,7 +181,7 @@ function Home() {
                   checks, and documented data transformations.
                 </p>
               </article>
-              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <article className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Responsible interpretation
                 </h3>
@@ -208,9 +210,9 @@ function Home() {
               Health data projects with transparent methods
             </h2>
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-stretch">
-              <article className="bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+              <article className="bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <img
-                  src={`${process.env.PUBLIC_URL}/images/projects/eeg/eeg-app-preview.png`}
+                  src={`${P}/images/projects/eeg/eeg-app-preview.png`}
                   alt="EEG + NHIS Explorer dashboard preview"
                   className="mb-5 w-full rounded-xl bg-white object-contain shadow-sm"
                   loading="lazy"
@@ -257,7 +259,7 @@ function Home() {
                 </div>
               </article>
 
-              <aside className="bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm">
+              <aside className="bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="text-xl font-bold text-[#111827] mb-3">
                   Next build queue
                 </h3>

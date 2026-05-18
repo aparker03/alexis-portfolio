@@ -204,3 +204,59 @@
   letter-spacing: 0.08em;
   color: #365f5c;
 }
+
+/* Interactive affordances for case-study content */
+.case-panel,
+.case-screenshot img,
+.case-pipeline li,
+.case-button {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.case-panel:hover,
+.case-panel:focus-within {
+  transform: translateY(-2px);
+  border-left-color: #143c3a;
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.14);
+}
+.case-screenshot img:hover,
+.case-screenshot img:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(17, 24, 39, 0.18);
+}
+.case-pipeline li:hover,
+.case-pipeline li:focus-within {
+  transform: translateY(-2px);
+  background: #143c3a;
+  color: #f8fafc;
+}
+.case-pipeline li:hover::before,
+.case-pipeline li:focus-within::before {
+  background: #e9e3b0;
+  color: #143c3a;
+}
+@media (max-width: 900px) {
+  .case-pipeline { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+@media (max-width: 520px) {
+  .case-metrics .project-metric,
+  .case-tags span,
+  .case-button {
+    width: 100%;
+    justify-content: center;
+    border-radius: 0.85rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-panel,
+  .case-screenshot img,
+  .case-pipeline li,
+  .case-button { transition: none; }
+  .case-panel:hover,
+  .case-panel:focus-within,
+  .case-screenshot img:hover,
+  .case-screenshot img:focus-visible,
+  .case-pipeline li:hover,
+  .case-pipeline li:focus-within,
+  .case-button:hover,
+  .case-button:focus-visible { transform: none; }
+}

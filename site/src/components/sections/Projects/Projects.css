@@ -455,3 +455,14 @@
   .project-meta-grid > .project-metric,
   .next-build-card { transition: none; }
 }
+
+@media (max-width: 640px) {
+  .project-meta-grid { align-items: stretch; }
+  .project-meta-grid > .project-metric {
+    flex: 1 1 100%;
+    border-radius: 0.85rem;
+    text-align: center;
+  }
+  .next-builds { padding: 1rem; }
+  .next-builds-grid { grid-template-columns: 1fr; }
+}
