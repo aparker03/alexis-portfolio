@@ -1,14 +1,19 @@
 // src/App.js
 
-import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useFontSize, FontSizeProvider } from './context/FontSizeContext';
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useFontSize, FontSizeProvider } from "./context/FontSizeContext";
 
 import Navbar from "./components/layout/Navbar";
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Resume from './pages/Resume';
-import Certifications from './pages/Certifications';
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import Resume from "./pages/Resume";
+import Certifications from "./pages/Certifications";
+import EegNhis from "./pages/projectCaseStudies/EegNhis";
+import BrfssDepression from "./pages/projectCaseStudies/BrfssDepression";
+import StravaWearables from "./pages/projectCaseStudies/StravaWearables";
+import SurgicalScope from "./pages/projectCaseStudies/SurgicalScope";
+import NhanesDepressionRisk from "./pages/projectCaseStudies/NhanesDepressionRisk";
 
 /** 1) Route-based titles (can’t be clobbered by child effects) */
 function useRouteTitle() {
@@ -16,13 +21,21 @@ function useRouteTitle() {
 
   useEffect(() => {
     const titles = {
-      '/': 'Alexis Parker · Data Scientist',
-      '/projects': 'Projects - Alexis Parker',
-      '/resume': 'Resume - Alexis Parker',
-      '/certifications': 'Certifications - Alexis Parker',
+      "/": "Alexis Parker · Data Scientist",
+      "/projects": "Projects - Alexis Parker",
+      "/resume": "Resume - Alexis Parker",
+      "/certifications": "Certifications - Alexis Parker",
+      "/projects/eeg-nhis": "EEG + NHIS Case Study - Alexis Parker",
+      "/projects/brfss-depression-index":
+        "BRFSS Depression Index Case Study - Alexis Parker",
+      "/projects/strava-wearables":
+        "Strava Wearables Case Study - Alexis Parker",
+      "/projects/surgical-scope": "Surgical Scope Case Study - Alexis Parker",
+      "/projects/nhanes-depression-risk":
+        "NHANES Depression Risk Case Study - Alexis Parker",
     };
     const raf = requestAnimationFrame(() => {
-      document.title = titles[pathname] || 'Alexis Parker';
+      document.title = titles[pathname] || "Alexis Parker";
     });
     return () => cancelAnimationFrame(raf);
   }, [pathname]);
@@ -31,10 +44,12 @@ function useRouteTitle() {
 /** 2) Also disable scroll restoration at runtime (belt + suspenders) */
 function useManualScrollRestoration() {
   useEffect(() => {
-    if ('scrollRestoration' in window.history) {
+    if ("scrollRestoration" in window.history) {
       const prev = window.history.scrollRestoration;
-      window.history.scrollRestoration = 'manual';
-      return () => { window.history.scrollRestoration = prev; };
+      window.history.scrollRestoration = "manual";
+      return () => {
+        window.history.scrollRestoration = prev;
+      };
     }
   }, []);
 }
@@ -46,14 +61,14 @@ function useScrollToTop() {
   useEffect(() => {
     const scrollOnce = () => {
       if (hash) {
-        const id = hash.startsWith('#') ? hash.slice(1) : hash;
+        const id = hash.startsWith("#") ? hash.slice(1) : hash;
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          el.scrollIntoView({ behavior: "auto", block: "start" });
           return;
         }
       }
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       // Extra safety for engines that ignore window.scrollTo
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
@@ -75,8 +90,8 @@ function useScrollToTop() {
   // Handle hard refresh / bfcache restores
   useEffect(() => {
     const handlePageShow = () => window.scrollTo(0, 0);
-    window.addEventListener('pageshow', handlePageShow);
-    return () => window.removeEventListener('pageshow', handlePageShow);
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
   }, []);
 }
 
@@ -88,7 +103,9 @@ function AppLayout() {
   useScrollToTop();
 
   return (
-    <div className={`min-h-screen bg-white text-gray-900 font-sans flex flex-col text-${fontSize}`}>
+    <div
+      className={`min-h-screen bg-white text-gray-900 font-sans flex flex-col text-${fontSize}`}
+    >
       <Navbar />
 
       <main className="flex-grow">
@@ -97,6 +114,20 @@ function AppLayout() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/certifications" element={<Certifications />} />
+          <Route path="/projects/eeg-nhis" element={<EegNhis />} />
+          <Route
+            path="/projects/brfss-depression-index"
+            element={<BrfssDepression />}
+          />
+          <Route
+            path="/projects/strava-wearables"
+            element={<StravaWearables />}
+          />
+          <Route path="/projects/surgical-scope" element={<SurgicalScope />} />
+          <Route
+            path="/projects/nhanes-depression-risk"
+            element={<NhanesDepressionRisk />}
+          />
           {/* Optional catch-all */}
           <Route path="*" element={<Home />} />
         </Routes>
@@ -104,9 +135,14 @@ function AppLayout() {
 
       <footer className="bg-gray-100 py-8 px-6 text-sm text-gray-600">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p>&copy; {new Date().getFullYear()} Alexis Parker. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Alexis Parker. All rights
+            reserved.
+          </p>
           <div className="flex space-x-4">
-            <a href="mailto:aparker0917@gmail.com" className="hover:underline">Email</a>
+            <a href="mailto:aparker0917@gmail.com" className="hover:underline">
+              Email
+            </a>
             <a
               href="https://github.com/aparker03"
               target="_blank"

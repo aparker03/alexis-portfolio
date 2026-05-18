@@ -9,6 +9,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://alexis-parker.com/projects/eeg-nhis</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexis-parker.com/projects/brfss-depression-index</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexis-parker.com/projects/strava-wearables</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexis-parker.com/projects/surgical-scope</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexis-parker.com/projects/nhanes-depression-risk</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://alexis-parker.com/certifications</loc>
     <priority>0.6</priority>
   </url>

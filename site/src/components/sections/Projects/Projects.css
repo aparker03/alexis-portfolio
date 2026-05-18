@@ -334,3 +334,135 @@
     transition: none;
   }
 }
+
+/* ====== Quick project metrics ====== */
+.project-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0.25rem 0 1rem;
+}
+.project-meta-grid > .project-metric {
+  border: 1px solid rgba(17, 24, 39, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--card-ink);
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease;
+}
+.project-card:hover .project-meta-grid > .project-metric,
+.project-card:focus-within .project-meta-grid > .project-metric {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.34);
+  color: var(--card-hover-ink);
+}
+
+.project-metric {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.project-metric strong {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.project-metric span {
+  font-weight: 700;
+}
+.project-link-note {
+  display: inline-block;
+  margin-right: 1rem;
+  color: var(--projects-sub);
+  font-weight: 700;
+}
+.project-card:hover .project-link-note,
+.project-card:focus-within .project-link-note {
+  color: var(--card-hover-sub);
+}
+
+/* ====== Next-build roadmap ====== */
+.next-builds {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+.section-eyebrow {
+  margin: 0 0 0.35rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #365f5c;
+}
+.next-builds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.next-build-card {
+  position: relative;
+  min-height: 100%;
+  border-radius: 0.9rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border-left: 6px solid var(--projects-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.next-build-card:hover,
+.next-build-card:focus-within {
+  background: var(--card-hover-bg);
+  color: var(--card-hover-ink);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+.next-build-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.8rem;
+  border-radius: 999px;
+  background: #e9e3b0;
+  color: #143c3a;
+  font-weight: 900;
+}
+.next-build-card h4 {
+  margin: 0 0 0.5rem;
+  color: #111827;
+  font-weight: 800;
+}
+.next-build-card p {
+  margin: 0;
+  color: var(--projects-sub);
+  font-weight: 500;
+}
+.next-build-card:hover h4,
+.next-build-card:focus-within h4,
+.next-build-card:hover p,
+.next-build-card:focus-within p {
+  color: var(--card-hover-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-meta-grid > .project-metric,
+  .next-build-card { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .project-meta-grid { align-items: stretch; }
+  .project-meta-grid > .project-metric {
+    flex: 1 1 100%;
+    border-radius: 0.85rem;
+    text-align: center;
+  }
+  .next-builds { padding: 1rem; }
+  .next-builds-grid { grid-template-columns: 1fr; }
+}
