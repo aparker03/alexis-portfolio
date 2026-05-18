@@ -1,9 +1,14 @@
 // src/components/layout/AnimatedBackgroundResume.jsx
 // Concentric rings + orbiters. Palette: #25445C / #E39C2C. GPU transforms, respects prefers-reduced-motion.
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 export default function AnimatedBackgroundResume({ zIndex = 1 }) {
+  const rootRef = useRef(null);
+  const visibilityPausedRef = useRef(false);
+  const offscreenPausedRef = useRef(false);
+  const [isPaused, setIsPaused] = useState(false);
+
   // Read the CSS variable from the computed styles at runtime (with fallback),
   // so the component stays stable even if the CSS hasn't been updated yet.
   const ringsTranslateY = useMemo(() => {
@@ -13,9 +18,44 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
     return val && val !== "" ? val : "-28%";
   }, []);
 
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return undefined;
+
+    const updatePaused = () => {
+      setIsPaused(visibilityPausedRef.current || offscreenPausedRef.current);
+    };
+
+    const handleVisibility = () => {
+      visibilityPausedRef.current = document.visibilityState === "hidden";
+      updatePaused();
+    };
+    handleVisibility();
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    let observer;
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          offscreenPausedRef.current = !entry?.isIntersecting;
+          updatePaused();
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(node);
+    }
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      if (observer) observer.disconnect();
+    };
+  }, []);
+
   return (
     <div
+      ref={rootRef}
       aria-hidden="true"
+      className={isPaused ? "resume-rings-paused" : undefined}
       style={{
         position: "absolute",
         inset: 0,
@@ -52,14 +92,14 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
         .tick-blue  { stroke: #25445C; opacity: .35; }
         .tick-gold  { stroke: #E39C2C; opacity: .33; }
         .orb { fill: #E39C2C; }
-        .glow { filter: url(#resume-glow); }
 
         .ring-group { transform-box: fill-box; transform-origin: center; will-change: transform; }
-        .spin-1 { animation: resume-spin 42s linear infinite; }
-        .spin-2 { animation: resume-spin 34s linear infinite reverse; }
-        .spin-3 { animation: resume-spin 26s linear infinite; }
-        .spin-4 { animation: resume-spin 22s linear infinite reverse; }
-        .spin-5 { animation: resume-spin 18s linear infinite; }
+        .spin-1 { animation: resume-spin 56s linear infinite; }
+        .spin-2 { animation: resume-spin 48s linear infinite reverse; }
+        .spin-3 { animation: resume-spin 40s linear infinite; }
+        .spin-4 { animation: resume-spin 34s linear infinite reverse; }
+        .spin-5 { animation: resume-spin 30s linear infinite; }
+        .resume-rings-paused .ring-group { animation-play-state: paused; }
 
         @keyframes resume-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
@@ -80,13 +120,6 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.16" />
                 <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
               </radialGradient>
-              <filter id="resume-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="5" result="b" />
-                <feMerge>
-                  <feMergeNode in="b" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
             </defs>
 
             <rect x="0" y="0" width="1000" height="1000" fill="url(#resume-halo)" />
@@ -115,7 +148,7 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
                   ))}
                   {[0, 120, 240].map((deg, j) => (
                     <g key={j} transform={`rotate(${deg}) translate(${cfg.r} 0)`}>
-                      <circle className="orb glow" r={Math.max(3.2, 5 - i * 0.4)} />
+                      <circle className="orb" r={Math.max(3.2, 5 - i * 0.4)} />
                       <circle fill="#fff" r={Math.max(1.2, 2 - i * 0.2)} />
                     </g>
                   ))}

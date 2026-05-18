@@ -111,11 +111,12 @@ function Projects() {
             "rgba(159, 195, 173, 0.95)",
             "rgba(126, 173, 179, 0.95)",
           ]}
-          count={140}
+          count={80}
           pauseWhenOffscreen
           pauseWhenHidden
-          maxDpr={1.5}
-          targetFps={45}
+          maxDpr={1}
+          targetFps={24}
+          shadowBlurLow={2}
         />
         <div className="projects-hero-foreground">
           <img
