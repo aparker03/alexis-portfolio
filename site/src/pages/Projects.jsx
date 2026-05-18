@@ -289,9 +289,6 @@ function Projects() {
                     >
                       Index
                     </a>
-                    <span className="project-link-note">
-                      Code cleanup planned
-                    </span>
                   </div>
                   <a
                     href="https://state-of-mind.streamlit.app/"
@@ -343,9 +340,6 @@ function Projects() {
                     <Link to="/projects/nhanes-depression-risk">
                       Case Study →
                     </Link>
-                    <span className="project-link-note">
-                      Code cleanup planned
-                    </span>
                   </div>
                 </div>
               </div>
@@ -397,9 +391,6 @@ function Projects() {
                     <a href={`${P}/notebooks/strava/strava-analysis.html`}>
                       View Notebook →
                     </a>
-                    <span className="project-link-note">
-                      Code cleanup planned
-                    </span>
                   </div>
                   <a
                     href="https://movement-mapped.streamlit.app/"
@@ -462,9 +453,6 @@ function Projects() {
                     <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>
                       View Notebook →
                     </a>
-                    <span className="project-link-note">
-                      Code cleanup planned
-                    </span>
                   </div>
                   <a
                     href="https://surgical-scope.streamlit.app/"

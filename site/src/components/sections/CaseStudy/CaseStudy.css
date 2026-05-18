@@ -91,15 +91,20 @@
 }
 .case-screenshot {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, max-content));
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-top: 1.25rem;
 }
 .case-screenshot img {
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 680px);
+  max-height: 420px;
   height: auto;
   object-fit: contain;
   border-radius: 1rem;
+  padding: 0.5rem;
   background: #fff;
   box-shadow: 0 8px 28px rgba(17, 24, 39, 0.12);
 }
