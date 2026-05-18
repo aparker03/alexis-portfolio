@@ -1,6 +1,4 @@
-const publicUrl =
-  process.env.PUBLIC_URL === "." ? "" : process.env.PUBLIC_URL || "";
-const asset = (path) => `${publicUrl}${path}`;
+const P = process.env.PUBLIC_URL;
 
 const projectCaseStudies = {
   "eeg-nhis": {
@@ -10,8 +8,8 @@ const projectCaseStudies = {
       "Comparing lab-based sleep signals with population survey sleep measures.",
     role: "Graduate Researcher",
     timeframe: "June 2025 to August 2025",
-    heroImage: asset("/images/projects/eeg/eeg-app-preview.png"),
-    secondaryImage: asset("/images/projects/eeg/eeg-electrodes-preview.png"),
+    heroImage: `${P}/images/projects/eeg/eeg-app-preview.png`,
+    secondaryImage: `${P}/images/projects/eeg/eeg-electrodes-preview.png`,
     metrics: [
       { label: "Dataset", value: "OpenNeuro EEG + 32k NHIS respondents" },
       { label: "Output", value: "Live Streamlit + Plotly dashboard" },
@@ -87,7 +85,7 @@ const projectCaseStudies = {
       "A research-informed, exploratory index for regional variation in self-reported mental health symptoms.",
     role: "Graduate Researcher",
     timeframe: "January 2025 to March 2025",
-    heroImage: asset("/images/projects/brfss/brfss-app-preview.png"),
+    heroImage: `${P}/images/projects/brfss/brfss-app-preview.png`,
     metrics: [
       { label: "Dataset", value: "400k+ BRFSS responses" },
       { label: "Output", value: "Live app + 3 notebooks" },
@@ -155,12 +153,12 @@ const projectCaseStudies = {
       notebooks: [
         {
           label: "Download notebook",
-          href: asset("/notebooks/brfss/download.html"),
+          href: `${P}/notebooks/brfss/download.html`,
         },
-        { label: "EDA notebook", href: asset("/notebooks/brfss/eda.html") },
+        { label: "EDA notebook", href: `${P}/notebooks/brfss/eda.html` },
         {
           label: "Index notebook",
-          href: asset("/notebooks/brfss/depression_index_analysis.html"),
+          href: `${P}/notebooks/brfss/depression_index_analysis.html`,
         },
       ],
       codeNote: "Code cleanup planned for a public reproducibility repository.",
@@ -172,7 +170,7 @@ const projectCaseStudies = {
     subtitle: "Training-pattern exploration from personal activity exports.",
     role: "Independent Researcher",
     timeframe: "2025",
-    heroImage: asset("/images/projects/strava/strava-app-preview.png"),
+    heroImage: `${P}/images/projects/strava/strava-app-preview.png`,
     metrics: [
       { label: "Dataset", value: "Personal Strava export" },
       { label: "Output", value: "Notebook + Streamlit app" },
@@ -236,7 +234,7 @@ const projectCaseStudies = {
       notebooks: [
         {
           label: "View notebook",
-          href: asset("/notebooks/strava/strava-analysis.html"),
+          href: `${P}/notebooks/strava/strava-analysis.html`,
         },
       ],
       codeNote: "Code cleanup planned for a shareable reproducibility version.",
@@ -249,7 +247,7 @@ const projectCaseStudies = {
       "California hospital surgery-volume trends across procedure categories, regions, and years.",
     role: "Graduate Researcher",
     timeframe: "2025",
-    heroImage: asset("/images/projects/cancer/cancer-app-preview.png"),
+    heroImage: `${P}/images/projects/cancer/cancer-app-preview.png`,
     metrics: [
       { label: "Coverage", value: "California hospitals, 2013–2022" },
       { label: "Output", value: "Map + trend app + notebook" },
@@ -315,7 +313,7 @@ const projectCaseStudies = {
       notebooks: [
         {
           label: "View notebook",
-          href: asset("/notebooks/cancer/cancer-analysis.html"),
+          href: `${P}/notebooks/cancer/cancer-analysis.html`,
         },
       ],
       codeNote: "Code cleanup planned for a public reproducibility repository.",

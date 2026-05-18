@@ -327,30 +327,3 @@
   color: #365f5c !important;
   font-weight: 800 !important;
 }
-
-.learning-path-card {
-  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-.learning-path-card:hover,
-.learning-path-card:focus-within {
-  transform: translateY(-4px);
-  background: var(--spec-strong);
-  border-left-color: var(--spec-strong);
-  color: var(--spec-text);
-  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.25);
-}
-.learning-path-card:hover h3,
-.learning-path-card:focus-within h3,
-.learning-path-card:hover p,
-.learning-path-card:focus-within p,
-.learning-path-card:hover .learning-path-card__categories,
-.learning-path-card:focus-within .learning-path-card__categories { color: currentColor !important; }
-@media (max-width: 640px) {
-  .learning-paths { padding: 1rem; }
-  .learning-paths__grid { grid-template-columns: 1fr; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .learning-path-card { transition: none; }
-  .learning-path-card:hover,
-  .learning-path-card:focus-within { transform: none; }
-}
