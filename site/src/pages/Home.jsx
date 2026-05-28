@@ -240,7 +240,7 @@ function Home() {
               Health data projects with transparent methods
             </h2>
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-stretch">
-              <article className="home-hover-card bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+              <article className="home-hover-card bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2">
                 <img
                   src={`${P}/images/projects/eeg/eeg-app-preview.png`}
                   alt="EEG + NHIS Explorer dashboard preview"
@@ -289,22 +289,6 @@ function Home() {
                 </div>
               </article>
 
-              <aside className="home-hover-card bg-[#e9e3b0] border border-[#d9cf8a] rounded-2xl p-6 shadow-sm">
-                <h3 className="text-xl font-bold text-[#111827] mb-3">
-                  Next build queue
-                </h3>
-                <p className="text-[#374151] font-medium mb-4">
-                  I am keeping all five portfolio directions active so the next
-                  updates can show both depth and range.
-                </p>
-                <ol className="grid gap-2 text-[#1f2937] font-semibold">
-                  <li>A. Health AI evaluation dashboard</li>
-                  <li>B. Clinical / survey text annotation tool</li>
-                  <li>C. Wearable recovery analytics</li>
-                  <li>D. Public health equity explorer</li>
-                  <li>E. Reproducibility scorecards</li>
-                </ol>
-              </aside>
             </div>
           </div>
         </section>

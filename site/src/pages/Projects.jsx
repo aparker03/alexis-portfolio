@@ -6,39 +6,6 @@ import { ProjectMetrics } from "../components/ui/ProjectMetric";
 
 const P = process.env.PUBLIC_URL === "." ? "" : process.env.PUBLIC_URL || "";
 
-const plannedBuilds = [
-  {
-    label: "A",
-    title: "Health AI Evaluation Dashboard",
-    summary:
-      "Evaluate health-oriented AI outputs with synthetic prompts, safety labels, evidence checks, and annotation-style scoring.",
-  },
-  {
-    label: "B",
-    title: "Clinical + Survey Text Annotation Tool",
-    summary:
-      "Prototype a reproducible coding workspace for synthetic notes or survey text with labels, agreement checks, and exportable datasets.",
-  },
-  {
-    label: "C",
-    title: "Wearable Recovery Analytics",
-    summary:
-      "Extend Movement-Mapped into recovery-focused time-series views for activity load, sleep context, heart-rate trends, and anomalies.",
-  },
-  {
-    label: "D",
-    title: "Public Health Equity Explorer",
-    summary:
-      "Combine public health and Census-style indicators into maps, models, and plain-language explanations of geographic differences.",
-  },
-  {
-    label: "E",
-    title: "Reproducibility Scorecards",
-    summary:
-      "Audit portfolio projects for data-source clarity, assumptions, limitations, environment setup, ethics, and extension readiness.",
-  },
-];
-
 function Projects() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -468,27 +435,16 @@ function Projects() {
             </div>
 
             <div className="next-builds" aria-labelledby="next-builds-heading">
-              <p className="section-eyebrow">Next portfolio builds</p>
+              <p className="section-eyebrow">Current direction</p>
               <h3 className="exploratory-title" id="next-builds-heading">
-                Roadmap from A to E
+                Building public-interest data systems with clear methods
               </h3>
               <p className="exploratory-intro">
-                I like all five directions, so I am keeping them visible as a
-                build queue: health AI evaluation, annotation tooling,
-                wearables, public health equity, and reproducibility.
+                My next work continues the same thread across these projects:
+                trustworthy health AI evaluation, reproducible analytics,
+                research-backed knowledge structures, and practical apps that
+                make assumptions easier to inspect.
               </p>
-
-              <div className="next-builds-grid">
-                {plannedBuilds.map((build) => (
-                  <article className="next-build-card" key={build.label}>
-                    <span className="next-build-label" aria-hidden="true">
-                      {build.label}
-                    </span>
-                    <h4>{build.title}</h4>
-                    <p>{build.summary}</p>
-                  </article>
-                ))}
-              </div>
             </div>
 
             <div className="exploratory-projects">
