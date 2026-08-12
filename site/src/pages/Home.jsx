@@ -69,7 +69,7 @@ function Home() {
           .home-hover-card:focus-within { transform: none; }
         }
       `}</style>
-      <main
+      <div
         style={{
           fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif",
           color: "#1f2937",
@@ -412,7 +412,7 @@ function Home() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

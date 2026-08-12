@@ -513,7 +513,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.publication-card h4 {
+.publication-card h3 {
   margin: 0 0 0.75rem;
   color: #111827;
   font-size: var(--font-size-xl);
@@ -539,8 +539,8 @@
 }
 .publication-card:hover .publication-status,
 .publication-card:focus-within .publication-status { color: var(--card-hover-accent); }
-.publication-card:hover h4,
-.publication-card:focus-within h4,
+.publication-card:hover h3,
+.publication-card:focus-within h3,
 .publication-card:hover .publication-authors,
 .publication-card:focus-within .publication-authors,
 .publication-card:hover .publication-citation,
@@ -567,9 +567,9 @@
     border-left-color: var(--card-hover-accent);
   }
 }
-.exploratory-grid .project-card h4 { font-weight: 700; color: #111827; transition: color var(--transition-fast) ease; }
-.exploratory-grid .project-card:hover h4,
-.exploratory-grid .project-card:focus-within h4 { color: var(--card-hover-ink); }
+.exploratory-grid .project-card h3 { font-weight: 700; color: #111827; transition: color var(--transition-fast) ease; }
+.exploratory-grid .project-card:hover h3,
+.exploratory-grid .project-card:focus-within h3 { color: var(--card-hover-ink); }
 
 .exploratory-grid .project-card p { font-weight: 500; color: var(--projects-ink); transition: color var(--transition-fast) ease; }
 .exploratory-grid .project-card:hover p,
@@ -589,7 +589,7 @@
   .project-points .star::before,
   .project-tools,
   .project-links a,
-  .exploratory-grid .project-card h4,
+  .exploratory-grid .project-card h3,
   .exploratory-grid .project-card p,
   .exploratory-grid .project-card a {
     transition: none;

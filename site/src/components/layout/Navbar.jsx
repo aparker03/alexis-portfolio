@@ -1,12 +1,58 @@
 // src/components/Navbar.jsx
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import FontSizeToggle from "../ui/FontSizeToggle";
 
+const projectPaths = new Set([
+  "/projects",
+  "/projects/eeg-nhis",
+  "/projects/brfss-depression-index",
+  "/projects/strava-wearables",
+  "/projects/surgical-scope",
+  "/projects/nhanes-depression-risk",
+]);
+
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const currentDestination =
+    location.pathname === "/" && location.hash === "#contact"
+      ? "contact"
+      : location.pathname === "/"
+        ? "home"
+        : location.pathname === "/resume"
+          ? "resume"
+          : projectPaths.has(location.pathname)
+            ? "projects"
+            : null;
+
+  const navLinkClassName = (destination, mobile = false) =>
+    [
+      mobile ? "block px-2 py-2 rounded hover:bg-gray-50" : "rounded",
+      "hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700",
+      currentDestination === destination
+        ? "text-blue-700 underline decoration-2 underline-offset-4"
+        : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+  const currentValue = (destination) =>
+    currentDestination === destination
+      ? destination === "contact"
+        ? "location"
+        : "page"
+      : undefined;
+
+  const closeMobileMenu = () => {
+    if (document.activeElement?.closest?.("#mobile-menu")) {
+      menuButtonRef.current?.focus();
+    }
+    setOpen(false);
+  };
 
   // Smooth scroll to top for tab clicks
   const scrollTop = () => {
@@ -32,12 +78,12 @@ function Navbar() {
         // Fallback: update hash so Home hook can catch it if section renders later
         window.location.hash = "#contact";
       }
-      setOpen(false);
+      closeMobileMenu();
     } else {
       // Navigate to Home with hash; Home's hook handles the smooth scroll
       e.preventDefault();
+      closeMobileMenu();
       navigate("/#contact");
-      setOpen(false);
     }
   };
 
@@ -46,7 +92,11 @@ function Navbar() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="h-14 flex items-center justify-between gap-3">
           {/* Brand / Name */}
-          <Link to="/" className="min-w-0" onClick={scrollTop}>
+          <Link
+            to="/"
+            className="min-w-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+            onClick={scrollTop}
+          >
             <span
               className="block font-bold tracking-tight text-gray-900 text-lg sm:text-xl md:text-2xl whitespace-normal break-words leading-tight max-w-[45vw] sm:max-w-[55vw] md:max-w-none"
               title="Alexis Parker"
@@ -69,7 +119,8 @@ function Navbar() {
                   <Link
                     to="/"
                     onClick={scrollTop}
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/40 rounded"
+                    className={navLinkClassName("home")}
+                    aria-current={currentValue("home")}
                   >
                     Home
                   </Link>
@@ -78,7 +129,8 @@ function Navbar() {
                   <Link
                     to="/projects"
                     onClick={scrollTop}
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/40 rounded"
+                    className={navLinkClassName("projects")}
+                    aria-current={currentValue("projects")}
                   >
                     Projects
                   </Link>
@@ -87,7 +139,8 @@ function Navbar() {
                   <Link
                     to="/resume"
                     onClick={scrollTop}
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/40 rounded"
+                    className={navLinkClassName("resume")}
+                    aria-current={currentValue("resume")}
                   >
                     Resume
                   </Link>
@@ -96,7 +149,8 @@ function Navbar() {
                   <Link
                     to="/#contact"
                     onClick={handleContactClick}
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/40 rounded"
+                    className={navLinkClassName("contact")}
+                    aria-current={currentValue("contact")}
                   >
                     Contact
                   </Link>
@@ -111,9 +165,10 @@ function Navbar() {
 
             {/* Mobile hamburger */}
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400/40 shrink-0"
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 shrink-0"
               aria-controls="mobile-menu"
               aria-expanded={open}
               aria-label="Toggle navigation menu"
@@ -142,6 +197,7 @@ function Navbar() {
         {/* Mobile drawer */}
         <div
           id="mobile-menu"
+          aria-hidden={!open}
           className={`md:hidden overflow-hidden transition-[max-height] duration-300 ${open ? "max-h-96" : "max-h-0"}`}
         >
           <div className="py-2 border-t border-gray-200">
@@ -149,8 +205,10 @@ function Navbar() {
               <li>
                 <Link
                   to="/"
-                  onClick={() => { scrollTop(); setOpen(false); }}
-                  className="block px-2 py-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+                  onClick={() => { scrollTop(); closeMobileMenu(); }}
+                  className={navLinkClassName("home", true)}
+                  aria-current={currentValue("home")}
+                  tabIndex={open ? 0 : -1}
                 >
                   Home
                 </Link>
@@ -158,8 +216,10 @@ function Navbar() {
               <li>
                 <Link
                   to="/projects"
-                  onClick={() => { scrollTop(); setOpen(false); }}
-                  className="block px-2 py-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+                  onClick={() => { scrollTop(); closeMobileMenu(); }}
+                  className={navLinkClassName("projects", true)}
+                  aria-current={currentValue("projects")}
+                  tabIndex={open ? 0 : -1}
                 >
                   Projects
                 </Link>
@@ -167,8 +227,10 @@ function Navbar() {
               <li>
                 <Link
                   to="/resume"
-                  onClick={() => { scrollTop(); setOpen(false); }}
-                  className="block px-2 py-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+                  onClick={() => { scrollTop(); closeMobileMenu(); }}
+                  className={navLinkClassName("resume", true)}
+                  aria-current={currentValue("resume")}
+                  tabIndex={open ? 0 : -1}
                 >
                   Resume
                 </Link>
@@ -177,14 +239,16 @@ function Navbar() {
                 <Link
                   to="/#contact"
                   onClick={handleContactClick}
-                  className="block px-2 py-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+                  className={navLinkClassName("contact", true)}
+                  aria-current={currentValue("contact")}
+                  tabIndex={open ? 0 : -1}
                 >
                   Contact
                 </Link>
               </li>
               {/* Keep the toggle inside the drawer as well (optional) */}
               <li className="px-2 pt-1">
-                <FontSizeToggle />
+                <FontSizeToggle selectTabIndex={open ? 0 : -1} />
               </li>
             </ul>
           </div>

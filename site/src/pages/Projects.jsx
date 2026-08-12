@@ -119,9 +119,9 @@ function Projects() {
       <div className="projects-container" id="projects-content">
         <div className="projects-layout">
           <div className="projects-main">
-            <h2 className="projects-title" id="projects-heading">
+            <h1 className="projects-title" id="projects-heading">
               Projects
-            </h2>
+            </h1>
             <p className="projects-intro">
               I build projects that make methods, assumptions, and results
               easier to inspect. The work below spans health data, neuroscience,
@@ -134,9 +134,9 @@ function Projects() {
             >
               <div className="accessfirst-feature-copy">
                 <p className="project-kicker">Featured project</p>
-                <h3 className="project-title" id="accessfirst-feature-title">
+                <h2 className="project-title" id="accessfirst-feature-title">
                   AccessFirst
-                </h3>
+                </h2>
                 <p>
                   AccessFirst helps people navigate mental-health resources in
                   Los Angeles County. Users can search by address, city, or ZIP
@@ -193,7 +193,7 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">EEG + NHIS Explorer</h3>
+                  <h2 className="project-title">EEG + NHIS Explorer</h2>
                   <ProjectMetrics
                     metrics={[
                       { label: "Dataset", value: "ds004902 + 6,705 NHIS records" },
@@ -257,9 +257,9 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">
+                  <h2 className="project-title">
                     BRFSS Depression Index Study
-                  </h3>
+                  </h2>
                   <ProjectMetrics
                     metrics={[
                       { label: "Dataset", value: "2022 BRFSS notebooks" },
@@ -328,7 +328,7 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">Strava Wearable Metrics</h3>
+                  <h2 className="project-title">Strava Wearable Metrics</h2>
                   <ProjectMetrics
                     metrics={[
                       { label: "Dataset", value: "Uploaded CSV or sample" },
@@ -388,9 +388,9 @@ function Projects() {
                 </div>
 
                 <div className="project-card-content">
-                  <h3 className="project-title">
+                  <h2 className="project-title">
                     Surgical Scope: Cancer Procedure Trends
-                  </h3>
+                  </h2>
                   <ProjectMetrics
                     metrics={[
                       { label: "Coverage", value: "California, 2013–2022" },
@@ -444,9 +444,9 @@ function Projects() {
               aria-labelledby="nhanes-project-title"
             >
               <div className="nhanes-project-summary">
-                <h3 className="project-title" id="nhanes-project-title">
+                <h2 className="project-title" id="nhanes-project-title">
                   Depression Risk Modeling: NHANES
-                </h3>
+                </h2>
                 <ProjectMetrics
                   metrics={[
                     { label: "Dataset", value: "467 cleaned records" },
@@ -490,17 +490,17 @@ function Projects() {
               aria-labelledby="publications-heading"
             >
               <p className="section-eyebrow">Publication</p>
-              <h3 className="exploratory-title" id="publications-heading">
+              <h2 className="exploratory-title" id="publications-heading">
                 Preprint
-              </h3>
+              </h2>
               <article className="publication-card">
                 <p className="publication-status">
                   arXiv preprint · version 3 · revised April 9, 2026
                 </p>
-                <h4>
+                <h3>
                   A survey of generative AI adoption and perceived productivity
                   among scientists who program
-                </h4>
+                </h3>
                 <p className="publication-authors">
                   Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
                   Carver
@@ -520,9 +520,9 @@ function Projects() {
 
             <div className="next-builds" aria-labelledby="next-builds-heading">
               <p className="section-eyebrow">Current direction</p>
-              <h3 className="exploratory-title" id="next-builds-heading">
+              <h2 className="exploratory-title" id="next-builds-heading">
                 Health data systems with clear methods
-              </h3>
+              </h2>
               <p className="exploratory-intro">
                 I am continuing work on health-data analysis, model evaluation,
                 reproducible workflows, and interfaces that make data sources,
@@ -531,9 +531,9 @@ function Projects() {
             </div>
 
             <div className="exploratory-projects">
-              <h3 className="exploratory-title">
+              <h2 className="exploratory-title">
                 Exploratory Projects (R / RPubs)
-              </h3>
+              </h2>
               <p
                 className="exploratory-intro"
                 style={{
@@ -548,9 +548,9 @@ function Projects() {
 
               <div className="exploratory-grid">
                 <div className="project-card">
-                  <h4 className="project-subtitle">
+                  <h3 className="project-subtitle">
                     Prediction App Presentation
-                  </h4>
+                  </h3>
                   <p className="exploratory-desc">
                     A lightweight demo app that accepts user inputs and renders
                     predicted outcomes.
@@ -565,9 +565,9 @@ function Projects() {
                 </div>
 
                 <div className="project-card">
-                  <h4 className="project-subtitle">
+                  <h3 className="project-subtitle">
                     Shiny Application &amp; Pitch
-                  </h4>
+                  </h3>
                   <p className="exploratory-desc">
                     A reproducible Shiny app with an interactive pitch covering
                     use cases and design choices.
@@ -582,9 +582,9 @@ function Projects() {
                 </div>
 
                 <div className="project-card">
-                  <h4 className="project-subtitle">
+                  <h3 className="project-subtitle">
                     Creating a Map With Leaflet
-                  </h4>
+                  </h3>
                   <p className="exploratory-desc">
                     Interactive Leaflet map in R to display geo-located data
                     with popups and tooltips.
@@ -599,7 +599,7 @@ function Projects() {
                 </div>
 
                 <div className="project-card">
-                  <h4 className="project-subtitle">Storm Data Analysis</h4>
+                  <h3 className="project-subtitle">Storm Data Analysis</h3>
                   <p className="exploratory-desc">
                     Course project analyzing U.S. storm impacts through clear
                     visualizations.

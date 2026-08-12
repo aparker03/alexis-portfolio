@@ -110,9 +110,9 @@ function Resume() {
 
       <div className="resume-inner">
         <header className="resume-header text-center">
-          <h2 id="resume-heading" className="resume-title">
+          <h1 id="resume-heading" className="resume-title">
             Resume
-          </h2>
+          </h1>
           <p className="resume-intro mx-auto text-center">
             I started in psychology, where questions about health and behavior
             first took shape. Over time those questions grew into data science,
@@ -156,9 +156,9 @@ function Resume() {
           aria-labelledby="highlights-heading"
           style={{ scrollMarginTop: "150px" }}
         >
-          <h3 id="highlights-heading" className="section-title">
+          <h2 id="highlights-heading" className="section-title">
             Highlights
-          </h3>
+          </h2>
           <ul className="highlights-list">
             <li className="star">
               PhD student in Information Systems &amp; Technology focused on
@@ -182,12 +182,12 @@ function Resume() {
 
         {/* skills snapshot */}
         <section className="resume-section" aria-labelledby="skills-heading">
-          <h3 id="skills-heading" className="section-title">
+          <h2 id="skills-heading" className="section-title">
             Skills snapshot
-          </h3>
+          </h2>
           <div className="skill-tiles">
             <article className="skill-tile hover-card">
-              <h4 className="tile-title">Research and foundations</h4>
+              <h3 className="tile-title">Research and foundations</h3>
               <ul className="tile-points">
                 <li className="star">
                   Designed and evaluated studies in psychology, public health,
@@ -204,7 +204,7 @@ function Resume() {
               </ul>
             </article>
             <article className="skill-tile hover-card">
-              <h4 className="tile-title">Data and analysis</h4>
+              <h3 className="tile-title">Data and analysis</h3>
               <ul className="tile-points">
                 <li className="star">
                   Processed CDC and NIH surveys and sensor data with Pandas and
@@ -221,7 +221,7 @@ function Resume() {
               </ul>
             </article>
             <article className="skill-tile hover-card">
-              <h4 className="tile-title">Applied machine learning</h4>
+              <h3 className="tile-title">Applied machine learning</h3>
               <ul className="tile-points">
                 <li className="star">
                   Trained models such as Logistic Regression, Random Forest, and
@@ -238,7 +238,7 @@ function Resume() {
               </ul>
             </article>
             <article className="skill-tile hover-card">
-              <h4 className="tile-title">Visualization and apps</h4>
+              <h3 className="tile-title">Visualization and apps</h3>
               <ul className="tile-points">
                 <li className="star">
                   Built dashboards that organize signals, survey measures, and
@@ -255,7 +255,7 @@ function Resume() {
               </ul>
             </article>
             <article className="skill-tile hover-card">
-              <h4 className="tile-title">Workflow and collaboration</h4>
+              <h3 className="tile-title">Workflow and collaboration</h3>
               <ul className="tile-points">
                 <li className="star">
                   Used Git and GitHub for versioning and review.
@@ -274,9 +274,9 @@ function Resume() {
         {/* journey timeline */}
         <section className="resume-section" aria-labelledby="timeline-heading">
           <div className="timeline-header-row">
-            <h3 id="timeline-heading" className="section-title">
+            <h2 id="timeline-heading" className="section-title">
               Journey
-            </h3>
+            </h2>
 
             {/* Layout toggle */}
             <div
@@ -320,7 +320,7 @@ function Resume() {
                   ref={firstItemRef}
                 >
                   <span className="time-badge">2015 to June 2019</span>
-                  <h4 className="item-title">CSU San Bernardino</h4>
+                  <h3 className="item-title">CSU San Bernardino</h3>
                   <p className="item-sub">B.A. in Psychology</p>
                   <ul className="item-points">
                     <li className="star">
@@ -347,9 +347,9 @@ function Resume() {
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
                   <span className="time-badge">April to June 2019</span>
-                  <h4 className="item-title">
+                  <h3 className="item-title">
                     Behavioral Neuroscience Research Assistant
-                  </h4>
+                  </h3>
                   <p className="item-sub">
                     California State University, San Bernardino
                   </p>
@@ -374,7 +374,7 @@ function Resume() {
               <div className="timeline-item t-gap-lg">
                 <div className="timeline-card hover-card left">
                   <span className="time-badge">April 2019 to Present</span>
-                  <h4 className="item-title">IHSS Caregiver</h4>
+                  <h3 className="item-title">IHSS Caregiver</h3>
                   <p className="item-sub">IHSS Public Authority</p>
                   <ul className="item-points">
                     <li className="star">
@@ -401,7 +401,7 @@ function Resume() {
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
                   <span className="time-badge">2024 to August 2025</span>
-                  <h4 className="item-title">Master of Applied Data Science</h4>
+                  <h3 className="item-title">Master of Applied Data Science</h3>
                   <p className="item-sub">
                     University of Michigan School of Information
                   </p>
@@ -427,7 +427,7 @@ function Resume() {
               <div className="timeline-item">
                 <div className="timeline-card hover-card left">
                   <span className="time-badge">January to August 2025</span>
-                  <h4 className="item-title">Graduate Project Portfolio</h4>
+                  <h3 className="item-title">Graduate Project Portfolio</h3>
                   <p className="item-sub">
                     Health surveys, EEG, and population-level analytics
                   </p>
@@ -461,7 +461,7 @@ function Resume() {
                   <span className="time-badge">
                     January 2025 to January 2026
                   </span>
-                  <h4 className="item-title">Graduate Student Researcher</h4>
+                  <h3 className="item-title">Graduate Student Researcher</h3>
                   <p className="item-sub">
                     University of Michigan School of Information
                   </p>
@@ -490,9 +490,9 @@ function Resume() {
                   <span className="time-badge">
                     November 2025 to February 2026
                   </span>
-                  <h4 className="item-title">
+                  <h3 className="item-title">
                     Data Science Intern, AI Interfaces
-                  </h4>
+                  </h3>
                   <p className="item-sub">AlphaRose Therapeutics</p>
                   <ul className="item-points">
                     <li className="star">
@@ -522,9 +522,9 @@ function Resume() {
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
                   <span className="time-badge">2026 to May 2030</span>
-                  <h4 className="item-title">
+                  <h3 className="item-title">
                     PhD in Information Systems &amp; Technology
-                  </h4>
+                  </h3>
                   <p className="item-sub">
                     Claremont Graduate University · Data Science &amp; Analytics
                   </p>
@@ -554,9 +554,9 @@ function Resume() {
           className="resume-section publication-resume-section"
           aria-labelledby="publication-heading"
         >
-          <h3 id="publication-heading" className="section-title">
+          <h2 id="publication-heading" className="section-title">
             Publication
-          </h3>
+          </h2>
           <p className="publication-resume-status">
             arXiv preprint · version 3 · revised April 9, 2026
           </p>
@@ -580,9 +580,9 @@ function Resume() {
 
         {/* projects CTA */}
         <section className="resume-section" aria-labelledby="work-heading">
-          <h3 id="work-heading" className="section-title">
+          <h2 id="work-heading" className="section-title">
             Explore the work
-          </h3>
+          </h2>
           <p className="section-note">
             See examples of methods, decisions, and outcomes in context.
           </p>
@@ -619,9 +619,9 @@ function Resume() {
           className="resume-section"
           aria-labelledby="certs-featured-heading"
         >
-          <h3 id="certs-featured-heading" className="section-title">
+          <h2 id="certs-featured-heading" className="section-title">
             Featured certifications
-          </h3>
+          </h2>
           <ul className="certs-list">
             <li>
               <strong>IBM Data Science Specialization</strong>: Python, SQL, ML,
@@ -655,9 +655,9 @@ function Resume() {
 
         {/* Independent Learning */}
         <section className="resume-section" aria-labelledby="learning-heading">
-          <h3 id="learning-heading" className="section-title">
+          <h2 id="learning-heading" className="section-title">
             Independent learning journey
-          </h3>
+          </h2>
           <p className="section-note">
             From 2022 to 2024, I completed over one hundred courses and multiple
             specializations in data science, neuroscience, and machine learning.
@@ -675,9 +675,9 @@ function Resume() {
 
         {/* RPubs */}
         <section className="resume-section" aria-labelledby="rpubs-heading">
-          <h3 id="rpubs-heading" className="section-title">
+          <h2 id="rpubs-heading" className="section-title">
             Exploratory work in R
-          </h3>
+          </h2>
           <p className="section-note">
             Early projects with R Shiny, Leaflet, and R Markdown introduced
             interactivity and spatial views and informed later work in Python.
