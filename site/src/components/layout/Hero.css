@@ -1,8 +1,12 @@
 /* site/src/components/layout/Hero.css */
-.text-base .hero-section { font-size: 1em; }
-.text-lg   .hero-section { font-size: 1.125em; }
-.text-xl   .hero-section { font-size: 1.25em; }
-.text-2xl  .hero-section { font-size: 1.5em; }
+/* Font size is inherited once from the app-level preference. */
+.hero-section {
+  min-height: clamp(520px, 68vh, 720px) !important;
+}
+
+@media (max-width: 640px) {
+  .hero-section { min-height: auto !important; }
+}
 
 /* tiny tuning just for the kicker */
 .hero-kicker { letter-spacing: 0.08em; }

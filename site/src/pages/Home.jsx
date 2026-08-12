@@ -33,6 +33,7 @@ function Home() {
       <style>{`
         .home-hover-card {
           transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+          border-color: #6b7280 !important;
         }
         .home-hover-card:hover,
         .home-hover-card:focus-within {
@@ -50,10 +51,18 @@ function Home() {
         .home-hover-card:focus-within li { color: #e5e7eb !important; }
         .home-hover-card:hover img,
         .home-hover-card:focus-within img { background: #fff !important; }
+        .home-primary-link { border: 2px solid transparent; }
         .home-hover-card:hover .home-primary-link,
-        .home-hover-card:focus-within .home-primary-link { background: #0ea5e9 !important; color: #fff !important; }
+        .home-hover-card:focus-within .home-primary-link { background: #1d4ed8 !important; border-color: #dbeafe !important; color: #fff !important; }
         .home-hover-card:hover .home-secondary-link,
         .home-hover-card:focus-within .home-secondary-link { background: rgba(255, 255, 255, 0.92) !important; border-color: #e9e3b0 !important; color: #143c3a !important; }
+        .home-content-section {
+          padding-top: clamp(3rem, 4vw, 4rem) !important;
+          padding-bottom: clamp(3rem, 4vw, 4rem) !important;
+        }
+        .home-feature-grid { align-items: start; }
+        .home-hover-card { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+        .home-hover-card a { white-space: normal; overflow-wrap: anywhere; }
         @media (prefers-reduced-motion: reduce) {
           .home-hover-card { transition: none; }
           .home-hover-card:hover,
@@ -72,7 +81,7 @@ function Home() {
         {/* About Me - distinct from Hero */}
         <section
           id="about"
-          className="py-section-y px-6 bg-white scroll-mt-24"
+          className="home-content-section py-section-y px-6 bg-white scroll-mt-24"
           aria-labelledby="about-heading"
         >
           <div className="max-w-3xl mx-auto">
@@ -102,7 +111,7 @@ function Home() {
         </section>
 
         {/* 3-Block Overview */}
-        <section className="py-section-y px-6 bg-white">
+        <section className="home-content-section py-section-y px-6 bg-white">
           <div className="max-w-5xl mx-auto grid gap-10 md:grid-cols-3 text-center">
             <div>
               <h3 className="text-xl font-semibold text-[#111827] mb-3">
@@ -135,7 +144,7 @@ function Home() {
         </section>
 
         {/* Tech Stack */}
-        <section className="bg-accent py-section-y px-6">
+        <section className="home-content-section bg-accent py-section-y px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-semibold text-[#111827] mb-8 text-center">
               Tools &amp; Technologies
@@ -178,7 +187,7 @@ function Home() {
 
         {/* Current Research Focus */}
         <section
-          className="py-section-y px-6 bg-gray-50"
+          className="home-content-section py-section-y px-6 bg-gray-50"
           aria-labelledby="research-focus-heading"
         >
           <div className="max-w-6xl mx-auto">
@@ -191,7 +200,7 @@ function Home() {
             >
               Health, LLM evaluation, and reproducible research workflows
             </h2>
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-3 items-start">
               <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
                   Evaluation and annotation
@@ -224,23 +233,88 @@ function Home() {
           </div>
         </section>
 
+        {/* Publications Preview */}
+        <section
+          className="home-content-section py-section-y px-6 bg-white"
+          aria-labelledby="publications-preview-heading"
+        >
+          <div className="max-w-4xl mx-auto">
+            <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
+              Publication
+            </p>
+            <h2
+              id="publications-preview-heading"
+              className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
+            >
+              Preprint
+            </h2>
+            <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+              <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-2">
+                arXiv preprint · version 3 · revised April 2026
+              </p>
+              <h3 className="text-xl font-bold leading-snug text-[#111827] mb-3 break-words">
+                A survey of generative AI adoption and perceived productivity
+                among scientists who program
+              </h3>
+              <p className="text-[#374151] font-medium mb-4 break-words">
+                Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
+                Carver · arXiv:2512.19644
+              </p>
+              <a
+                href="https://arxiv.org/abs/2512.19644"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="home-secondary-link inline-flex max-w-full rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 break-words"
+              >
+                Read the preprint on arXiv →
+              </a>
+            </article>
+          </div>
+        </section>
+
         {/* Featured Work */}
         <section
-          className="py-section-y px-6 bg-white"
+          className="home-content-section py-section-y px-6 bg-white"
           aria-labelledby="featured-work-heading"
         >
           <div className="max-w-6xl mx-auto">
             <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
-              Featured work
+              Projects
             </p>
             <h2
               id="featured-work-heading"
               className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
             >
-              Health data projects with transparent methods
+              Featured work
             </h2>
-            <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-stretch">
-              <article className="home-hover-card bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2">
+            <div className="home-feature-grid grid gap-6 lg:grid-cols-2 items-start">
+              <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-2">
+                  Current project
+                </p>
+                <h3 className="text-xl font-bold text-[#111827] mb-3 break-words">
+                  AccessFirst
+                </h3>
+                <p className="text-[#374151] font-medium mb-5">
+                  AccessFirst helps people navigate mental-health resources in
+                  Los Angeles County. Users can search by address, city, or ZIP
+                  code and narrow results by service type, language,
+                  accessibility need, and telehealth preference. It does not
+                  diagnose, recommend treatment, or book appointments. Users
+                  must confirm insurance acceptance and provider availability
+                  directly.
+                </p>
+                <a
+                  href="https://accessfirst.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="home-primary-link inline-flex max-w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 break-words"
+                >
+                  Open the AccessFirst resource navigator →
+                </a>
+              </article>
+
+              <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
                 <img
                   src={`${P}/images/projects/eeg/eeg-app-preview.png`}
                   alt="EEG + NHIS Explorer dashboard preview"
@@ -252,19 +326,21 @@ function Home() {
                   EEG + NHIS Explorer
                 </h3>
                 <p className="text-[#374151] font-medium mb-4">
-                  A graduate project that connects lab-based sleep signals with
-                  national survey measures, using MNE-Python, NumPy, Plotly, and
-                  Streamlit to make assumptions and measurement differences
-                  visible.
+                  An educational Streamlit and Plotly application that presents
+                  OpenNeuro ds004902 sleep-study measures beside 6,705 cleaned
+                  2024 NHIS sleep records. The datasets are separate and not
+                  participant-matched.
                 </p>
                 <ul className="grid gap-3 text-[#374151] font-medium mb-5">
                   <li>
-                    • OpenNeuro EEG band-power extraction with alpha, theta, and
-                    beta summaries.
+                    • Stored theta, alpha, and beta summaries with channel and
+                    electrode context.
                   </li>
                   <li>
-                    • PVT reaction-time views and NHIS sleep distributions for
-                    population context.
+                    • PVT lapse, median reaction-time, and variability views.
+                  </li>
+                  <li>
+                    • Separate NHIS sleep distributions for population context.
                   </li>
                   <li>
                     • Educational, non-diagnostic dashboard designed for clear
@@ -274,7 +350,7 @@ function Home() {
                 <div className="flex flex-wrap gap-3">
                   <Link
                     to="/projects/eeg-nhis"
-                    className="home-primary-link inline-flex rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+                    className="home-primary-link inline-flex rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
                   >
                     Read case study →
                   </Link>
@@ -282,7 +358,7 @@ function Home() {
                     href="https://eeg-nhis-app.streamlit.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="home-secondary-link inline-flex rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50"
+                    className="home-secondary-link inline-flex rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
                   >
                     Launch app →
                   </a>
@@ -296,7 +372,7 @@ function Home() {
         {/* Contact Section */}
         <section
           id="contact"
-          className="bg-gray-50 py-section-y px-6 scroll-mt-24"
+          className="home-content-section bg-gray-50 py-section-y px-6 scroll-mt-24"
           aria-labelledby="contact-heading"
         >
           <div className="max-w-3xl mx-auto text-center">
@@ -310,7 +386,7 @@ function Home() {
               Whether you are interested in working together or just want to
               connect, feel free to reach out.
             </p>
-            <div className="flex justify-center gap-6 text-blue-700">
+            <div className="flex flex-wrap justify-center gap-6 text-blue-700">
               <a
                 href="mailto:aparker0917@gmail.com"
                 className="hover:underline font-semibold"

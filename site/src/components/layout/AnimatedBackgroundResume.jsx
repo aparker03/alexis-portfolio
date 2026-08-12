@@ -1,22 +1,13 @@
 // src/components/layout/AnimatedBackgroundResume.jsx
 // Concentric rings + orbiters. Palette: #25445C / #E39C2C. GPU transforms, respects prefers-reduced-motion.
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function AnimatedBackgroundResume({ zIndex = 1 }) {
   const rootRef = useRef(null);
   const visibilityPausedRef = useRef(false);
   const offscreenPausedRef = useRef(false);
   const [isPaused, setIsPaused] = useState(false);
-
-  // Read the CSS variable from the computed styles at runtime (with fallback),
-  // so the component stays stable even if the CSS hasn't been updated yet.
-  const ringsTranslateY = useMemo(() => {
-    if (typeof window === "undefined") return "-28%"; // SSR safeguard
-    const root = document.querySelector(".resume-hero") || document.documentElement;
-    const val = getComputedStyle(root).getPropertyValue("--rings-ty")?.trim();
-    return val && val !== "" ? val : "-28%";
-  }, []);
 
   useEffect(() => {
     const node = rootRef.current;
@@ -69,10 +60,13 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
       <style>{`
         /* Stable square that scales with layout */
         .rings-frame {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           width: min(82vw, 920px);
           height: auto;
           aspect-ratio: 1 / 1;
-          margin: 0 auto;
         }
         @media (min-width: 1400px) { .rings-frame { width: min(70vw, 920px); } }
         @media (max-width: 900px)   { .rings-frame { width: min(88vmin, 620px); } }
@@ -109,10 +103,9 @@ export default function AnimatedBackgroundResume({ zIndex = 1 }) {
       `}</style>
 
       <div className="rings-frame">
-        {/* IMPORTANT: transform is injected inline using the CSS var to avoid touching other styles */}
         <div
           className="rings-offset"
-          style={{ transform: `translateY(${ringsTranslateY}) translateZ(0)` }}
+          style={{ transform: "translateZ(0)" }}
         >
           <svg className="resume-rings" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
             <defs>

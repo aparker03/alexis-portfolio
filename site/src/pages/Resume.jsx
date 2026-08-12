@@ -77,17 +77,18 @@ function Resume() {
         className="resume-hero-wrap"
         style={{ position: "relative", overflow: "hidden" }}
       >
-        <AnimatedBackgroundResume zIndex={1} />
-
         <div
           className="resume-hero"
           style={{ position: "relative", zIndex: 2 }}
         >
-          <img
-            src={`${P}/assets/avatars/avatar-resume.png`}
-            alt="Portrait of Alexis Parker"
-            className="resume-hero-avatar"
-          />
+          <div className="resume-hero-visual">
+            <AnimatedBackgroundResume zIndex={1} />
+            <img
+              src={`${P}/assets/avatars/avatar-resume.png`}
+              alt="Portrait of Alexis Parker"
+              className="resume-hero-avatar"
+            />
+          </div>
           <a
             className="scroll-cue"
             href="#highlights-heading"
@@ -231,8 +232,8 @@ function Resume() {
                   segmentation.
                 </li>
                 <li className="star">
-                  Engineered features and tuned hyperparameters for stable
-                  results.
+                  Compared model configurations and tuned hyperparameters with
+                  cross-validation.
                 </li>
               </ul>
             </article>
@@ -362,8 +363,8 @@ function Resume() {
                       responses with three-way ANOVA.
                     </li>
                     <li className="star">
-                      Translated lab observations into evidence that supported
-                      interpretation of adolescent relapse risk.
+                      Documented laboratory observations and analyzed study
+                      results using a three-way ANOVA.
                     </li>
                   </ul>
                 </div>
@@ -432,20 +433,19 @@ function Resume() {
                   </p>
                   <ul className="item-points">
                     <li className="star">
-                      Created a CDC BRFSS Depression Index from 400,000+
-                      responses and visualized regional variation in
-                      self-reported symptoms.
+                      Used full-data 2022 BRFSS notebooks with prepared stages
+                      above 400,000 records to construct an exploratory index
+                      and examine regional variation.
                     </li>
                     <li className="star">
-                      Merged and cleaned seven NHANES modules with about 12,000
-                      records for depression severity modeling using KMeans,
-                      PCA, DBSCAN, Logistic Regression, Random Forest, SVM,
-                      SHAP, and ROC-AUC.
+                      Outer-merged seven NHANES modules and applied adult,
+                      interview, examination, and PHQ validity filters to create
+                      a 467-record depression-severity modeling table.
                     </li>
                     <li className="star">
-                      Processed OpenNeuro EEG with NumPy, SciPy, and MNE-Python,
-                      then connected band power, PVT plots, and 2024 NHIS sleep
-                      data from 32,000 respondents in a Streamlit app.
+                      Built a Streamlit and Plotly explorer with separate views
+                      for stored OpenNeuro ds004902 band summaries, PVT
+                      measures, and 6,705 cleaned 2024 NHIS records.
                     </li>
                   </ul>
                 </div>
@@ -549,6 +549,35 @@ function Resume() {
           </div>
         </section>
 
+        {/* Publication */}
+        <section
+          className="resume-section publication-resume-section"
+          aria-labelledby="publication-heading"
+        >
+          <h3 id="publication-heading" className="section-title">
+            Publication
+          </h3>
+          <p className="publication-resume-status">
+            arXiv preprint · version 3 · revised April 9, 2026
+          </p>
+          <p className="publication-resume-title">
+            A survey of generative AI adoption and perceived productivity among
+            scientists who program
+          </p>
+          <p className="section-note">
+            Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey Carver
+            · arXiv:2512.19644 [cs.SE]
+          </p>
+          <a
+            href="https://arxiv.org/abs/2512.19644"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-link btn-inline"
+          >
+            Read the preprint on arXiv →
+          </a>
+        </section>
+
         {/* projects CTA */}
         <section className="resume-section" aria-labelledby="work-heading">
           <h3 id="work-heading" className="section-title">
@@ -559,19 +588,21 @@ function Resume() {
           </p>
           <ul className="item-points">
             <li className="star">
-              Depression Index study from 400,000+ BRFSS self-reports.
+              BRFSS Depression Index study with full-data notebook stages above
+              400,000 records and a sampled application view.
             </li>
             <li className="star">
-              NHANES depression risk modeling with clustering, supervised
-              models, and SHAP interpretation.
+              NHANES depression-severity modeling from a 467-record table, with
+              separate unsupervised analyses, supervised comparisons, and SHAP.
             </li>
             <li className="star">Movement-Mapped from Strava activity data.</li>
             <li className="star">
               Surgical Scope using California HCAI surgery volumes.
             </li>
             <li className="star">
-              EEG and NHIS Explorer connecting lab sleep measures with 32,000
-              NHIS survey respondents. Educational and not diagnostic.
+              EEG and NHIS Explorer with separate OpenNeuro laboratory views
+              and 6,705 cleaned 2024 NHIS records. Educational and
+              non-diagnostic.
             </li>
           </ul>
           <Link

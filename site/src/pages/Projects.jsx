@@ -19,18 +19,16 @@ function Projects() {
 
   return (
     <section
-      className="projects-section min-h-screen"
+      className="projects-section"
       aria-labelledby="projects-heading"
     >
       <style>{`
         .projects-section { padding-left: 0 !important; padding-right: 0 !important; }
-        .projects-container { padding-left: 2rem; padding-right: 2rem; }
+        .projects-container { padding-left: clamp(1rem, 2.5vw, 2rem); padding-right: clamp(1rem, 2.5vw, 2rem); box-sizing: border-box; }
         .projects-hero-wrap {
           position: relative;
-          height: 54vh;
-          min-height: 340px;
-          max-height: 560px;
-          overflow: hidden;
+          height: clamp(280px, 38vh, 420px);
+          overflow: visible;
           background: linear-gradient(180deg, #81AFB4 0%, #9FC5AF 100%);
           margin-bottom: 1.75rem;
         }
@@ -43,12 +41,22 @@ function Projects() {
           justify-content: center;
           gap: 0.5rem;
           height: 100%;
-          padding: 1rem 0;
+          padding: 0.75rem 0;
+          box-sizing: border-box;
         }
-        .projects-avatar-hero { width: min(260px, 50vw); height: auto; }
+        .projects-avatar-hero {
+          display: block;
+          width: auto;
+          height: auto;
+          max-width: min(260px, 50vw);
+          max-height: calc(100% - 76px);
+          object-fit: contain;
+          flex: 0 1 auto;
+        }
         .projects-scroll-cue {
           display: inline-flex; align-items: center; justify-content: center;
           width: 44px; height: 44px; border-radius: 9999px;
+          flex: 0 0 44px;
           color: #1f2937; text-decoration: none; outline: none;
           animation: arrow-bounce 1.6s ease-in-out infinite;
         }
@@ -56,10 +64,7 @@ function Projects() {
         @keyframes arrow-bounce { 0%,100%{transform:translateY(0);opacity:.85} 50%{transform:translateY(6px);opacity:1} }
         @media (prefers-reduced-motion: reduce) { .projects-scroll-cue { animation: none; } }
         .projects-layout { grid-template-columns: 1fr; }
-        .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; align-items: stretch; }
-        @media (max-width: 1600px) { .projects-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 1000px) { .projects-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } }
-        .project-card { max-width: 1400px; width: 100%; box-sizing: border-box; margin: 0 auto; }
+        .project-card { width: 100%; box-sizing: border-box; }
         .projects-title { text-align: center; margin: 0.5rem auto 1rem; }
         .projects-intro  { text-align: center; margin: 0 auto 2rem; max-width: 980px; color: #374151; }
         .project-title { text-align: center; }
@@ -90,7 +95,6 @@ function Projects() {
             src={`${P}/assets/avatars/avatar-projects.png`}
             alt="Projects avatar"
             className="projects-avatar-hero"
-            loading="lazy"
             decoding="async"
           />
           <a
@@ -119,14 +123,54 @@ function Projects() {
               Projects
             </h2>
             <p className="projects-intro">
-              I design projects as tools people can use. That means clear
-              pipelines you can follow, notebooks that show decisions, and
-              interfaces that invite exploration. Below are a sleep measurement
-              comparison using EEG and NHIS self-reports, a research-informed
-              BRFSS depression index study, NHANES depression risk modeling,
-              Strava wearables that surface training patterns, and statewide
-              surgery volumes you can navigate without guesswork.
+              I build projects that make methods, assumptions, and results
+              easier to inspect. The work below spans health data, neuroscience,
+              wearable data, and resource navigation.
             </p>
+
+            <section
+              className="accessfirst-feature"
+              aria-labelledby="accessfirst-feature-title"
+            >
+              <div className="accessfirst-feature-copy">
+                <p className="project-kicker">Featured project</p>
+                <h3 className="project-title" id="accessfirst-feature-title">
+                  AccessFirst
+                </h3>
+                <p>
+                  AccessFirst helps people navigate mental-health resources in
+                  Los Angeles County. Users can search by address, city, or ZIP
+                  code and narrow results by service type, language,
+                  accessibility need, and telehealth preference.
+                </p>
+              </div>
+              <div className="accessfirst-feature-details">
+                <ProjectMetrics
+                  metrics={[
+                    { label: "Scope", value: "Los Angeles County" },
+                    {
+                      label: "Filters",
+                      value: "Location + service preferences",
+                    },
+                    { label: "Purpose", value: "Resource navigation" },
+                  ]}
+                />
+                <p className="accessfirst-boundary">
+                  It does not diagnose, recommend treatment, or book
+                  appointments. Users must confirm insurance acceptance and
+                  provider availability directly.
+                </p>
+                <div className="project-links">
+                  <a
+                    href="https://accessfirst.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open the AccessFirst resource navigator →
+                  </a>
+                </div>
+              </div>
+            </section>
 
             <div className="projects-grid">
               {/* EEG + NHIS */}
@@ -152,53 +196,51 @@ function Projects() {
                   <h3 className="project-title">EEG + NHIS Explorer</h3>
                   <ProjectMetrics
                     metrics={[
-                      { label: "Dataset", value: "OpenNeuro EEG + 32k NHIS" },
-                      { label: "Output", value: "Live app + case study" },
-                      { label: "Methods", value: "MNE, band power, PVT" },
+                      { label: "Dataset", value: "ds004902 + 6,705 NHIS records" },
+                      { label: "Output", value: "Streamlit + Plotly app" },
+                      { label: "Methods", value: "Stored band summaries + PVT" },
                     ]}
                   />
                   <ul className="project-points">
                     <li className="star">
-                      Processed OpenNeuro EEG recordings with MNE-Python and
-                      NumPy, extracting theta, alpha, and beta band power from
-                      cleaned epochs.
+                      The tracked MNE code loads EEGLAB files, selects EEG
+                      channels, crops ten seconds, and applies a 1–40 Hz filter.
                     </li>
                     <li className="star">
-                      Visualized Psychomotor Vigilance Task reaction-time
-                      distributions and lapse rates under sleep loss.
-                    </li>
-                    <li className="star">
-                      Built a comparative view that places lab-based sleep
-                      signals beside NHIS self-reported sleep measures to
-                      examine measurement differences.
-                    </li>
-                    <li className="star">
-                      Interactive Streamlit app with Plotly for side-by-side
-                      exploration of lab and survey measures. Educational only
-                      and not diagnostic.
+                      The application displays stored theta, alpha, and beta
+                      summaries, PVT measures, and separate views of 6,705
+                      cleaned 2024 NHIS records.
                     </li>
                   </ul>
-                  <p className="project-tools">
-                    Tools: Streamlit, MNE-Python, Plotly, Pandas, NumPy
-                  </p>
-                  <div className="project-links">
-                    <Link to="/projects/eeg-nhis">Case Study →</Link>
-                    <a
-                      href="https://github.com/aparker03/eeg-nhis-app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub Repo →
-                    </a>
+                  <div className="project-footer">
+                    <p className="project-tools">
+                      Tools: Streamlit, MNE-Python, Plotly, Pandas, NumPy
+                      <span className="project-limit">
+                        {" "}
+                        · Educational and non-diagnostic.
+                      </span>
+                    </p>
+                    <div className="project-actions">
+                      <div className="project-links">
+                        <Link to="/projects/eeg-nhis">Case Study →</Link>
+                        <a
+                          href="https://github.com/aparker03/eeg-nhis-apps"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          GitHub Repo →
+                        </a>
+                      </div>
+                      <a
+                        href="https://eeg-nhis-app.streamlit.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-launch-btn"
+                      >
+                        Launch App →
+                      </a>
+                    </div>
                   </div>
-                  <a
-                    href="https://eeg-nhis-app.streamlit.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-launch-btn"
-                  >
-                    Launch App →
-                  </a>
                 </div>
               </div>
 
@@ -220,94 +262,55 @@ function Projects() {
                   </h3>
                   <ProjectMetrics
                     metrics={[
-                      { label: "Dataset", value: "400k+ BRFSS responses" },
-                      { label: "Output", value: "3 notebooks + app" },
-                      { label: "Methods", value: "Imputation + choropleths" },
+                      { label: "Dataset", value: "2022 BRFSS notebooks" },
+                      { label: "Output", value: "Sampled app + 3 notebooks" },
+                      { label: "Methods", value: "7-part index + imputation" },
                     ]}
                   />
                   <ul className="project-points">
                     <li className="star">
-                      Built a research-informed composite score to capture
-                      self-reported mental health distress using BRFSS survey
-                      items. This is exploratory and not an official clinical
-                      index.
+                      The full-data notebooks document prepared stages above
+                      400,000 records, while the Streamlit application uses a
+                      sampled subset by default.
                     </li>
                     <li className="star">
-                      Included survey measures on days of poor mental and
-                      physical health, life satisfaction, emotional support,
-                      stress, social isolation, and depression diagnosis.
-                    </li>
-                    <li className="star">
-                      In-app imputation choices carry through to all visuals and
-                      summaries. Linked notebooks make cleaning steps and
-                      assumptions clear.
+                      Mean, median, mode, zero, or no-imputation choices flow
+                      through Plotly views, summaries, filters, and export.
                     </li>
                   </ul>
-                  <p className="project-tools">
-                    Tools: Streamlit, Pandas, Plotly, scikit-learn
-                  </p>
-                  <div className="project-links">
-                    <Link to="/projects/brfss-depression-index">
-                      Case Study →
-                    </Link>
-                    <a href={`${P}/notebooks/brfss/download.html`}>Download</a>
-                    <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
-                    <a
-                      href={`${P}/notebooks/brfss/depression_index_analysis.html`}
-                    >
-                      Index
-                    </a>
-                  </div>
-                  <a
-                    href="https://state-of-mind.streamlit.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-launch-btn"
-                  >
-                    Launch App →
-                  </a>
-                </div>
-              </div>
-
-              {/* NHANES */}
-              <div className="project-card card-purple">
-                <div className="project-card-content">
-                  <h3 className="project-title">
-                    Depression Risk Modeling: NHANES
-                  </h3>
-                  <ProjectMetrics
-                    metrics={[
-                      { label: "Dataset", value: "~12k records" },
-                      { label: "Scope", value: "7 NHANES modules" },
-                      { label: "Evaluation", value: "SHAP + ROC-AUC" },
-                    ]}
-                  />
-                  <ul className="project-points">
-                    <li className="star">
-                      Merged and cleaned demographic, socioeconomic, health, and
-                      depression-related NHANES modules for severity prediction.
-                    </li>
-                    <li className="star">
-                      Used KMeans, PCA, and DBSCAN to explore structure and
-                      generate modeling features with scikit-learn.
-                    </li>
-                    <li className="star">
-                      Trained Logistic Regression, Random Forest, and SVM models
-                      with hyperparameter tuning and confusion-matrix review.
-                    </li>
-                    <li className="star">
-                      Interpreted model behavior with SHAP and engineered
-                      socioeconomic predictors from Census-style context.
-                    </li>
-                  </ul>
-                  <p className="project-tools">
-                    Tools: Python, Pandas, scikit-learn, SHAP, Matplotlib,
-                    Seaborn
-                  </p>
-                  <div className="project-links">
-                    <Link to="/projects/nhanes-depression-risk">
-                      Case Study →
-                    </Link>
+                  <div className="project-footer">
+                    <p className="project-tools">
+                      Tools: Streamlit, Pandas, Plotly, scikit-learn
+                      <span className="project-limit">
+                        {" "}
+                        · The constructed index is not a validated diagnostic
+                        instrument.
+                      </span>
+                    </p>
+                    <div className="project-actions">
+                      <div className="project-links">
+                        <Link to="/projects/brfss-depression-index">
+                          Case Study →
+                        </Link>
+                        <a href={`${P}/notebooks/brfss/download.html`}>
+                          Download
+                        </a>
+                        <a href={`${P}/notebooks/brfss/eda.html`}>EDA</a>
+                        <a
+                          href={`${P}/notebooks/brfss/depression_index_analysis.html`}
+                        >
+                          Index
+                        </a>
+                      </div>
+                      <a
+                        href="https://state-of-mind.streamlit.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-launch-btn"
+                      >
+                        Launch App →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -317,7 +320,7 @@ function Projects() {
                 <div className="project-media">
                   <img
                     src={`${P}/images/projects/strava/strava-app-preview.png`}
-                    alt="Strava cadence density plot and training views"
+                    alt="Strava metric distribution and activity views"
                     className="project-image"
                     loading="lazy"
                     decoding="async"
@@ -328,46 +331,47 @@ function Projects() {
                   <h3 className="project-title">Strava Wearable Metrics</h3>
                   <ProjectMetrics
                     metrics={[
-                      { label: "Dataset", value: "Personal Strava export" },
-                      { label: "Output", value: "Notebook + app" },
-                      { label: "Methods", value: "Cadence, pace, HR zones" },
+                      { label: "Dataset", value: "Uploaded CSV or sample" },
+                      { label: "Output", value: "App + separate notebook" },
+                      { label: "Methods", value: "Time, distributions, routes" },
                     ]}
                   />
                   <ul className="project-points">
                     <li className="star">
-                      Parsed a personal Strava export to study cadence, pace
-                      stability, and heart-rate zones across runs.
+                      The application supports date, month, time-of-day, and
+                      activity filters with trends, distributions,
+                      relationships, summaries, and maps when coordinates exist.
                     </li>
                     <li className="star">
-                      Distribution and density views reveal training patterns
-                      that single-run summaries miss.
-                    </li>
-                    <li className="star">
-                      Filters for periods and sessions make week-over-week
-                      trends easy to compare.
-                    </li>
-                    <li className="star">
-                      Companion notebook documents assumptions and cleaning
-                      decisions.
+                      A separate notebook analyzes Professor Chris Brooks’s
+                      summer 2019 exercise data, including metric completeness,
+                      IQR comparisons, and a two-component afternoon
+                      heart-rate model.
                     </li>
                   </ul>
-                  <p className="project-tools">
-                    Tools: Streamlit, Seaborn, Pandas, Matplotlib
-                  </p>
-                  <div className="project-links">
-                    <Link to="/projects/strava-wearables">Case Study →</Link>
-                    <a href={`${P}/notebooks/strava/strava-analysis.html`}>
-                      View Notebook →
-                    </a>
+                  <div className="project-footer">
+                    <p className="project-tools">
+                      Tools: Streamlit, Seaborn, Pandas, Matplotlib
+                    </p>
+                    <div className="project-actions">
+                      <div className="project-links">
+                        <Link to="/projects/strava-wearables">
+                          Case Study →
+                        </Link>
+                        <a href={`${P}/notebooks/strava/strava-analysis.html`}>
+                          View Notebook →
+                        </a>
+                      </div>
+                      <a
+                        href="https://movement-mapped.streamlit.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-launch-btn"
+                      >
+                        Launch App →
+                      </a>
+                    </div>
                   </div>
-                  <a
-                    href="https://movement-mapped.streamlit.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-launch-btn"
-                  >
-                    Launch App →
-                  </a>
                 </div>
               </div>
 
@@ -389,61 +393,140 @@ function Projects() {
                   </h3>
                   <ProjectMetrics
                     metrics={[
-                      { label: "Coverage", value: "CA hospitals, 2013–2022" },
-                      { label: "Output", value: "Map + trend app" },
-                      { label: "Methods", value: "IQR, KDE, choropleths" },
+                      { label: "Coverage", value: "California, 2013–2022" },
+                      { label: "Output", value: "Regional app + LA notebook" },
+                      { label: "Methods", value: "Trends, KDE, PyDeck maps" },
                     ]}
                   />
                   <ul className="project-points">
                     <li className="star">
-                      Analyzed California HCAI hospital surgery volumes from
-                      2013 to 2022 across the ICD-9 to ICD-10 transition.
+                      California HCAI source data covers inpatient and
+                      outpatient records statewide. The notebook filters to Los
+                      Angeles County, while the application supports broader
+                      regional selections.
                     </li>
                     <li className="star">
-                      Compared high-volume procedures such as breast, colon, and
-                      prostate to rarer ones such as esophagus, pancreas, and
-                      stomach using KDE trends.
-                    </li>
-                    <li className="star">
-                      Outlier-aware views using IQR and a California-wide
-                      roll-up separate from filtered totals.
-                    </li>
-                    <li className="star">
-                      County-level choropleths and hospital-level visuals with
-                      filters for site, region, and year.
+                      Application views include annual trends, year-over-year
+                      change, rankings, KDE distributions, choropleths, and
+                      PyDeck hospital bubbles. IQR filtering applies only to
+                      distributions.
                     </li>
                   </ul>
-                  <p className="project-tools">
-                    Tools: Streamlit, Pydeck, Pandas, Seaborn
-                  </p>
-                  <div className="project-links">
-                    <Link to="/projects/surgical-scope">Case Study →</Link>
-                    <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>
-                      View Notebook →
-                    </a>
+                  <div className="project-footer">
+                    <p className="project-tools">
+                      Tools: Streamlit, Pydeck, Pandas, Seaborn
+                    </p>
+                    <div className="project-actions">
+                      <div className="project-links">
+                        <Link to="/projects/surgical-scope">
+                          Case Study →
+                        </Link>
+                        <a href={`${P}/notebooks/cancer/cancer-analysis.html`}>
+                          View Notebook →
+                        </a>
+                      </div>
+                      <a
+                        href="https://surgical-scope.streamlit.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-launch-btn"
+                      >
+                        Launch App →
+                      </a>
+                    </div>
                   </div>
-                  <a
-                    href="https://surgical-scope.streamlit.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-launch-btn"
-                  >
-                    Launch App →
-                  </a>
                 </div>
               </div>
             </div>
 
+            <section
+              className="project-card project-card-text project-card-nhanes card-purple"
+              aria-labelledby="nhanes-project-title"
+            >
+              <div className="nhanes-project-summary">
+                <h3 className="project-title" id="nhanes-project-title">
+                  Depression Risk Modeling: NHANES
+                </h3>
+                <ProjectMetrics
+                  metrics={[
+                    { label: "Dataset", value: "467 cleaned records" },
+                    { label: "Scope", value: "7 NHANES modules" },
+                    { label: "Evaluation", value: "F1 + ROC-AUC + SHAP" },
+                  ]}
+                />
+              </div>
+              <div className="nhanes-project-details">
+                <ul className="project-points">
+                  <li className="star">
+                    Seven named NHANES modules are outer-merged on SEQN, then
+                    adult, interview, examination, and valid PHQ filters produce
+                    a five-category, 467-record modeling table.
+                  </li>
+                  <li className="star">
+                    K-means, PCA, and DBSCAN are separate unsupervised analyses.
+                    Nonempty supervised notebooks compare Logistic Regression,
+                    Random Forest, and SVM with confusion matrices, F1,
+                    ROC-AUC, and case-level SHAP.
+                  </li>
+                </ul>
+                <div className="project-footer">
+                  <p className="project-tools">
+                    Tools: Python, Pandas, scikit-learn, SHAP, Matplotlib,
+                    Seaborn
+                  </p>
+                  <div className="project-actions">
+                    <div className="project-links">
+                      <Link to="/projects/nhanes-depression-risk">
+                        Case Study →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section
+              className="publications-section"
+              aria-labelledby="publications-heading"
+            >
+              <p className="section-eyebrow">Publication</p>
+              <h3 className="exploratory-title" id="publications-heading">
+                Preprint
+              </h3>
+              <article className="publication-card">
+                <p className="publication-status">
+                  arXiv preprint · version 3 · revised April 9, 2026
+                </p>
+                <h4>
+                  A survey of generative AI adoption and perceived productivity
+                  among scientists who program
+                </h4>
+                <p className="publication-authors">
+                  Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
+                  Carver
+                </p>
+                <p className="publication-citation">
+                  arXiv:2512.19644 [cs.SE] · Submitted December 22, 2025
+                </p>
+                <a
+                  href="https://arxiv.org/abs/2512.19644"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read the preprint on arXiv →
+                </a>
+              </article>
+            </section>
+
             <div className="next-builds" aria-labelledby="next-builds-heading">
               <p className="section-eyebrow">Current direction</p>
               <h3 className="exploratory-title" id="next-builds-heading">
-                Building public-interest data systems with clear methods
+                Health data systems with clear methods
               </h3>
               <p className="exploratory-intro">
-                My next work continues the same thread across these projects:
-                trustworthy health AI evaluation, reproducible analytics,
-                research-backed knowledge structures, and practical apps that
-                make assumptions easier to inspect.
+                I am continuing work on health-data analysis, model evaluation,
+                reproducible workflows, and interfaces that make data sources,
+                assumptions, and limitations easier to inspect.
               </p>
             </div>
 
@@ -518,8 +601,8 @@ function Projects() {
                 <div className="project-card">
                   <h4 className="project-subtitle">Storm Data Analysis</h4>
                   <p className="exploratory-desc">
-                    Peer-reviewed course project analyzing U.S. storm impacts
-                    with clear visualizations.
+                    Course project analyzing U.S. storm impacts through clear
+                    visualizations.
                   </p>
                   <a
                     href="https://rpubs.com/alex23/981558"

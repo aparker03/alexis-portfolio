@@ -155,7 +155,7 @@ function AppLayout() {
             &copy; {new Date().getFullYear()} Alexis Parker. All rights
             reserved.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex min-w-0 max-w-full flex-wrap justify-center gap-x-4 gap-y-2">
             <a href="mailto:aparker0917@gmail.com" className="hover:underline">
               Email
             </a>

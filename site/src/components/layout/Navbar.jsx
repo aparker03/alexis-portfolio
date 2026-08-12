@@ -48,7 +48,7 @@ function Navbar() {
           {/* Brand / Name */}
           <Link to="/" className="min-w-0" onClick={scrollTop}>
             <span
-              className="block font-bold tracking-tight text-gray-900 text-lg sm:text-xl md:text-2xl truncate max-w-[45vw] sm:max-w-[55vw] md:max-w-none"
+              className="block font-bold tracking-tight text-gray-900 text-lg sm:text-xl md:text-2xl whitespace-normal break-words leading-tight max-w-[45vw] sm:max-w-[55vw] md:max-w-none"
               title="Alexis Parker"
             >
               Alexis Parker

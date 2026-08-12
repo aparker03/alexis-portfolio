@@ -87,7 +87,7 @@ const certifications = [
     type: "Specialization",
     category: "Data Science",
     specialization: null,
-    link: "placeholder"
+    link: null
   },
   {
     title: "Neuroscience and Neuroimaging",
@@ -312,14 +312,6 @@ const certifications = [
     category: "Databases",
     specialization: "Python for Everybody",
     link: "https://coursera.org/share/b1a3bbb830cc0aab3ed910dc398d1fc9"
-  },
-  {
-    title: "Capstone: Retrieving, Processing, and Visualizing Data with Python",
-    provider: "University of Michigan",
-    type: "Course",
-    category: "Data Science",
-    specialization: "Python for Everybody",
-    link: "https://coursera.org/share/eb57b9b6374aacf63c0e218cba60b05f"
   },
   {
     title: "Introduction to Data Science in Python",
