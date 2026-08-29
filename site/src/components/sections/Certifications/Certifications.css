@@ -262,6 +262,10 @@
   min-width: 0;
 }
 
+.cert-control--group {
+  width: min(100%, 20rem);
+}
+
 .cert-control > span {
   color: var(--cert-ink);
   font-size: 0.88em;
@@ -605,6 +609,10 @@
 
   .toolbar-row {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cert-control--group {
+    width: 100%;
   }
 
   .cert-entry__header,

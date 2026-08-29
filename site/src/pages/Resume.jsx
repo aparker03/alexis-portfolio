@@ -165,17 +165,17 @@ function Resume() {
               Data Science &amp; Analytics.
             </li>
             <li className="star">
+              Current work through the AI Squared Student Builder Program
+              includes retrieval testing and source-grounded response evaluation
+              for Project Cerebellum / HISPI.
+            </li>
+            <li className="star">
               Work spans federal surveys, neuroscience signals, wearable data,
-              health analytics, and AI interfaces for drug-design workflows.
+              health analytics, AI/NLP systems, and drug-design workflows.
             </li>
             <li className="star">
               Built reproducible Python workflows for cleaning, modeling,
-              visualization, qualitative coding, annotation, and research
-              communication.
-            </li>
-            <li className="star">
-              Shaped results into interactive apps that explain choices and make
-              exploration straightforward for technical and general audiences.
+              visualization, qualitative coding, and research communication.
             </li>
           </ul>
         </section>
@@ -359,12 +359,9 @@ function Resume() {
                       conditioned preference in adolescent rats.
                     </li>
                     <li className="star">
-                      Followed structured research protocols and analyzed
-                      responses with three-way ANOVA.
-                    </li>
-                    <li className="star">
-                      Documented laboratory observations and analyzed study
-                      results using a three-way ANOVA.
+                      Followed structured research protocols, documented
+                      laboratory observations, and analyzed study results using
+                      three-way ANOVA.
                     </li>
                   </ul>
                 </div>
@@ -516,12 +513,40 @@ function Resume() {
                 <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
 
-              {/* PhD */}
+              {/* AI Squared Student Builder Program */}
               <div className="timeline-item">
                 <div className="timeline-spacer left" aria-hidden="true"></div>
                 <span className="timeline-node" aria-hidden="true"></span>
                 <div className="timeline-card hover-card right">
-                  <span className="time-badge">2026 to May 2030</span>
+                  <span className="time-badge">2026 to Present</span>
+                  <h3 className="item-title">
+                    AI Squared Student Builder Program
+                  </h3>
+                  <p className="item-sub">Project Cerebellum / HISPI</p>
+                  <ul className="item-points">
+                    <li className="star">
+                      Support work on unstructured document ingestion, vector
+                      stores, embeddings, and retrieval-augmented generation.
+                    </li>
+                    <li className="star">
+                      Configure and test parser settings, embedding settings,
+                      vector-store workflows, and retrieval behavior.
+                    </li>
+                    <li className="star">
+                      Compare retrieved source material with generated responses
+                      to assess relevance, grounding, and whether the response
+                      accurately reflects the source.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* PhD */}
+              <div className="timeline-item">
+                <div className="timeline-card hover-card left">
+                  <span className="time-badge">
+                    2026 to Present · Expected May 2030
+                  </span>
                   <h3 className="item-title">
                     PhD in Information Systems &amp; Technology
                   </h3>
@@ -537,25 +562,22 @@ function Resume() {
                       Building on prior work in public health, neuroscience, AI
                       interfaces, and reproducible data products.
                     </li>
-                    <li className="star">
-                      Interested in projects that combine health AI evaluation,
-                      annotation workflows, equity analytics, wearable data, and
-                      reproducibility scorecards.
-                    </li>
                   </ul>
                 </div>
+                <span className="timeline-node" aria-hidden="true"></span>
+                <div className="timeline-spacer right" aria-hidden="true"></div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Publication */}
+        {/* Research Outputs */}
         <section
           className="resume-section publication-resume-section"
           aria-labelledby="publication-heading"
         >
           <h2 id="publication-heading" className="section-title">
-            Publication
+            Publications &amp; Presentations
           </h2>
           <p className="publication-resume-status">
             arXiv preprint · version 3 · revised April 9, 2026
@@ -576,6 +598,33 @@ function Resume() {
           >
             Read the preprint on arXiv →
           </a>
+
+          <div className="mt-8 border-t border-slate-300 pt-6">
+            <p className="publication-resume-status">
+              Scheduled co-presenter · 2026 NACIS Annual Meeting · October 2026
+            </p>
+            <p className="publication-resume-title">
+              Communicating Healthcare Affordability Through Maps: A Visual
+              Analytics Framework Using NHIS and MEPS Data
+            </p>
+            <p className="section-note">
+              Sandipta Khare, Alexis Parker, and Prof. Hengwei Zhang
+            </p>
+            <p className="section-note">
+              Research using 2023 NHIS and MEPS public-use data to examine
+              cost-related barriers to mental health counseling and therapy and
+              annual healthcare expenditure burden through regional mapping,
+              visual analytics, and uncertainty-aware cartographic design.
+            </p>
+            <a
+              href="https://nacis.org/annual-meeting/current-meeting/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-link btn-inline"
+            >
+              View NACIS 2026 meeting details →
+            </a>
+          </div>
         </section>
 
         {/* projects CTA */}
@@ -587,6 +636,11 @@ function Resume() {
             See examples of methods, decisions, and outcomes in context.
           </p>
           <ul className="item-points">
+            <li className="star">
+              AccessFirst, a Los Angeles County mental-health resource
+              navigator. The team received Second Prize in the 2026 China-U.S.
+              Young Maker Competition.
+            </li>
             <li className="star">
               BRFSS Depression Index study with full-data notebook stages above
               400,000 records and a sampled application view.

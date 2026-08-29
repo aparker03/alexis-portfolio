@@ -185,90 +185,122 @@ function Home() {
           </div>
         </section>
 
-        {/* Current Research Focus */}
+        {/* Current Work */}
         <section
           className="home-content-section py-section-y px-6 bg-gray-50"
           aria-labelledby="research-focus-heading"
         >
           <div className="max-w-6xl mx-auto">
             <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
-              Current research focus
+              Current work
             </p>
             <h2
               id="research-focus-heading"
               className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
             >
-              Health, LLM evaluation, and reproducible research workflows
+              AI systems, health research, and reproducible data products
             </h2>
             <div className="grid gap-5 md:grid-cols-3 items-start">
               <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
-                  Evaluation and annotation
+                  RAG and source grounding
                 </h3>
                 <p className="text-[#374151] font-medium">
-                  Designing rubrics, qualitative coding workflows, and
-                  annotation structures for health and LLM-based research
-                  questions.
+                  Through the AI Squared Student Builder Program, I support
+                  Project Cerebellum / HISPI by testing document ingestion,
+                  retrieval, and generated responses against source material.
                 </p>
               </article>
               <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
-                  Reproducible pipelines
+                  Health and behavioral research
                 </h3>
                 <p className="text-[#374151] font-medium">
-                  Building Python workflows with clear assumptions, visual
-                  checks, and documented data transformations.
+                  I analyze public-use health surveys and behavioral data with
+                  attention to study design, uncertainty, and the limits of what
+                  the data can support.
                 </p>
               </article>
               <article className="home-hover-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-[#111827] mb-2">
-                  Responsible interpretation
+                  Research data products
                 </h3>
                 <p className="text-[#374151] font-medium">
-                  Using synthetic examples, method notes, and limitations
-                  sections when private research data cannot be shared directly.
+                  I build Python analyses, interactive applications, and
+                  documented workflows with clear methods, assumptions, and
+                  data transformations.
                 </p>
               </article>
             </div>
           </div>
         </section>
 
-        {/* Publications Preview */}
+        {/* Research Outputs Preview */}
         <section
           className="home-content-section py-section-y px-6 bg-white"
           aria-labelledby="publications-preview-heading"
         >
           <div className="max-w-4xl mx-auto">
             <p className="text-center uppercase tracking-[0.18em] text-sm font-bold text-[#365f5c] mb-3">
-              Publication
+              Research outputs
             </p>
             <h2
               id="publications-preview-heading"
               className="text-2xl md:text-3xl font-semibold text-[#111827] mb-6 text-center"
             >
-              Preprint
+              Publication and scheduled presentation
             </h2>
-            <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-2">
-                arXiv preprint · version 3 · revised April 2026
-              </p>
-              <h3 className="text-xl font-bold leading-snug text-[#111827] mb-3 break-words">
-                A survey of generative AI adoption and perceived productivity
-                among scientists who program
-              </h3>
-              <p className="text-[#374151] font-medium mb-4 break-words">
-                Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
-                Carver · arXiv:2512.19644
-              </p>
-              <a
-                href="https://arxiv.org/abs/2512.19644"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="home-secondary-link inline-flex max-w-full rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 break-words"
-              >
-                Read the preprint on arXiv →
-              </a>
-            </article>
+            <div className="grid gap-6">
+              <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-2">
+                  arXiv preprint · version 3 · revised April 9, 2026
+                </p>
+                <h3 className="text-xl font-bold leading-snug text-[#111827] mb-3 break-words">
+                  A survey of generative AI adoption and perceived productivity
+                  among scientists who program
+                </h3>
+                <p className="text-[#374151] font-medium mb-4 break-words">
+                  Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
+                  Carver · arXiv:2512.19644
+                </p>
+                <a
+                  href="https://arxiv.org/abs/2512.19644"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="home-secondary-link inline-flex max-w-full rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 break-words"
+                >
+                  Read the preprint on arXiv →
+                </a>
+              </article>
+
+              <article className="home-hover-card min-w-0 bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-2">
+                  Scheduled co-presenter · 2026 NACIS Annual Meeting · October
+                  2026
+                </p>
+                <h3 className="text-xl font-bold leading-snug text-[#111827] mb-3 break-words">
+                  Communicating Healthcare Affordability Through Maps: A Visual
+                  Analytics Framework Using NHIS and MEPS Data
+                </h3>
+                <p className="text-[#374151] font-medium mb-3 break-words">
+                  Sandipta Khare, Alexis Parker, and Prof. Hengwei Zhang
+                </p>
+                <p className="text-[#374151] font-medium mb-4">
+                  The study uses 2023 NHIS and MEPS public-use data to examine
+                  cost-related barriers to mental health counseling and annual
+                  healthcare expenditure burden through regional mapping and
+                  uncertainty-aware cartographic design.
+                </p>
+                <a
+                  href="https://nacis.org/annual-meeting/current-meeting/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="home-secondary-link inline-flex max-w-full rounded-lg border border-blue-600 px-4 py-2 font-semibold text-blue-700 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 break-words"
+                >
+                  View NACIS 2026 meeting details →
+                </a>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -295,6 +327,9 @@ function Home() {
                 <h3 className="text-xl font-bold text-[#111827] mb-3 break-words">
                   AccessFirst
                 </h3>
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#365f5c] mb-3">
+                  Second Prize, 2026 China-U.S. Young Maker Competition
+                </p>
                 <p className="text-[#374151] font-medium mb-5">
                   AccessFirst helps people navigate mental-health resources in
                   Los Angeles County. Users can search by address, city, or ZIP
@@ -331,19 +366,15 @@ function Home() {
                   2024 NHIS sleep records. The datasets are separate and not
                   participant-matched.
                 </p>
-                <ul className="grid gap-3 text-[#374151] font-medium mb-5">
+                <ul className="grid gap-3 list-disc pl-5 text-[#374151] font-medium mb-5">
                   <li>
-                    • Stored theta, alpha, and beta summaries with channel and
+                    Stored theta, alpha, and beta summaries with channel and
                     electrode context.
                   </li>
+                  <li>PVT lapse, median reaction-time, and variability views.</li>
+                  <li>Separate NHIS sleep distributions for population context.</li>
                   <li>
-                    • PVT lapse, median reaction-time, and variability views.
-                  </li>
-                  <li>
-                    • Separate NHIS sleep distributions for population context.
-                  </li>
-                  <li>
-                    • Educational, non-diagnostic dashboard designed for clear
+                    Educational, non-diagnostic dashboard designed for clear
                     comparison.
                   </li>
                 </ul>

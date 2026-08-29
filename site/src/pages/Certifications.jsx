@@ -5,74 +5,71 @@ import "../components/sections/Certifications/Certifications.css";
 
 const P = process.env.PUBLIC_URL;
 
-const focusAreas = [
+const areas = [
   {
-    title: "Health data and medical AI",
-    categories: ["Healthcare + Neuro"],
+    title: "Data Science & Analytics",
     summary:
-      "Genomic data science, neuroscience and neuroimaging, and AI for medical diagnosis, prognosis, and treatment.",
+      "Data preparation, exploratory analysis, visualization, databases, R workflows, and data products.",
   },
   {
-    title: "Applied data science",
-    categories: [
-      "Data Science",
-      "Visualization",
-      "Databases",
-      "R Programming",
-    ],
+    title: "AI & Machine Learning",
     summary:
-      "Data preparation, exploratory analysis, visualization, databases, and data products across Python and R coursework.",
+      "Machine learning, deep learning, NLP, computer vision, and machine-learning operations.",
   },
   {
-    title: "Machine learning and deep learning",
-    categories: ["AI/ML", "Math for Data Science"],
+    title: "Statistics & Mathematics",
     summary:
-      "Machine learning, neural networks, convolutional networks, sequence models, optimization, and supporting mathematics.",
+      "Statistical inference, regression, modeling, and mathematical foundations for data analysis.",
   },
   {
-    title: "Programming and software engineering",
-    categories: ["Programming", "Software Engineering"],
+    title: "Programming & Software Engineering",
     summary:
-      "Python and Java programming, data structures, web data, and software-engineering fundamentals.",
+      "Python, Java, data structures, web data, and software-development fundamentals.",
   },
   {
-    title: "Statistics, cognitive science, and social research",
-    categories: [
-      "Statistics + Math",
-      "Cognitive Science + AI",
-      "Social Science + Ethics",
-    ],
+    title: "Health, Neuroscience & Genomics",
     summary:
-      "Statistical inference, regression, cognitive science, computational social science, social-network analysis, and ethics.",
+      "Genomic data science, neuroscience and neuroimaging, and AI applications in medicine.",
+  },
+  {
+    title: "Cognitive & Social Computing",
+    summary:
+      "Cognitive science, computational social science, social-network analysis, artificial intelligence, and technology ethics.",
   },
 ];
 
+const areaNames = areas.map((area) => area.title);
+const groupingOptions = ["None", "Area", "Specialization"];
+
 const defaultUi = {
-  category: "All",
+  area: "All",
   type: "All",
   query: "",
   sortBy: "Title A–Z",
-  groupByCategory: false,
+  groupBy: "None",
 };
 
 function Certifications() {
-  const [selectedCategory, setSelectedCategory] = useState(defaultUi.category);
+  const [selectedArea, setSelectedArea] = useState(defaultUi.area);
   const [selectedType, setSelectedType] = useState(defaultUi.type);
   const [query, setQuery] = useState(defaultUi.query);
   const [sortBy, setSortBy] = useState(defaultUi.sortBy);
-  const [groupByCategory, setGroupByCategory] = useState(
-    defaultUi.groupByCategory,
-  );
+  const [groupBy, setGroupBy] = useState(defaultUi.groupBy);
 
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem("certs-ui") || "{}");
-      if (saved.category) setSelectedCategory(saved.category);
+      const savedArea = saved.area || saved.category;
+      if (["All", ...areaNames].includes(savedArea)) {
+        setSelectedArea(savedArea);
+      }
       if (saved.type) setSelectedType(saved.type);
       if (saved.query !== undefined) setQuery(saved.query);
       if (saved.sortBy) setSortBy(saved.sortBy);
-      if (saved.groupByCategory !== undefined) {
-        setGroupByCategory(saved.groupByCategory);
+      if (groupingOptions.includes(saved.groupBy)) {
+        setGroupBy(saved.groupBy);
+      } else if (saved.groupByCategory) {
+        setGroupBy("Area");
       }
     } catch {
       localStorage.removeItem("certs-ui");
@@ -83,22 +80,16 @@ function Certifications() {
     localStorage.setItem(
       "certs-ui",
       JSON.stringify({
-        category: selectedCategory,
+        area: selectedArea,
         type: selectedType,
         query,
         sortBy,
-        groupByCategory,
+        groupBy,
       }),
     );
-  }, [selectedCategory, selectedType, query, sortBy, groupByCategory]);
+  }, [selectedArea, selectedType, query, sortBy, groupBy]);
 
-  const categories = useMemo(
-    () => [
-      "All",
-      ...new Set(certifications.map((item) => item.category).filter(Boolean)),
-    ],
-    [],
-  );
+  const availableAreas = ["All", ...areaNames];
   const types = useMemo(
     () => [
       "All",
@@ -108,13 +99,12 @@ function Certifications() {
   );
   const sorters = ["Title A–Z", "Title Z–A", "Provider A–Z"];
 
-  const focusAreaCounts = useMemo(
+  const areaCounts = useMemo(
     () =>
-      focusAreas.map((area) => ({
+      areas.map((area) => ({
         ...area,
-        count: certifications.filter((item) =>
-          area.categories.includes(item.category),
-        ).length,
+        count: certifications.filter((item) => item.category === area.title)
+          .length,
       })),
     [],
   );
@@ -122,8 +112,8 @@ function Certifications() {
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     const matches = certifications.filter((item) => {
-      const matchesCategory =
-        selectedCategory === "All" || item.category === selectedCategory;
+      const matchesArea =
+        selectedArea === "All" || item.category === selectedArea;
       const matchesType = selectedType === "All" || item.type === selectedType;
       const searchableText = [
         item.title,
@@ -137,7 +127,7 @@ function Certifications() {
         .toLowerCase();
 
       return (
-        matchesCategory &&
+        matchesArea &&
         matchesType &&
         (!normalizedQuery || searchableText.includes(normalizedQuery))
       );
@@ -155,28 +145,61 @@ function Certifications() {
       }
       return titleA.localeCompare(titleB);
     });
-  }, [selectedCategory, selectedType, query, sortBy]);
+  }, [selectedArea, selectedType, query, sortBy]);
 
   const grouped = useMemo(() => {
-    if (!groupByCategory) return { All: filtered };
+    if (groupBy === "None") return { All: filtered };
 
     const groups = new Map();
+    const courseSpecializations = new Set(
+      filtered
+        .filter((item) => item.type === "Course" && item.specialization)
+        .map((item) => item.specialization),
+    );
+
     filtered.forEach((item) => {
-      const key = item.category || "Other";
+      let key = item.category || "Other";
+
+      if (groupBy === "Specialization") {
+        if (item.type === "Course") {
+          key = item.specialization || "Standalone courses";
+        } else if (courseSpecializations.has(item.title)) {
+          key = item.title;
+        } else {
+          key = "Standalone specializations";
+        }
+      }
+
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key).push(item);
     });
 
+    if (groupBy === "Specialization") {
+      groups.forEach((items, group) => {
+        items.sort((a, b) => {
+          const aIsParent = a.type === "Specialization" && a.title === group;
+          const bIsParent = b.type === "Specialization" && b.title === group;
+          if (aIsParent !== bIsParent) return aIsParent ? -1 : 1;
+          return 0;
+        });
+      });
+    }
+
     return Object.fromEntries(
-      [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)),
+      [...groups.entries()].sort(([a], [b]) => {
+        const standaloneA = a.startsWith("Standalone ");
+        const standaloneB = b.startsWith("Standalone ");
+        if (standaloneA !== standaloneB) return standaloneA ? 1 : -1;
+        return a.localeCompare(b);
+      }),
     );
-  }, [filtered, groupByCategory]);
+  }, [filtered, groupBy]);
 
   const hasFilters =
-    selectedCategory !== "All" || selectedType !== "All" || query.trim();
+    selectedArea !== "All" || selectedType !== "All" || query.trim();
 
   const activeFilterText = [
-    selectedCategory !== "All" ? `Category: ${selectedCategory}` : null,
+    selectedArea !== "All" ? `Area: ${selectedArea}` : null,
     selectedType !== "All" ? `Type: ${selectedType}` : null,
     query.trim() ? `Search: “${query.trim()}”` : null,
   ]
@@ -184,7 +207,7 @@ function Certifications() {
     .join(" · ");
 
   const clearFilters = () => {
-    setSelectedCategory("All");
+    setSelectedArea("All");
     setSelectedType("All");
     setQuery("");
   };
@@ -195,10 +218,10 @@ function Certifications() {
         <header className="cert-hero">
           <div className="cert-hero__copy">
             <p className="cert-eyebrow">Coursework and credentials</p>
-            <h1 className="certifications-title">Certifications</h1>
+            <h1 className="certifications-title">Courses &amp; Credentials</h1>
             <p className="cert-hero__subtitle">
-              Coursework, specializations, and credentials organized by area
-              of focus, with filters for browsing the full collection.
+              Courses, specializations, and credentials organized by area, with
+              filters for browsing the full collection.
             </p>
           </div>
           <div className="cert-hero__avatar">
@@ -229,11 +252,10 @@ function Certifications() {
           </div>
 
           <div className="focus-areas__list">
-            {focusAreaCounts.map((area) => (
+            {areaCounts.map((area) => (
               <article className="focus-area" key={area.title}>
                 <div className="focus-area__heading">
                   <h3>{area.title}</h3>
-                  <p>{area.categories.join(" · ")}</p>
                 </div>
                 <p className="focus-area__summary">{area.summary}</p>
                 <p className="focus-area__count">
@@ -266,17 +288,17 @@ function Certifications() {
             <div className="toolbar-row">
               <label
                 className="cert-control"
-                data-active={selectedCategory !== "All" || undefined}
+                data-active={selectedArea !== "All" || undefined}
               >
-                <span>Category</span>
+                <span>Area</span>
                 <select
-                  value={selectedCategory}
-                  onChange={(event) => setSelectedCategory(event.target.value)}
-                  aria-label="Filter credentials by category"
+                  value={selectedArea}
+                  onChange={(event) => setSelectedArea(event.target.value)}
+                  aria-label="Filter credentials by area"
                 >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
+                  {availableAreas.map((area) => (
+                    <option key={area} value={area}>
+                      {area}
                     </option>
                   ))}
                 </select>
@@ -332,15 +354,19 @@ function Certifications() {
             </div>
 
             <div className="toolbar-options">
-              <label className="cert-toggle">
-                <input
-                  type="checkbox"
-                  checked={groupByCategory}
-                  onChange={(event) =>
-                    setGroupByCategory(event.target.checked)
-                  }
-                />
-                <span>Group results by category</span>
+              <label className="cert-control cert-control--group">
+                <span>Group results</span>
+                <select
+                  value={groupBy}
+                  onChange={(event) => setGroupBy(event.target.value)}
+                  aria-label="Group credentials"
+                >
+                  {groupingOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </label>
               <button
                 type="button"
@@ -383,7 +409,7 @@ function Certifications() {
             <div className="credential-results">
               {Object.entries(grouped).map(([group, items]) => (
                 <section key={group} className="cert-group">
-                  {groupByCategory && (
+                  {groupBy !== "None" && (
                     <div className="cert-group__heading">
                       <h3>{group}</h3>
                       <span>
@@ -425,7 +451,7 @@ function Certifications() {
                           )}
                           {credential.category && (
                             <div>
-                              <dt>Category</dt>
+                              <dt>Area</dt>
                               <dd>{credential.category}</dd>
                             </div>
                           )}

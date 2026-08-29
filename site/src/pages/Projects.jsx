@@ -137,6 +137,9 @@ function Projects() {
                 <h2 className="project-title" id="accessfirst-feature-title">
                   AccessFirst
                 </h2>
+                <p className="font-semibold text-[#1f2937]">
+                  Second Prize, 2026 China-U.S. Young Maker Competition
+                </p>
                 <p>
                   AccessFirst helps people navigate mental-health resources in
                   Los Angeles County. Users can search by address, city, or ZIP
@@ -484,51 +487,6 @@ function Projects() {
                 </div>
               </div>
             </section>
-
-            <section
-              className="publications-section"
-              aria-labelledby="publications-heading"
-            >
-              <p className="section-eyebrow">Publication</p>
-              <h2 className="exploratory-title" id="publications-heading">
-                Preprint
-              </h2>
-              <article className="publication-card">
-                <p className="publication-status">
-                  arXiv preprint · version 3 · revised April 9, 2026
-                </p>
-                <h3>
-                  A survey of generative AI adoption and perceived productivity
-                  among scientists who program
-                </h3>
-                <p className="publication-authors">
-                  Gabrielle O’Brien, Alexis Parker, Nasir Eisty, and Jeffrey
-                  Carver
-                </p>
-                <p className="publication-citation">
-                  arXiv:2512.19644 [cs.SE] · Submitted December 22, 2025
-                </p>
-                <a
-                  href="https://arxiv.org/abs/2512.19644"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Read the preprint on arXiv →
-                </a>
-              </article>
-            </section>
-
-            <div className="next-builds" aria-labelledby="next-builds-heading">
-              <p className="section-eyebrow">Current direction</p>
-              <h2 className="exploratory-title" id="next-builds-heading">
-                Health data systems with clear methods
-              </h2>
-              <p className="exploratory-intro">
-                I am continuing work on health-data analysis, model evaluation,
-                reproducible workflows, and interfaces that make data sources,
-                assumptions, and limitations easier to inspect.
-              </p>
-            </div>
 
             <div className="exploratory-projects">
               <h2 className="exploratory-title">
